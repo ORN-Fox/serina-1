@@ -19,7 +19,9 @@ function createWindow () {
     minHeight: 600,
     width: 1366,
     height: 768,
-    icon: path.join(__dirname, '/icons/icon-x64.ico')
+    //icon: path.join(__dirname, '/icons/icon-x64.ico'),
+    frame: false,
+    titleBarStyle: 'hidden'
   })
 
   // and load the index.html of the app.
