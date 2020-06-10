@@ -475,10 +475,12 @@ module.exports = function (grunt) {
             'raw-body/**',
             'send/**',
             'safe-buffer/**',
+            'safer-buffer/**',
             'serve-static/**',
             'setprototypeof/**',
             'statuses/**',
             'type-is/**',
+            'toidentifier/**',
             'unpipe/**',
             'utils-merge/**',
             'vary/**'
