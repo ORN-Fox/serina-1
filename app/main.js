@@ -42,9 +42,6 @@ function createWindow () {
 }
 
 app.requestSingleInstanceLock()
-app.on('second-instance', (event, argv, cwd) => {
-  app.quit()
-});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
