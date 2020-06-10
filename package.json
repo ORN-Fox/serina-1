@@ -1,12 +1,12 @@
 {
   "name": "serina",
-  "author": "Florian Armand Alias Foxdog05000",
+  "author": "ORN-Fox",
   "license": "MIT",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "api/api.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/foxdog05000/serina.git"
+    "url": "git+https://github.com/ORN-Fox/serina-1.git"
   },
   "keywords": [
     "electron",
@@ -16,9 +16,9 @@
     "i18next"
   ],
   "bugs": {
-    "url": "https://github.com/foxdog05000/serina/issues"
+    "url": "https://github.com/ORN-Fox/serina-1/issues"
   },
-  "homepage": "https://github.com/foxdog05000/serina#readme",
+  "homepage": "https://github.com/ORN-Fox/serina-1#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",

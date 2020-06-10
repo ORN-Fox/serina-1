@@ -23,7 +23,7 @@ How to submit a pull request:
 5. Ensure there are no linting errors in the terminal
 6. Ensure that all the tests pass by running `grunt test`
 7. **Commit only the changes to `app` and `test` or `api.js` for the API (if applicable)**, then `git push`
-8. https://github.com/foxdog05000/serina/compare
+8. https://github.com/ORN-Fox/serina-1/compare
 
 
 ## License

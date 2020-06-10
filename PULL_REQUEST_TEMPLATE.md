@@ -5,7 +5,7 @@
 
 ------
 
-Please, before doing the PR make sure that you are following the intructions described in [CONTRIBUTING.md](https://github.com/foxdog05000/serina/blob/master/CONTRIBUTING.md) and you have completed the following checklist
+Please, before doing the PR make sure that you are following the intructions described in [CONTRIBUTING.md](https://github.com/ORN-Fox/serina-1/blob/master/CONTRIBUTING.md) and you have completed the following checklist
 
 **Checklist**
 - [ ] Your PR is done against the `dev` branch
