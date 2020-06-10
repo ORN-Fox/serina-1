@@ -15,6 +15,6 @@
   "author": "ORN-Fox",
   "license": "MIT",
   "devDependencies": {
-    "electron": "1.8.2-beta.4"
+    "electron": "^9.0.3"
   }
 }
