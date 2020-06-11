@@ -24,7 +24,6 @@ function createWindow () {
     width: 1366,
     height: 768,
     icon: path.join(__dirname, '/icons/icon-x64.png'),
-    frame: false,
     titleBarStyle: 'hidden'
   })
 
