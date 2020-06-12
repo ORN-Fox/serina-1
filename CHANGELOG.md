@@ -1,11 +1,14 @@
 # [R0.2.4](https://github.com/ORN-Fox/serina-1/releases/tag/R0.2.4) Available soon
 
+
 - Update Electron to 9x
+- Fix : Crash on opening app on Mac OS #1
 
 
 # After this message is oldest release on older repository
 
 # [R0.2.3](https://github.com/foxdog05000/serina/releases/tag/R0.2.3) (2018-05-17)
+
 
 - Fix : Bad translation "noLanguage" with "s"
 - Fix : Match items on search isn't be update after delete a translation #29
