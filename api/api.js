@@ -7,10 +7,13 @@ const path = require('path')
 const fs = require('fs')
 const api = express()
 
-const constants = require('./modules/constants')
+let constants = require('./modules/constants')
 
-const utilities = require('./modules/utilities')
-const languages = require('./modules/languages')
+let utilities = require('./modules/utilities')
+let languages = require('./modules/languages')
+
+let groups = require('./modules/groups')
+let translations = require('./modules/translations')
 
 jsonfile.spaces = constants.JSON_NB_SPACES_INDENT
 
@@ -21,6 +24,8 @@ api.use((req, res, next) => {
 })
 api.use(bodyParser.json())
 api.use('/', languages)
+api.use('/', groups)
+api.use('/', translations)
 
 let createFolderIsNotExist = (pathFolder) => {
   if (!fs.existsSync(path.join(__dirname, pathFolder))) {
@@ -38,9 +43,9 @@ let targetLevelForAction = (obj, levels, i, indexLanguage, action, value, newVal
   for (let key in obj) {
     if (key === levels[i]) {
       if (key === levels[i] && i === levels.length - 1) {
-        if (action === 'add' || action === 'update') {
+        if (action === constants.ADD || action === constants.UPDATE) {
           if (utilities.isObject(value)) {
-            if (action === 'add') {
+            if (action === constants.ADD) {
               obj[key][value.key] = value.value[indexLanguage]
             } else {
               if (value.originalKey === value.key) {
@@ -51,7 +56,7 @@ let targetLevelForAction = (obj, levels, i, indexLanguage, action, value, newVal
               }
             }
           } else {
-            if (action === 'add') {
+            if (action === constants.ADD) {
               obj[key][value] = {}
             } else {
               let copyContent = obj[key][value]
@@ -60,7 +65,7 @@ let targetLevelForAction = (obj, levels, i, indexLanguage, action, value, newVal
             }
           }
           return obj
-        } else if (action === 'delete') {
+        } else if (action === constants.DELETE) {
           if (utilities.isObject(value)) {
             delete obj[key][value.key]
           } else {
@@ -94,116 +99,6 @@ api.get(constants.PATH_API + '/', (req, res) => {
       address + '/translation/delete'
     ]
   })
-})
-
-api.post(constants.PATH_API + '/group/:action', (req, res) => {
-  const action = req.params.action
-  const languages = req.body.languages
-
-  let files = []
-  languages.map((file, index) => {
-    files[index] = constants.PATH_JSON_FOLDER + '/' + languages[index] + '.json'
-  })
-
-  const levelsIsDefined = utilities.isDefined(req.body.levels)
-  const levels = levelsIsDefined ? req.body.levels.split('/') : undefined
-  let groupName = req.body.groupName
-  let originalGroupName = req.body.originalGroupName
-  let i = 0
-
-  files.map((file, index) => {
-    jsonfile.readFile(file, (err, obj) => {
-      if (err) { console.log('Error on read json file : ' + file, 'err', err) }
-      switch (action) {
-        case 'add':
-          if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, groupName)
-          } else {
-            obj[groupName] = {}
-          }
-          break
-        case 'update':
-          if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, originalGroupName, groupName)
-          } else {
-            let contentOfGroup = obj[originalGroupName]
-            delete obj[originalGroupName]
-            obj[groupName] = contentOfGroup
-          }
-          break
-        case 'delete':
-          if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, groupName)
-          } else {
-            delete obj[groupName]
-          }
-          break
-      }
-
-      obj = utilities.sortJSON(obj)
-
-      jsonfile.writeFile(file, obj, (err) => {
-        if (err) { return console.log('Error on ' + action + ' group name on json file : ' + file, 'err', err) }
-      })
-    })
-  })
-  res.sendStatus(200)
-})
-
-api.post(constants.PATH_API + '/translation/:action', (req, res) => {
-  const action = req.params.action
-  const languages = req.body.languages
-
-  let files = []
-  languages.map((file, index) => {
-    files[index] = constants.PATH_JSON_FOLDER + '/' + languages[index] + '.json'
-  })
-
-  const levelsIsDefined = utilities.isDefined(req.body.levels)
-  const levels = levelsIsDefined ? req.body.levels.split('/') : undefined
-  let translation = req.body.translation
-  let i = 0
-
-  files.map((file, index) => {
-    jsonfile.readFile(file, (err, obj) => {
-      if (err) { console.log('Error on read json file : ' + file, 'err', err) }
-      switch (action) {
-        case 'add':
-          if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, translation)
-          } else {
-            obj[translation.key] = translation.value[index]
-          }
-          break
-        case 'update':
-          if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, translation)
-          } else {
-            if (translation.originalKey === translation.key) {
-              obj[translation.key] = translation.value[index]
-            } else {
-              delete obj[translation.originalKey]
-              obj[translation.key] = translation.value[index]
-            }
-          }
-          break
-        case 'delete':
-          if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, translation)
-          } else {
-            delete obj[translation.key]
-          }
-          break
-      }
-
-      obj = utilities.sortJSON(obj)
-
-      jsonfile.writeFile(file, obj, (err) => {
-        if (err) { return console.log('Error on ' + action + ' trad on json file : ' + file, 'err', err) }
-      })
-    })
-  })
-  res.sendStatus(200)
 })
 
 const server = api.listen(7777, 'localhost', () => {
