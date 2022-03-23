@@ -23,7 +23,6 @@ angular.module('serinaApp').component('basicSettings', {
       if (language != $rootScope.settings.locale) {
         $rootScope.settings.locale = language
         $rootScope.saveSettings()
-        console.log(window.i18next)
         window.i18next.init({
           debug: false,
           lng: $rootScope.settings.locale,
