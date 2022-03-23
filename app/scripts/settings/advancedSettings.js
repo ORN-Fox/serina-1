@@ -3,9 +3,15 @@
 angular.module('serinaApp').component('advancedSettings', {
   controller: function AdvancedSettings ($rootScope) {
 
-    this.toggleCustomTranslationsPath = function (customTranslationsPath) {
-      $rootScope.settings.customTranslationsPath = customTranslationsPath;
-      $rootScope.saveSettings();
+    this.toggleCustomTranslationsPathStatus = function (customTranslationsPathEnabled) {
+      $rootScope.settings.customTranslationsPathEnabled = customTranslationsPathEnabled;
+      $rootScope.saveSettings()
+    }
+
+    this.saveCustomTranslationsPath = function (customTranslationsPath)
+    {
+      $root.settings.customTranslationsPath = customTranslationsPath
+      $rootScope.saveSettings()
     }
 
   },

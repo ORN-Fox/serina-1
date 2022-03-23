@@ -2,10 +2,12 @@
 <md-list-item>
     <p>{{'pages.settings.advanced.customPathOfFile' | i18next}}</p>
 
-    <md-switch class="md-primary" ng-model="$root.settings.customTranslationsPath" ng-change="$ctrl.toggleCustomTranslationsPath($root.settings.customTranslationsPath)">
+    <md-switch class="md-primary" ng-model="$root.settings.customTranslationsPathEnabled" ng-change="$ctrl.toggleCustomTranslationsPathStatus($root.settings.customTranslationsPathEnabled)">
+</md-list-item>
 
-    <md-input-container>
-       <label>{{'pages.settings.advanced.folderPath' | i18next}}</label>
-       <input value=".../project/app/locales" placeholder="{{'pages.settings.advanced.folderPath' | i18next}}" ng-disabled="!$root.settings.customTranslationsPath">
-    </md-input-container>
+<md-list-item>
+  <md-input-container class="md-block" flex-gt-xs>
+    <label>{{'pages.settings.advanced.folderPath' | i18next}}</label>
+    <input ng-model="$root.settings.customTranslationsPath" ng-blur="$ctrl.saveCustomTranslationsPath()" placeholder="{{'pages.settings.advanced.folderPath' | i18next}}" ng-disabled="!$root.settings.customTranslationsPathEnabled">
+  </md-input-container>
 </md-list-item>

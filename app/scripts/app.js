@@ -98,7 +98,7 @@ angular
       $rootScope.settings = LocalStorage.getItem($rootScope.keySettingsApp)
     } else {
       $rootScope.settings = {
-        customTranslationsPath: false,
+        customTranslationsPathEnabled: false,
         keepLanguagesEdit: false,
         locale: 'en-US',
         theme: 'green',
