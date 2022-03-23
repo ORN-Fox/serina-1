@@ -1,11 +1,13 @@
 'use strict'
 
-let express = require ('express')
-let moduleGroups = express.Router()
-let jsonfile = require('jsonfile')
+const express = require ('express')
+const moduleGroups = express.Router()
+const jsonfile = require('jsonfile')
 
-let constants = require('./constants')
-let utilities = require('./utilities')
+let constants = require('../utils/constants')
+let utilities = require('../utils/utilities')
+
+let core = require('./core')
 
 moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
   const action = req.params.action
@@ -29,7 +31,7 @@ moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
       switch (action) {
         case constants.ADD:
           if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, groupName)
+            core.targetLevelForAction(obj, levels, i, index, action, groupName)
           } else {
             obj[groupName] = {}
           }
@@ -37,7 +39,7 @@ moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
 
         case constants.UPDATE:
           if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, originalGroupName, groupName)
+            core.targetLevelForAction(obj, levels, i, index, action, originalGroupName, groupName)
           } else {
             let contentOfGroup = obj[originalGroupName]
             delete obj[originalGroupName]
@@ -47,7 +49,7 @@ moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
 
         case constants.DELETE:
           if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, groupName)
+            core.targetLevelForAction(obj, levels, i, index, action, groupName)
           } else {
             delete obj[groupName]
           }
