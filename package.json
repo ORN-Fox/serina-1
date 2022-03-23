@@ -86,12 +86,12 @@
     "time-grunt": "^2.0.0"
   },
   "scripts": {
-    "build": "rimraf api/dist/ && babel ./api/ --out-dir api/dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node api/dist/api.js",
+    "build:api": "rimraf api/dist/ && babel ./api/ --out-dir api/dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start:api": "npm run build:api && node api/dist/api.js",
     "test": "grunt test",
-    "test api": "cd api && mocha",
-    "package": "npm run build && grunt package:linux",
-    "package:win": "npm run build && grunt package:win32",
-    "package:mac": "npm run build && grunt package:macos"
+    "test:api": "cd api && mocha",
+    "package": "npm run build:api && grunt package:linux",
+    "package:win": "npm run build:api && grunt package:win32",
+    "package:mac": "npm run build:api && grunt package:macos"
   }
 }
