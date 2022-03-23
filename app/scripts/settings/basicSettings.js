@@ -20,9 +20,26 @@ angular.module('serinaApp').component('basicSettings', {
     ]
 
     this.changeLocaleOfApplication = function (language) {
-      $rootScope.settings.locale = language
-      window.i18next.changeLanguage($rootScope.settings.locale)
-      $rootScope.saveSettings()
+      if (language != $rootScope.settings.locale) {
+        console.log(language)
+        $rootScope.settings.locale = language
+        $rootScope.saveSettings()
+        console.log(window.i18next)
+        window.i18next.init({
+          debug: false,
+          lng: $rootScope.settings.locale,
+          fallbackLng: '',
+          backend: {
+            loadPath: '../app/locales/' + $rootScope.settings.locale + '.json'
+          },
+          useCookie: false,
+          useLocalStorage: false,
+          initImmediate: false
+        }, function (err) {
+          if (err) { console.error('Unable to load translation', err) }
+          console.log('Translation loaded')
+        })
+      }
     }
 
     this.changeKeepLanguagesEdit = function (keepLanguagesEdit) {
