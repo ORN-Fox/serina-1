@@ -30,7 +30,8 @@ let deleteLanguage = (res, languageCode) => {
 }
 
 moduleLanguages.isValidLanguageCode = (languageCode) => {
-  return typeof languageCode === 'string' && languageCode.length === 5
+  let regex = new RegExp('^\w{2}-\w{2}$')
+  return typeof languageCode === 'string' && languageCode.length === 5 && regex.test(languageCode)
 }
 
 moduleLanguages.countTranslations = (obj) => {
