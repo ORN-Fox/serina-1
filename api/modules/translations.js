@@ -9,6 +9,19 @@ let utilities = require('../utils/utilities')
 
 let core = require('./core')
 
+let addOrUpdateTranslation = (obj, index, translation) => {
+  obj[translation.key] = translation.value[index]
+}
+
+let renameTranslation = (obj, index, translation) => {
+  delete obj[translation.originalKey]
+  obj[translation.key] = translation.value[index]
+}
+
+let deleteTranslation = (obj, translation) => {
+  delete obj[translation.key]
+}
+
 moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) => {
   const action = req.params.action
   const languages = req.body.languages
@@ -32,7 +45,7 @@ moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) 
           if (levelsIsDefined) {
             core.targetLevelForAction(obj, levels, i, index, action, translation)
           } else {
-            obj[translation.key] = translation.value[index]
+            addOrUpdateTranslation(obj, index, translation)
           }
           break
 
@@ -41,10 +54,9 @@ moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) 
             core.targetLevelForAction(obj, levels, i, index, action, translation)
           } else {
             if (translation.originalKey === translation.key) {
-              obj[translation.key] = translation.value[index]
+              addOrUpdateTranslation(obj, index, translation)
             } else {
-              delete obj[translation.originalKey]
-              obj[translation.key] = translation.value[index]
+              renameTranslation(obj, index, translation)
             }
           }
           break
@@ -53,7 +65,7 @@ moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) 
           if (levelsIsDefined) {
             core.targetLevelForAction(obj, levels, i, index, action, translation)
           } else {
-            delete obj[translation.key]
+            deleteTranslation(obj, translation)
           }
           break
       }

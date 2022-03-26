@@ -9,6 +9,20 @@ let utilities = require('../utils/utilities')
 
 let core = require('./core')
 
+let addGroup = (obj, groupName) => {
+  obj[groupName] = {}
+}
+
+let updateOrRenameGroup = (obj, groupName, originalGroupName) => {
+  let contentOfGroup = obj[originalGroupName]
+  delete obj[originalGroupName]
+  obj[groupName] = contentOfGroup
+}
+
+let deleteGroup = (obj, groupName) => {
+  delete obj[groupName]
+}
+
 moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
   const action = req.params.action
   const languages = req.body.languages
@@ -33,7 +47,7 @@ moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
           if (levelsIsDefined) {
             core.targetLevelForAction(obj, levels, i, index, action, groupName)
           } else {
-            obj[groupName] = {}
+            addGroup(obj, groupName)
           }
           break
 
@@ -41,9 +55,7 @@ moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
           if (levelsIsDefined) {
             core.targetLevelForAction(obj, levels, i, index, action, originalGroupName, groupName)
           } else {
-            let contentOfGroup = obj[originalGroupName]
-            delete obj[originalGroupName]
-            obj[groupName] = contentOfGroup
+            updateOrRenameGroup(obj, groupName, originalGroupName)
           }
           break
 
@@ -51,7 +63,7 @@ moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
           if (levelsIsDefined) {
             core.targetLevelForAction(obj, levels, i, index, action, groupName)
           } else {
-            delete obj[groupName]
+            deleteGroup(obj, groupName)
           }
           break
       }
