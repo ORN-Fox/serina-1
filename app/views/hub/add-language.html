@@ -12,10 +12,6 @@
                 <md-icon>translate</md-icon>
                 <input type="text" ng-model="addLanguage.code" md-maxlength="5" placeholder="en-US">
             </md-input-container>
-            <md-button class="md-icon-button" aria-label="Help">
-                <md-tooltip md-direction="right">Code ISO 639-1</md-tooltip>
-                <md-icon>help</md-icon>
-            </md-button>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
             <md-button type="submit" ng-disabled="addLanguage.code.length < 5" ng-click="addLanguage()" class="md-raised md-primary">
