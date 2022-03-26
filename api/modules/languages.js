@@ -1,12 +1,12 @@
 'use strict'
 
-let express = require ('express')
-let moduleLanguages = express.Router()
-let jsonfile = require('jsonfile')
-let fs = require('fs')
+const express = require ('express')
+const moduleLanguages = express.Router()
+const jsonfile = require('jsonfile')
+const fs = require('fs')
 
-let constants = require('./constants')
-let utilities = require('./utilities')
+let constants = require('../utils/constants')
+let utilities = require('../utils/utilities')
 
 jsonfile.spaces = constants.JSON_NB_SPACES_INDENT
 

@@ -1,11 +1,13 @@
 'use strict'
 
-let express = require ('express')
-let moduleTranslations = express.Router()
-let jsonfile = require('jsonfile')
+const express = require ('express')
+const moduleTranslations = express.Router()
+const jsonfile = require('jsonfile')
 
-let constants = require('./constants')
-let utilities = require('./utilities')
+let constants = require('../utils/constants')
+let utilities = require('../utils/utilities')
+
+let core = require('./core')
 
 moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) => {
   const action = req.params.action
@@ -28,7 +30,7 @@ moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) 
       switch (action) {
         case constants.ADD:
           if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, translation)
+            core.targetLevelForAction(obj, levels, i, index, action, translation)
           } else {
             obj[translation.key] = translation.value[index]
           }
@@ -36,7 +38,7 @@ moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) 
 
         case constants.UPDATE:
           if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, translation)
+            core.targetLevelForAction(obj, levels, i, index, action, translation)
           } else {
             if (translation.originalKey === translation.key) {
               obj[translation.key] = translation.value[index]
@@ -49,7 +51,7 @@ moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) 
 
         case constants.DELETE:
           if (levelsIsDefined) {
-            targetLevelForAction(obj, levels, i, index, action, translation)
+            core.targetLevelForAction(obj, levels, i, index, action, translation)
           } else {
             delete obj[translation.key]
           }

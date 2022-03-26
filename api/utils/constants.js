@@ -1,4 +1,4 @@
-let path = require('path')
+const path = require('path')
 
 module.exports = Object.freeze({
   JSON_NB_SPACES_INDENT: 2,
