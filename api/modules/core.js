@@ -8,6 +8,39 @@ const fs = require('fs')
 let constants = require('../utils/constants')
 let utilities = require('../utils/utilities')
 
+// Group related
+
+let addGroup = (obj, groupName) => {
+  obj[groupName] = {}
+}
+
+let updateOrRenameGroup = (obj, groupName, originalGroupName) => {
+  let contentOfGroup = obj[originalGroupName]
+  delete obj[originalGroupName]
+  obj[groupName] = contentOfGroup
+}
+
+let deleteGroup = (obj, groupName) => {
+  delete obj[groupName]
+}
+
+// Translation related
+
+let addOrUpdateTranslation = (obj, index, translation) => {
+  obj[translation.key] = translation.value[index]
+}
+
+let renameTranslation = (obj, index, translation) => {
+  delete obj[translation.originalKey]
+  obj[translation.key] = translation.value[index]
+}
+
+let deleteTranslation = (obj, translation) => {
+  delete obj[translation.key]
+}
+
+// Commons
+
 let targetLevelForAction = (obj, levels, i, indexLanguage, action, value, newValue) => {
   for (let key in obj) {
     if (key === levels[i]) {
@@ -15,30 +48,27 @@ let targetLevelForAction = (obj, levels, i, indexLanguage, action, value, newVal
         if (action === constants.ADD || action === constants.UPDATE) {
           if (utilities.isObject(value)) {
             if (action === constants.ADD) {
-              obj[key][value.key] = value.value[indexLanguage]
+              addOrUpdateTranslation(obj[key], indexLanguage, value)
             } else {
               if (value.originalKey === value.key) {
-                obj[key][value.key] = value.value[indexLanguage]
+                addOrUpdateTranslation(obj[key], indexLanguage, value)
               } else {
-                delete obj[key][value.originalKey]
-                obj[key][value.key] = value.value[indexLanguage]
+                renameTranslation(obj[key], indexLanguage, value)
               }
             }
           } else {
             if (action === constants.ADD) {
-              obj[key][value] = {}
+              addGroup(obj[key], value)
             } else {
-              let copyContent = obj[key][value]
-              delete obj[key][value]
-              obj[key][newValue] = copyContent
+              updateOrRenameGroup(obj[key], newValue, value)
             }
           }
           return obj
         } else if (action === constants.DELETE) {
           if (utilities.isObject(value)) {
-            delete obj[key][value.key]
+            deleteTranslation(obj[key], value)
           } else {
-            delete obj[key][value]
+            deleteGroup(obj[key], value)
           }
           return obj
         }
@@ -50,6 +80,25 @@ let targetLevelForAction = (obj, levels, i, indexLanguage, action, value, newVal
 }
 
 module.exports = {
+
+  // Group
+
+  addGroup: (obj, groupName) => addGroup(obj, groupName),
+
+  updateOrRenameGroup: (obj, groupName, originalGroupName) => updateOrRenameGroup(obj, groupName, originalGroupName),
+
+  deleteGroup: (obj, groupName) => deleteGroup(obj, groupName),
+
+  // Translation
+
+  addOrUpdateTranslation: (obj, index, translation) => addOrUpdateTranslation(obj, index, translation),
+
+  renameTranslation: (obj, index, translation) => renameTranslation(obj, index, translation),
+
+  deleteTranslation: (obj, translation) => deleteTranslation(obj, translation),
+
+  // Commons
+
   createFolderIsNotExist: (pathFolder) => {
     if (!fs.existsSync(path.join(__dirname, pathFolder))) {
       fs.mkdir(path.join(__dirname, pathFolder), (err) => {
@@ -62,7 +111,6 @@ module.exports = {
     }
   },
 
-  targetLevelForAction: (obj, levels, i, indexLanguage, action, value, newValue) => {
-    return targetLevelForAction(obj, levels, i, indexLanguage, action, value, newValue)
-  }
+  targetLevelForAction: (obj, levels, i, indexLanguage, action, value, newValue) => targetLevelForAction(obj, levels, i, indexLanguage, action, value, newValue)
+
 }
