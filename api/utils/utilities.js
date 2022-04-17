@@ -17,8 +17,13 @@ let utilities = {
     return Object.prototype.toString.call(val) === '[object Object]'
   },
 
+  isValidTranslationIndex: (translation, index) => {
+    if (utilities.isDefined(translation))
+      return utilities.isDefined(index) && index >= 0 && index < translation.value.length
+    return false
+  },
+
   sortJSON: (json) => {
-    utilities.isDefined('1')
     try {
       let r = utilities.sortAsc(json)
       return JSON.parse(JSON.stringify(r, null, 4))
@@ -31,10 +36,13 @@ let utilities = {
   sortAsc: (un) => {
     let or = {}
     if (utilities.isArray(un)) {
-      or = un.sortAsc()
-      or.forEach((v, i) => {
-        or[i] = utilities.sortAsc(v)
-      })
+      or = utilities.sortAsc()
+      if (or)
+      {
+        or.forEach((v, i) => {
+          or[i] = utilities.sortAsc(v)
+        })
+      }
     } else if (utilities.isPlainObject(un)) {
       or = {}
       Object.keys(un).sort((a, b) => {

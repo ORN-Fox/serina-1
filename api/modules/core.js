@@ -1,7 +1,5 @@
 'use strict'
 
-const express = require ('express')
-const jsonfile = require('jsonfile')
 const path = require('path')
 const fs = require('fs')
 
@@ -11,32 +9,50 @@ let utilities = require('../utils/utilities')
 // Group related
 
 let addGroup = (obj, groupName) => {
-  obj[groupName] = {}
+  if (utilities.isDefined(groupName))
+    obj[groupName] = {}
+  return obj
 }
 
 let updateOrRenameGroup = (obj, groupName, originalGroupName) => {
-  let contentOfGroup = obj[originalGroupName]
-  delete obj[originalGroupName]
-  obj[groupName] = contentOfGroup
+  if (utilities.isDefined(groupName) && utilities.isDefined(originalGroupName))
+  {
+    let contentOfGroup = obj[originalGroupName]
+    delete obj[originalGroupName]
+    obj[groupName] = contentOfGroup
+  }
+  return obj
 }
 
 let deleteGroup = (obj, groupName) => {
-  delete obj[groupName]
+  if (utilities.isDefined(groupName))
+    delete obj[groupName]
+  return obj
 }
 
 // Translation related
 
 let addOrUpdateTranslation = (obj, index, translation) => {
-  obj[translation.key] = translation.value[index]
+  if (utilities.isValidTranslationIndex(index) && utilities.isDefined(translation))
+  {
+    obj[translation.key] = translation.value[index]
+  }
+  return obj
 }
 
 let renameTranslation = (obj, index, translation) => {
-  delete obj[translation.originalKey]
-  obj[translation.key] = translation.value[index]
+  if (utilities.isValidTranslationIndex(index) && utilities.isDefined(translation))
+  {
+    delete obj[translation.originalKey]
+    obj[translation.key] = translation.value[index]
+  }
+  return obj
 }
 
 let deleteTranslation = (obj, translation) => {
-  delete obj[translation.key]
+  if (utilities.isDefined(translation))
+    delete obj[translation.key]
+  return obj
 }
 
 // Commons
