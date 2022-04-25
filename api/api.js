@@ -38,6 +38,7 @@ api.get(constants.PATH_API + '/', (req, res) => {
       address + '/languages'
     ],
     'POST': [
+      address + '/language/import',
       address + '/group/add',
       address + '/group/update',
       address + '/group/delete',

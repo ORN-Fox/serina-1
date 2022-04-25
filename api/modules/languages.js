@@ -4,6 +4,7 @@ const express = require ('express')
 const moduleLanguages = express.Router()
 const jsonfile = require('jsonfile')
 const fs = require('fs')
+const multer  = require('multer')
 
 let constants = require('../utils/constants')
 let utilities = require('../utils/utilities')
@@ -87,6 +88,29 @@ moduleLanguages.get(constants.PATH_API + '/language/:code/:action', (req, res) =
     console.error('Language code is not valid', languageCode)
     res.sendStatus(400)
   }
+})
+
+moduleLanguages.post(constants.PATH_API + '/language/import', (req, res) => {
+  let storage = multer.diskStorage({
+    destination: constants.PATH_JSON_FOLDER,
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+  })
+
+  let upload = multer({ storage: storage }).single('file')
+
+  upload(req, res, (err) => {
+    if (err instanceof multer.MulterError) {
+      console.error('Error', err)
+      res.sendStatus(500)
+    } else if (err) {
+      console.error('Unknow err', err)
+      res.sendStatus(500)
+    }
+
+    res.sendStatus(200)
+  })
 })
 
 module.exports = moduleLanguages
