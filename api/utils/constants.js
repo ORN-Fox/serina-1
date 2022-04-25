@@ -1,6 +1,6 @@
 const path = require('path')
 
-module.exports = Object.freeze({
+module.exports = {
   JSON_NB_SPACES_INDENT: 2,
   PATH_API: '/api',
   PATH_JSON_FOLDER: path.join(__dirname, '../json'),
@@ -8,4 +8,4 @@ module.exports = Object.freeze({
   ADD: 'add',
   UPDATE: 'update',
   DELETE: 'delete'
-})
+}

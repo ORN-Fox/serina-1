@@ -12,6 +12,7 @@ let core = require('./modules/core')
 let languages = require('./modules/languages')
 let groups = require('./modules/groups')
 let translations = require('./modules/translations')
+let settings = require('./modules/settings')
 
 jsonfile.spaces = constants.JSON_NB_SPACES_INDENT
 
@@ -24,6 +25,7 @@ api.use(bodyParser.json())
 api.use('/', languages)
 api.use('/', groups)
 api.use('/', translations)
+api.use('/', settings)
 
 api.get(constants.PATH_API + '/', (req, res) => {
   let address = req.protocol + '://' + req.headers.host + constants.PATH_API
@@ -41,7 +43,8 @@ api.get(constants.PATH_API + '/', (req, res) => {
       address + '/group/delete',
       address + '/translation/add',
       address + '/translation/update',
-      address + '/translation/delete'
+      address + '/translation/delete',
+      address + '/settings/set-custom-translation-path'
     ]
   })
 })
