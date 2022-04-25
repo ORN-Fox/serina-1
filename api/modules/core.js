@@ -33,7 +33,7 @@ let deleteGroup = (obj, groupName) => {
 // Translation related
 
 let addOrUpdateTranslation = (obj, index, translation) => {
-  if (utilities.isValidTranslationIndex(index) && utilities.isDefined(translation))
+  if (utilities.isValidTranslationIndex(translation, index))
   {
     obj[translation.key] = translation.value[index]
   }
@@ -41,7 +41,7 @@ let addOrUpdateTranslation = (obj, index, translation) => {
 }
 
 let renameTranslation = (obj, index, translation) => {
-  if (utilities.isValidTranslationIndex(index) && utilities.isDefined(translation))
+  if (utilities.isValidTranslationIndex(translation, index) && utilities.isDefined(translation))
   {
     delete obj[translation.originalKey]
     obj[translation.key] = translation.value[index]
