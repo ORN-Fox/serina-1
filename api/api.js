@@ -48,7 +48,7 @@ api.get(constants.PATH_API + '/', (req, res) => {
 
 const server = api.listen(7777, 'localhost', () => {
   console.log('API listen on ' + server.address().address + ':' + server.address().port + ' !')
-  core.createFolderIsNotExist('/json/')
+  core.createFolderIsNotExist('../json/')
 })
 
 module.exports = api
