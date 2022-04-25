@@ -58,8 +58,6 @@ describe('core tests', () => {
     expect(core.addOrUpdateTranslation({ key: 'value' }, 2, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
     expect(core.addOrUpdateTranslation({ key: 'value' }, undefined, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
     expect(core.addOrUpdateTranslation({ key: 'value' }, null, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
-    expect(core.addOrUpdateTranslation({ key: 'value' }, '', { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
-    expect(core.addOrUpdateTranslation({ key: 'value' }, 'abc', { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
   })
 
   it('rename translation', () => {

@@ -18,8 +18,8 @@ let utilities = {
   },
 
   isValidTranslationIndex: (translation, index) => {
-    if (utilities.isDefined(translation))
-      return utilities.isDefined(index) && index >= 0 && index < translation.value.length
+    if (utilities.isDefined(translation) && utilities.isDefined(index))
+      return index >= 0 && index < translation.value.length
     return false
   },
 
