@@ -36,6 +36,8 @@ angular.module('serinaApp').directive('listLanguagesForPreview', function ($log,
                 }
               }).then(function () {
                 console.debug('the file has been successfully imported');
+
+                recoverListLanguagesForPreview()
               }, null, function (evt) {
                 console.debug('Event', evt);
               })
