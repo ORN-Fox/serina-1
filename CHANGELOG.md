@@ -8,7 +8,7 @@
 - Added more shortcuts in package.json
 - Maj dependencies :
   - Electron version (1.7.9 -> 9.0.3)
-  - AngularJS version (1.6.8 -> 1.8.0)
+  - AngularJS version (1.6.8 -> 1.8.3)
 - Fix : Problem with count translation return 0 when the files are not empty
 
 
