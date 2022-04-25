@@ -92,4 +92,17 @@ describe('manipulate translations', () => {
     expect(languages.countTranslations('')).to.equal(0)
     expect(languages.countTranslations()).to.equal(0)
   })
+
+  it('check translation validity', () => {
+    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, 0)).to.equal(true)
+    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, 1)).to.equal(true)
+
+    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, -1)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, 2)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, 10)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', value: [] }, 1)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', value: [] }, -1)).to.equal(false)
+    expect(utilities.isValidTranslationIndex(null, 1)).to.equal(false)
+    expect(utilities.isValidTranslationIndex(undefined, 1)).to.equal(false)
+  })
 })
