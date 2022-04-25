@@ -36,7 +36,7 @@
       },
       "advanced": {
         "title": "Paramétres avancées",
-        "customPathOfFile": "Emplacement personnalisé des fichiers de langue",
+        "customPathOfFile": "Emplacement personnalisé des fichiers de langue (chemin absolu uniquement)",
         "folderPath": "Emplacement du dossier"
       },
       "about": {

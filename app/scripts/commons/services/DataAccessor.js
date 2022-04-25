@@ -45,6 +45,10 @@ angular.module('serinaApp').factory('DataAccessor', function ($rootScope, $http)
 
     deleteTranslation: function (languages, levels, translation) {
       return $http.post($rootScope.endPoint + '/translation/delete', { languages: languages, levels: levels, translation: translation })
+    },
+
+    setCustomTranslationPathOnApi: function (customTranslationsPath) {
+      return $http.post($rootScope.endPoint + '/settings/set-custom-translation-path', { customTranslationsPath: customTranslationsPath })
     }
 
   }

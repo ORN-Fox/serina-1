@@ -111,7 +111,7 @@
         "toggleSearchBar": "Abrir/Cerrar la barra de búsqueda"
       },
       "advanced": {
-        "customPathOfFile": "Ubicación personalizada de los archivos de idioma",
+        "customPathOfFile": "Ubicación personalizada de los archivos de idioma (solo ruta absoluta)",
         "title": "Parámetros avanzados",
         "folderPath": "Ruta de la carpeta"
       },

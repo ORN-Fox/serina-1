@@ -82,7 +82,7 @@ angular
     JSONFormatterConfigProvider.hoverPreviewArrayCount = 100
     JSONFormatterConfigProvider.hoverPreviewFieldCount = 5
   })
-  .run(function ($rootScope, $mdSidenav, LocalStorage) {
+  .run(function ($rootScope, $mdSidenav, DataAccessor, LocalStorage) {
     function buildToggler (componentId) {
       return function () {
         $mdSidenav(componentId).toggle()
@@ -96,6 +96,19 @@ angular
 
     if (LocalStorage.itemExist($rootScope.keySettingsApp)) {
       $rootScope.settings = LocalStorage.getItem($rootScope.keySettingsApp)
+
+      if ($rootScope.settings.customTranslationsPathEnabled)
+      {
+        if ($rootScope.settings.customTranslationsPath)
+        {
+          DataAccessor.setCustomTranslationPathOnApi($rootScope.settings.customTranslationsPath).then(function () {
+            console.log('Custom path is successfully settled')
+          }, function (response) {
+            Toast.showCustomToast('error', $i18next.t('commons.toast.customTranslationsPath.fail'), 'fail')
+            console.error('Unable to set custom translation path "' + $rootScope.settings.customTranslationsPath + '"', response)
+          })
+        }
+      }
     } else {
       $rootScope.settings = {
         customTranslationsPathEnabled: false,

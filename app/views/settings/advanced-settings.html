@@ -8,6 +8,11 @@
 <md-list-item>
   <md-input-container class="md-block" flex-gt-xs>
     <label>{{'pages.settings.advanced.folderPath' | i18next}}</label>
-    <input ng-model="$root.settings.customTranslationsPath" ng-blur="$ctrl.saveCustomTranslationsPath()" placeholder="{{'pages.settings.advanced.folderPath' | i18next}}" ng-disabled="!$root.settings.customTranslationsPathEnabled">
+    <input ng-model="$root.settings.customTranslationsPath" placeholder="{{'pages.settings.advanced.folderPath' | i18next}}" ng-disabled="!$root.settings.customTranslationsPathEnabled">
   </md-input-container>
+
+  <md-button class="md-icon-button" ng-click="$ctrl.saveCustomTranslationsPath($root.settings.customTranslationsPath)" ng-disabled="!$root.settings.customTranslationsPathEnabled || !$root.settings.customTranslationsPath">
+      <md-tooltip md-direction="bottom">{{'commons.actions.save' | i18next}}</md-tooltip>
+      <md-icon>save</md-icon>
+  </md-button>
 </md-list-item>
