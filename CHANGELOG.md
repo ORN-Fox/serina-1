@@ -2,6 +2,7 @@
 
 - Refactor flags systems
 - Refactor multi-language support (ex: en-US, fr-FR, ..)
+- Refactor and tests API
 - Add preview for json files
 - Migration from Bower to Yarn
 - Convert commons directives to components
