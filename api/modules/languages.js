@@ -4,6 +4,7 @@ const express = require ('express')
 const moduleLanguages = express.Router()
 const jsonfile = require('jsonfile')
 const fs = require('fs')
+const path = require('path')
 const multer  = require('multer')
 
 let constants = require('../utils/constants')
@@ -94,7 +95,11 @@ moduleLanguages.post(constants.PATH_API + '/language/import', (req, res) => {
   let storage = multer.diskStorage({
     destination: constants.PATH_JSON_FOLDER,
     filename: function (req, file, cb) {
-      cb(null, file.originalname)
+      if (fs.existsSync(path.join(constants.PATH_JSON_FOLDER, file.originalname))) {
+        return
+      } else {
+        cb(null, file.originalname)
+      }
     }
   })
 
