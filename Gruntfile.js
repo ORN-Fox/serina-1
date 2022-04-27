@@ -437,6 +437,7 @@ module.exports = function (grunt) {
             'mime-db/**',
             'mime-types/**',
             'ms/**',
+            'multer/**',
             'negotiator/**',
             'on-finished/**',
             'parseurl/**',
