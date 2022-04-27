@@ -4,6 +4,8 @@
 - Refactor multi-language support (ex: en-US, fr-FR, ..)
 - Refactor and tests API
 - Add preview for json files
+- Add import file support
+- Add custom translation path management in advanced settings for target specific directory to live edit .json files found with GUI
 - Migration from Bower to Yarn
 - Convert commons directives to components
 - Added more shortcuts in package.json
