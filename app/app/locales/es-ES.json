@@ -97,6 +97,10 @@
       "addLanguage": "Añadir un nuevo idioma",
       "noLanguage": "No hay idioma"
     },
+    "jsonOfLanguages": {
+      "dropJsonOrUploadFile": "Arrastre un archivo .json o haga clic para cargar un archivo (si el archivo existe, no se sobrescribirá)",
+      "dropJsonOrUploadFileNotSupported": "Arrastrar y soltar archivos no es compatible con este navegador"
+    },
     "settings": {
       "about": {
         "licenceAndDownload": "Serina es un software de código abierto con licencia MIT, se puede descargar gratuitamente en",

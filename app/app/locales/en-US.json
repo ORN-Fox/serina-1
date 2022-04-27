@@ -10,6 +10,10 @@
       "addLanguage": "Add new language",
       "noLanguage": "No language"
     },
+    "jsonOfLanguages": {
+      "dropJsonOrUploadFile": "Drag a .json file or click to upload a file (if the file exists it will not be overwritten)",
+      "dropJsonOrUploadFileNotSupported": "File Drag/Drop is not supported for this browser"
+    },
     "settings": {
       "basic": {
         "title": "Basic settings",

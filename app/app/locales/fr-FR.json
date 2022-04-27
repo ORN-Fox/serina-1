@@ -10,6 +10,10 @@
       "addLanguage": "Ajouter une nouvelle langue",
       "noLanguage": "Aucune langue"
     },
+    "jsonOfLanguages": {
+      "dropJsonOrUploadFile": "Glisser un fichier .json ou cliquez pour uploader un fichier (si le fichier existe il ne sera pas remplacé)",
+      "dropJsonOrUploadFileNotSupported": "Le glisser/déposer de fichiers n'est pas pris en charge pour ce navigateur"
+    },
     "settings": {
       "basic": {
         "title": "Paramétres basique",
