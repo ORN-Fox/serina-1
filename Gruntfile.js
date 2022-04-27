@@ -400,7 +400,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'api/',
           dest: '<%= yeoman.dist %>',
-          src: ['modules/*']
+          src: ['modules/*', 'utils/*']
         }, {
           expand: true,
           cwd: 'node_modules/',
