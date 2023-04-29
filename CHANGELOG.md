@@ -1,4 +1,4 @@
-# R0.3.0 Comming soon
+# [R0.3.0](https://github.com/ORN-Fox/serina-1/releases/tag/R0.3.0) (2023-04-29)
 
 - Refactor flags systems
 - Refactor multi-language support (ex: en-US, fr-FR, fr-CA, etc ...)
