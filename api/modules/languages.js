@@ -13,7 +13,7 @@ let utilities = require('../utils/utilities')
 jsonfile.spaces = constants.JSON_NB_SPACES_INDENT
 
 let createLanguage = (res, languageCode) => {
-  jsonfile.writeFile(constants.PATH_JSON_FOLDER + '/' + languageCode + '.json', {}, (err) => {
+  jsonfile.writeFile(constants.PATH_JSON_FOLDER + '/' + languageCode + '.json', { }, { spaces: constants.JSON_NB_SPACES_INDENT }, (err) => {
     if (err) { return console.log('Error on create ' + languageCode + '.json file', err) }
     res.sendStatus(200)
   })
