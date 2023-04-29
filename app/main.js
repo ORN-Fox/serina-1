@@ -5,8 +5,7 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const Tray = electron.Tray
 
-// Path is declared in api.js and not here. The api.js file is concatenated at the beginning of this file when building the application.
-// const path = require('path')
+const path = require('path')
 const url = require('url')
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -51,7 +50,7 @@ app.requestSingleInstanceLock()
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.on('ready',createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

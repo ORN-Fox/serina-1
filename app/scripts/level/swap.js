@@ -11,8 +11,8 @@ angular.module('serinaApp').directive('swap', function ($location, $rootScope, $
 
       var getListLanguagesForSwap = function () {
         scope.languagesForSwap = []
-        DataAccessor.getListLanguages().then(function (response) {
-          var listAllLangages = response.data.listLanguages
+        DataAccessor.getLanguages().then(function (response) {
+          var listAllLangages = response.data
           angular.forEach(listAllLangages, function (language) {
             if (language.code !== scope.languages[0]) {
               scope.languagesForSwap.push(language)
@@ -59,7 +59,7 @@ angular.module('serinaApp').directive('swap', function ($location, $rootScope, $
         scope.languages = scope.languages.reverse()
         $rootScope.secondLanguage = scope.languages[1]
         $location.path($location.path().replace(scope.languages[1], scope.languages[0]))
-      };
+      }
 
       scope.recoverSecondaryLanguage = function () {
         $rootScope.secondLanguageIsValid = false
@@ -68,7 +68,7 @@ angular.module('serinaApp').directive('swap', function ($location, $rootScope, $
           $rootScope.secondLanguageIsValid = true
           scope.languages.push($rootScope.secondLanguage)
           angular.copy(scope.listTranslations, scope.originalListTranslations)
-          $rootScope.breadcrumb[0].label = scope.languages[0].toUpperCase() + ' / ' + scope.languages[1].toUpperCase()
+          $rootScope.breadcrumb[0].label = scope.languages[0] + ' / ' + scope.languages[1]
         }, function (response) {
           console.error('Error on open second language ' + $rootScope.secondLanguage, response)
         })

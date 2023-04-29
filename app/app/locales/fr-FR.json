@@ -1,0 +1,147 @@
+{
+  "sideMenu": {
+    "serina": "Sérina",
+    "listOfLanguages": "Liste des langues",
+    "settings": "Paramètres",
+    "jsonOfLanguages": "JSON des langues"
+  },
+  "pages": {
+    "hub": {
+      "addLanguage": "Ajouter une nouvelle langue",
+      "noLanguage": "Aucune langue"
+    },
+    "jsonOfLanguages": {
+      "dropJsonOrUploadFile": "Glisser un fichier .json ou cliquez pour uploader un fichier (si le fichier existe il ne sera pas remplacé)",
+      "dropJsonOrUploadFileNotSupported": "Le glisser/déposer de fichiers n'est pas pris en charge pour ce navigateur"
+    },
+    "settings": {
+      "basic": {
+        "title": "Paramétres basique",
+        "choiceDisplayFormatOfLanguages": "Choix du format d'affichage pour la liste des langues",
+        "selectDisplayFormat": "Choisis un format",
+        "choiceLanguageOfApp": "Choix de la langue de l'application",
+        "selectLanguage": "Choisis une langue",
+        "theming": "Thème de l'application",
+        "choiceTheme": "Choisir un thème",
+        "keepLanguagesBeingEditedWhenChangingPages": "Garder les langues en cours d'édition lors du changement de page",
+        "list": "Liste",
+        "card": "Carte"
+      },
+      "languages": {
+        "en-US": "Anglais",
+        "es-ES": "Espagnol",
+        "fr-FR": "Français"
+      },
+      "shortcuts": {
+        "keyboardShortcuts": "Raccourcis clavier",
+        "navigateToPreviousCorrespondingItem": "Naviguer vers l'élément correspondant précédent",
+        "navigateToNextCorrespondingItem": "Naviguer vers l'élément correspondant suivant",
+        "toggleSearchBar": "Ouverture/Fermeture de la barre de recherche"
+      },
+      "advanced": {
+        "title": "Paramétres avancées",
+        "customPathOfFile": "Emplacement personnalisé des fichiers de langue (chemin absolu uniquement)",
+        "folderPath": "Emplacement du dossier"
+      },
+      "about": {
+        "title": "A propos",
+        "nameAppAndCreator": "Sérina by @ORN-Fox",
+        "version": "Version",
+        "licenceAndDownload": "Serina est un logiciel Open Source sous licence MIT, il peut être téléchargé gratuitement à"
+      }
+    }
+  },
+  "commons": {
+    "home": "Accueil",
+    "menu": "Menu",
+    "actions": {
+      "add": "Ajouter",
+      "cancel": "Annuler",
+      "copy": "Copier",
+      "delete": "Supprimer",
+      "download": "Télécharger",
+      "edit": "Editer",
+      "generatePlural": "Générer le pluriel",
+      "import": "Importer",
+      "return": "Retour",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "validate": "Valider",
+      "search": "Rechercher",
+      "swap": "Echanger",
+      "save": "Enregistrer"
+    },
+    "themeColor": {
+      "brown": "Marron",
+      "green": "Vert",
+      "grey": "Gris",
+      "indigo": "Indigo",
+      "orange": "Orange",
+      "purple": "Violet"
+    },
+    "dialog": {
+      "addGroup": {
+        "title": "Ajouter un nouveau groupe",
+        "placeholder": "Nom du groupe"
+      },
+      "majGroup": {
+        "title": "Renommer le groupe",
+        "placeholder": "Nouveau nom du groupe"
+      },
+      "confirmTitle": "Êtes-vous sur ?"
+    },
+    "toast": {
+      "addLanguage": {
+        "success": "Langue '{{language}}' ajouté avec succés",
+        "fail": "Erreur lors de l'ajout de la langue '{{language}}'",
+        "langExist": "La langue '{{language}}' existe déjà"
+      },
+      "deleteLanguage": {
+        "success": "Langue '{{language}}' supprimé avec succés",
+        "fail": "Impossible de supprimer la langue '{{language}}'"
+      },
+      "addTranslation": {
+        "success": "Traduction '{{translation}}' ajouté avec succés",
+        "fail": "Erreur lors de l'ajout de la traduction '{{translation}}'",
+        "translationExist": "La traduction '{{translation}}' exite déjà"
+      },
+      "majTranslation": {
+        "success": "Traduction '{{translation}}' renommé avec succés",
+        "fail": "Impossible de renommé la traduction '{{translation}}'"
+      },
+      "deleteTranslation": {
+        "success": "Traduction supprimé avec succés",
+        "fail": "Impossible de supprimer la traduction '{{translation}}'"
+      },
+      "addGroup": {
+        "success": "Groupe '{{groupName}}' ajouté avec succés",
+        "fail": "Impossible d'ajouter le groupe '{{groupName}}'",
+        "groupExist": "Le groupe '{{groupName}}' existe déjà"
+      },
+      "majGroup": {
+        "success": "Groupe '{{groupName}}' renommé avec succés",
+        "fail": "Impossible de renommé le groupe '{{groupName}}'"
+      },
+      "deleteGroup": {
+        "success": "Groupe supprimé avec succés",
+        "fail": "Impossible de supprimer le groupe '{{groupName}}'"
+      }
+    },
+    "matchingElement": "élément correspondant",
+    "matchingElement_plural": "éléments correspondant",
+    "language": "Langue",
+    "language_plural": "Langues",
+    "secondLanguage": "Seconde langue",
+    "translation": "Traduction",
+    "translation_plural": "Traductions",
+    "group": "Groupe",
+    "group_plural": "Groupes",
+    "format": "Format",
+    "aGroup": "un groupe",
+    "aTranslation": "une traduction",
+    "noGroup": "Aucun groupe",
+    "noTranslation": "Aucune traduction",
+    "key": "clé",
+    "value": "message"
+  }
+}

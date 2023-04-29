@@ -1,5 +1,21 @@
-# [R0.2.4](https://github.com/ORN-Fox/serina-1/releases/tag/R0.2.4) Available soon
+# R0.3.0 Comming soon
 
+- Refactor flags systems
+- Refactor multi-language support (ex: en-US, fr-FR, fr-CA, etc ...)
+- Refactor and tests API
+- Add preview for json files
+- Add import file support
+- Add custom translation path management in advanced settings for target specific directory to live edit .json files found with GUI
+- Migration from Bower to Yarn
+- Convert commons directives to components
+- Added more shortcuts in package.json
+- Maj dependencies :
+  - Electron version (1.7.9 -> 18.1.0)
+  - AngularJS version (1.6.8 -> 1.8.3)
+- Fix : Problem with count translation return 0 when the files are not empty
+
+
+# [R0.2.4](https://github.com/ORN-Fox/serina-1/releases/tag/R0.2.4) (2020-06-15)
 
 - Update Electron to 9x
 - Fix : Crash on opening app on Mac OS #1
@@ -9,13 +25,12 @@
 
 # [R0.2.3](https://github.com/foxdog05000/serina/releases/tag/R0.2.3) (2018-05-17)
 
-
 - Fix : Bad translation "noLanguage" with "s"
 - Fix : Match items on search isn't be update after delete a translation #29
 - Fix : Error opening app on Mac OS #24
 
-# [R0.2.2](https://github.com/foxdog05000/serina/releases/tag/R0.2.2) (2018-02-16)
 
+# [R0.2.2](https://github.com/foxdog05000/serina/releases/tag/R0.2.2) (2018-02-16)
 
 - Added code for the language swap button
 - Added rel="noopener" on links \_blank for security and performance
@@ -23,8 +38,8 @@
 - Fix : Language swap button isn't working
 - Fix : Bad name of file HubController in index.html
 
-# [R0.2.1](https://github.com/foxdog05000/serina/releases/tag/R0.2.1) (2017-11-25)
 
+# [R0.2.1](https://github.com/foxdog05000/serina/releases/tag/R0.2.1) (2017-11-25)
 
 - Fix : Navigate on home page or open group = search bar closed
 - Fix : Buton go to top not constantly display
@@ -33,8 +48,8 @@
 - Remove external link on wiki page language
 - Added keyboard shortcuts for toggle search bar
 
-# [R0.2](https://github.com/foxdog05000/serina/releases/tag/R0.2) (2017-11-19)
 
+# [R0.2.0](https://github.com/foxdog05000/serina/releases/tag/R0.2) (2017-11-19)
 
 - Adding second language selection (swap)
 - CRUD improvement of groups and translations on the api side in order to manage several languages
@@ -51,8 +66,8 @@
 - Ability to duplicate a translation
 - Update Grunt 0.4.5 -> 1.0.0
 
-# [R0.1.1](https://github.com/foxdog05000/serina/releases/tag/R0.1.1) (2017-09-22)
 
+# [R0.1.1](https://github.com/foxdog05000/serina/releases/tag/R0.1.1) (2017-09-22)
 
 - Move button add group + translation on header of list
 - Add button go to top
@@ -61,8 +76,8 @@
 - Button "return" : truly return precedent level
 - Toast animation conflit with overflow
 
-# [R0.1](https://github.com/foxdog05000/serina/releases/tag/R0.1) / (2017-08-31)
 
+# [R0.1.0](https://github.com/foxdog05000/serina/releases/tag/R0.1) / (2017-08-31)
 
 - Electron package
 - Basic UI with Angular Material integration

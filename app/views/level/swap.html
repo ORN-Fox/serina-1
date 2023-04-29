@@ -13,7 +13,7 @@
                     <md-icon>flag</md-icon>
                     <md-select ng-model="secondLanguage">
                         <md-option ng-repeat="language in languagesForSwap track by $index" ng-value="language.code" ng-click="selectSecondLanguage(language.code)" ng-selected="secondLanguage === language.code">
-                            {{language.code | uppercase}}
+                            {{language.code}}
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -23,6 +23,7 @@
             <div layout="column" layout-align="center end" class="swap-languages">
                 <div flex="10">
                     <md-button class="md-icon-button md-primary" ng-disabled="disabledSwap" ng-click="swapLanguages()">
+                        <md-tooltip md-direction="bottom">{{'commons.actions.swap' | i18next}}</md-tooltip>
                         <md-icon>compare_arrows</md-icon>
                     </md-button>
                 </div>

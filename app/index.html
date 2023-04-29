@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <!-- endbower -->
-    <link rel="stylesheet" href="bower_components/material-design-icons/iconfont/material-icons.css" />
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="node_modules/jsonformatter/dist/json-formatter.css" />
+    <link rel="stylesheet" href="node_modules/material-design-icons/iconfont/material-icons.css" />
     <!-- endbuild -->
     <!-- build:css(.tmp) views/main.css -->
     <link rel="stylesheet" href="views/main.css">
@@ -21,26 +20,26 @@
     <toolbar></toolbar>
     <side-menu></side-menu>
 
-    <spinner></spinner>
+    <spinner loading="loading"></spinner>
     <div ng-view=""></div>
 
     <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/i18next/i18next.min.js"></script>
-    <script src="bower_components/ng-i18next/dist/ng-i18next.js"></script>
-    <script src="bower_components/i18next-xhr-backend/i18nextXHRBackend.js"></script>
-    <script src="bower_components/mousetrap/mousetrap.js"></script>
-    <!-- endbower -->
-    <script src="bower_components/mousetrap/plugins/global-bind/mousetrap-global-bind.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <script src="node_modules/i18next/i18next.min.js"></script>
+    <script src="node_modules/ng-i18next/dist/ng-i18next.js"></script>
+    <script src="node_modules/i18next-xhr-backend/i18nextXHRBackend.js"></script>
+    <script src="node_modules/mousetrap/mousetrap.js"></script>
+    <script src="node_modules/jsonformatter/dist/json-formatter.js"></script>
+    <script src="node_modules/mousetrap/plugins/global-bind/mousetrap-global-bind.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -52,16 +51,28 @@
     <script src="scripts/commons/services/SecondLanguage.js"></script>
     <script src="scripts/commons/services/Toast.js"></script>
     <script src="scripts/commons/services/Dialog.js"></script>
-    <script src="scripts/commons/directives/toolbar.js"></script>
-    <script src="scripts/commons/directives/spinner.js"></script>
-    <script src="scripts/commons/directives/sideMenu.js"></script>
-    <script src="scripts/commons/directives/goToTop.js"></script>
+
+    <script src="scripts/commons/components/toolbar.js"></script>
+    <script src="scripts/commons/components/spinner.js"></script>
+    <script src="scripts/commons/components/sideMenu.js"></script>
+    <script src="scripts/commons/components/goToTop.js"></script>
+    <script src="scripts/commons/components/btnDownloadLanguage.js"></script>
+    <script src="scripts/commons/components/messageNoLanguage.js"></script>
+
     <script src="scripts/hub/HubController.js"></script>
     <script src="scripts/hub/listLanguages.js"></script>
+    <script src="scripts/hub/addLanguage.js"></script>
+
     <script src="scripts/level/LevelController.js"></script>
     <script src="scripts/level/swap.js"></script>
     <script src="scripts/level/group.js"></script>
+    <script src="scripts/level/translations.js"></script>
     <script src="scripts/level/translation.js"></script>
+
+    <script src="scripts/preview/PreviewController.js"></script>
+    <script src="scripts/preview/listLanguagesForPreview.js"></script>
+    <script src="scripts/preview/json-preview.js"></script>
+
     <script src="scripts/settings/SettingsController.js"></script>
     <script src="scripts/settings/basicSettings.js"></script>
     <script src="scripts/settings/keyboardShortcuts.js"></script>
@@ -69,5 +80,8 @@
     <script src="scripts/settings/advancedSettings.js"></script>
     <script src="scripts/settings/about.js"></script>
     <!-- endbuild -->
+    
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
 </body>
 </html>

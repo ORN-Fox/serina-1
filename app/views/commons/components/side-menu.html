@@ -1,0 +1,25 @@
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">{{'sideMenu.serina' | i18next}}</h1>
+    </md-toolbar>
+
+    <md-content>
+        <md-list>
+            <md-list-item class="secondary-button-padding" ng-click="$root.toggleLeft()" ng-href="#/hub">
+                <md-icon>list</md-icon>
+                <p>{{'sideMenu.listOfLanguages' | i18next}}</p>
+            </md-list-item>
+            <md-list-item class="secondary-button-padding" ng-click="$root.toggleLeft()" ng-href="#/preview">
+                <md-icon>chrome_reader_mode</md-icon>
+                <p>{{'sideMenu.jsonOfLanguages' | i18next}}</p>
+            </md-list-item>
+
+            <md-divider></md-divider>
+
+            <md-list-item class="secondary-button-padding" ng-click="$root.toggleLeft()" ng-href="#/settings">
+                <md-icon>settings</md-icon>
+                <p>{{'sideMenu.settings' | i18next}}</p>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>

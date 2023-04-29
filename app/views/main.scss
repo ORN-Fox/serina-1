@@ -1,14 +1,14 @@
-// bower:scss
-// endbower
+@import "commons/scss/colors";
+@import "commons/scss/animations";
 
-@import "commons/colors";
-@import "commons/animations";
-@import "commons/mdToast";
-@import "commons/toolbar";
-@import "commons/breadcrumb";
-@import "commons/spinner";
+@import "commons/components/mdToast";
+@import "commons/components/toolbar";
+@import "commons/components/breadcrumb";
+@import "commons/components/spinner";
+
 @import "hub/hub";
 @import "level/level";
+@import "preview/preview";
 @import "settings/settings";
 
 body.md-toast-animating { overflow: auto !important; }
@@ -20,6 +20,27 @@ body.md-toast-animating { overflow: auto !important; }
   line-height: .8;
 }
 
+.md-button {
+  text-transform: none;
+}
+
+md-list-item, .md-subheader {
+  background-color: $white;
+}
+
+md-list-item .flag {
+  width: 2em;
+  position: relative;
+  padding-right: 1em;
+  top: 4px;
+}
+
 md-toast {
   position: fixed;
+}
+
+.md-subheader {
+  &.md-indigo-theme, &.md-green-theme, &.md-orange-theme &.md-purple-theme, &.md-brown-theme, &.md-grey-theme {
+    background-color: $white;
+  }
 }

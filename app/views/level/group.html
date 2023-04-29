@@ -1,16 +1,25 @@
 <md-list flex>
     <div class="md-whiteframe-2dp">
         <div layout="row">
-            <md-subheader class="md-no-sticky">{{'commons.group' | i18next}}<span ng-if="listGroups.length > 1">s</span></md-subheader>
+            <md-subheader class="md-no-sticky"><span ng-i18next="[i18next]({ count: listGroups.length})commons.group"></span></md-subheader>
             <span flex></span>
-            <md-button ng-click="openDialogAddGroup($event)" class="md-primary md-raised">
+            <md-button class="md-primary md-fab md-mini md-raised" ng-click="openDialogAddGroup($event)">
+                <md-tooltip md-direction="bottom">{{'commons.actions.add' | i18next}}</md-tooltip>
                 <md-icon>add</md-icon>
             </md-button>
         </div>
         <md-list-item ng-repeat="group in listGroups | orderBy: group" ng-click="openGroup(group)">
             <p class="md-headline">{{group}}</p>
-            <md-icon class="md-secondary md-hue-3" ng-click="opendDialogUpdateGroupe($event, group)" aria-label="update group">edit</md-icon>
-            <md-icon class="md-secondary md-hue-3 md-warn" ng-click="openDialogDeleteGroup($event, group)" aria-label="delete group">delete</md-icon>
+
+            <md-button class="md-icon-button" ng-click="opendDialogUpdateGroupe($event, group)" aria-label="update group">
+                <md-tooltip md-direction="bottom">{{'commons.actions.edit' | i18next}}</md-tooltip>
+                <md-icon>edit</md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button md-warn" ng-click="openDialogDeleteGroup($event, group)" aria-label="delete group">
+                <md-tooltip md-direction="bottom">{{'commons.actions.delete' | i18next}}</md-tooltip>
+                <md-icon>delete_outline</md-icon>
+            </md-button>
         </md-list-item>
 
         <md-list-item ng-if="listGroups.length === 0">

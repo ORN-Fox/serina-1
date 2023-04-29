@@ -21,7 +21,7 @@ module.exports = function (grunt) {
 
   // Configurable paths for the application
   var appConfig = {
-    app: require('./bower.json').appPath || 'app',
+    app: 'app',
     dist: 'dist'
   };
 
@@ -33,10 +33,6 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
-      },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
@@ -60,7 +56,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{,**/}*.html',
           '.tmp/views/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -82,8 +78,8 @@ module.exports = function (grunt) {
             return [
               serveStatic('.tmp'),
               connect().use(
-                '/bower_components',
-                serveStatic('./bower_components')
+                '/node_modules',
+                serveStatic('./node_modules')
               ),
               connect().use(
                 '/app/views',
@@ -102,8 +98,8 @@ module.exports = function (grunt) {
               serveStatic('.tmp'),
               serveStatic('test'),
               connect().use(
-                '/bower_components',
-                serveStatic('./bower_components')
+                '/node_modules',
+                serveStatic('./node_modules')
               ),
               serveStatic(appConfig.app)
             ];
@@ -202,34 +198,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Automatically inject Bower components into the app
-    wiredep: {
-      app: {
-        src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
-      },
-      test: {
-        devDependencies: true,
-        src: '<%= karma.unit.configFile %>',
-        ignorePath:  /\.\.\//,
-        fileTypes:{
-          js: {
-            block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
-            }
-          }
-      },
-      sass: {
-        src: ['<%= yeoman.app %>/views/{,*/}*.{scss,sass}'],
-        ignorePath: /(\.\.\/){1,2}bower_components\//
-      }
-    },
-
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
@@ -239,7 +207,6 @@ module.exports = function (grunt) {
         imagesDir: '<%= yeoman.app %>/images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
         fontsDir: '<%= yeoman.app %>/views/fonts',
-        importPath: './bower_components',
         httpImagesPath: '/images',
         httpGeneratedImagesPath: '/images/generated',
         httpFontsPath: '/views/fonts',
@@ -266,7 +233,6 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/views/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '!<%= yeoman.dist %>/images/flags/*',
           '<%= yeoman.dist %>/views/fonts/*'
         ]
       }
@@ -293,7 +259,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/{,**/}*.html'],
       css: ['<%= yeoman.dist %>/views/{,*/}*.css'],
       js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
       options: {
@@ -385,7 +351,7 @@ module.exports = function (grunt) {
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
-        src: 'views/{,*/}*.html',
+        src: 'views/{,**/}*.html',
         dest: '.tmp/templateCache.js'
       }
     },
@@ -414,6 +380,7 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '*.html',
+            'app/locales/*',
             'images/{,*/}*.{webp}',
             'icons/**',
             'views/fonts/{,*/}*.*',
@@ -431,28 +398,43 @@ module.exports = function (grunt) {
           src: '**'
         }, {
           expand: true,
+          cwd: 'api/',
+          dest: '<%= yeoman.dist %>',
+          src: ['modules/*', 'utils/*']
+        }, {
+          expand: true,
           cwd: 'node_modules/',
           dest: '<%= yeoman.dist %>/node_modules',
           src: [
             'accepts/**',
+            'append-field/**',
             'array-flatten/**',
             'body-parser/**',
+            'buffer-from/**',
+            'busboy/**',
             'bytes/**',
+            'call-bind/**',
             'content-disposition/**',
             'content-type/**',
             'cookie-signature/**',
+            'core-util-is/**',
             'debug/**',
             'depd/**',
             'destroy/**',
+            'dicer/**',
             'ee-first/**',
             'encodeurl/**',
             'escape-html/**',
             'express/**',
             'finalhandler/**',
             'forwarded/**',
+            'function-bind/**',
+            'get-intrinsic/**',
+            'has-symbols/**',
             'iconv-lite/**',
             'inherits/**',
             'ipaddr.js/**',
+            'isarray/**',
             'jsonfile/**',
             'http-errors/**',
             'etag/**',
@@ -465,29 +447,39 @@ module.exports = function (grunt) {
             'mime-db/**',
             'mime-types/**',
             'ms/**',
+            'multer/**',
             'negotiator/**',
+            'object-assign/**',
+            'object-inspect/**',
             'on-finished/**',
             'parseurl/**',
             'path-to-regexp/**',
+            'process-nextick-args/**',
             'proxy-addr/**',
             'qs/**',
             'range-parser/**',
             'raw-body/**',
+            'readable-stream/**',
             'send/**',
             'safe-buffer/**',
             'safer-buffer/**',
             'serve-static/**',
             'setprototypeof/**',
+            'side-channel/**',
             'statuses/**',
+            'streamsearch/**',
+            'svg-country-flags/**',
             'type-is/**',
             'toidentifier/**',
             'unpipe/**',
+            'util-deprecate/**',
             'utils-merge/**',
-            'vary/**'
+            'vary/**',
+            'xtend/**'
           ]
         }, {
           expand: true,
-          cwd: 'bower_components/material-design-icons/iconfont',
+          cwd: 'node_modules/material-design-icons/iconfont',
           dest: '<%= yeoman.dist %>/styles',
           src: [
             'MaterialIcons-Regular.ttf',
@@ -526,12 +518,10 @@ module.exports = function (grunt) {
           name: 'serina',
           dir: 'dist',
           out: 'packages',
-          electronVersion: '9.0.3',
           platform: 'win32',
           arch: 'x64',
           overwrite: true,
-          prune: false,
-          icon: 'icons/icon-x64.ico'
+          prune: false
         }
       },
       buildLinux: {
@@ -539,12 +529,10 @@ module.exports = function (grunt) {
           name: 'serina',
           dir: 'dist',
           out: 'packages',
-          electronVersion: '9.0.3',
           platform: 'linux',
           arch: 'x64',
           overwrite: true,
-          prune: false,
-          icon: 'icons/icon-x64.ico'
+          prune: false
         }
       },
       buildMacos: {
@@ -552,12 +540,10 @@ module.exports = function (grunt) {
           name: 'serina',
           dir: 'dist',
           out: 'packages',
-          electronVersion: '9.0.3',
           platform: 'darwin',
           arch: 'x64',
           overwrite: true,
-          prune: false,
-          icon: 'icons/icon-x64.ico'
+          prune: false
         }
       }
     },
@@ -567,6 +553,10 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'test/karma.conf.js',
         singleRun: true
+      },
+      loop: {
+        configFile: 'test/karma.conf.js',
+        singleRun: false
       }
     }
   });
@@ -578,8 +568,8 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'test',
       'clean:server',
-      'wiredep',
       'concurrent:server',
       'postcss:server',
       'connect:livereload',
@@ -592,19 +582,22 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
-  grunt.registerTask('test', [
-    'clean:server',
-    'wiredep',
-    'concurrent:test',
-    'postcss',
-    'connect:test',
-    'karma'
-  ]);
+  grunt.registerTask('test', 'Execute TU', function (target) {
+    target = (target === 'loop') ? ':' + target : ':unit';
+
+    grunt.task.run([
+      'clean:server',
+      'concurrent:test',
+      'postcss',
+      'connect:test',
+      'karma' + target
+    ]);
+  });
 
   grunt.registerTask('build', [
+    'test',
     'clean:dist',
     'clean:package',
-    'wiredep',
     'useminPrepare',
     'concurrent:dist',
     'postcss',

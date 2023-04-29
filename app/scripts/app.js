@@ -8,9 +8,13 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngMaterial',
-    'jm.i18next'
+    'jm.i18next',
+    'jsonFormatter',
+    'ngFileUpload'
   ])
-  .config(function ($routeProvider, $mdThemingProvider) {
+  .config(function ($locationProvider, $mdThemingProvider, $routeProvider, JSONFormatterConfigProvider) {
+    $locationProvider.hashPrefix('')
+
     $routeProvider
       .when('/hub', {
         templateUrl: 'views/hub/hub.html',
@@ -23,6 +27,10 @@ angular
       .when('/language/:language/:levels*', {
         templateUrl: 'views/level/level.html',
         controller: 'LevelCtrl'
+      })
+      .when('/preview', {
+        templateUrl: 'views/preview/preview.html',
+        controller: 'PreviewCtrl'
       })
       .when('/settings', {
         templateUrl: 'views/settings/settings.html',
@@ -69,8 +77,18 @@ angular
       .warnPalette('red')
 
     $mdThemingProvider.alwaysWatchTheme(true)
+
+    JSONFormatterConfigProvider.hoverPreviewEnabled = true
+    JSONFormatterConfigProvider.hoverPreviewArrayCount = 100
+    JSONFormatterConfigProvider.hoverPreviewFieldCount = 5
   })
-  .run(function ($rootScope, $mdSidenav, LocalStorage) {
+  .run(function ($rootScope, $mdSidenav, DataAccessor, LocalStorage) {
+    function buildToggler (componentId) {
+      return function () {
+        $mdSidenav(componentId).toggle()
+      }
+    }
+
     $rootScope.loading = true
     $rootScope.endPoint = 'http://localhost:7777/api'
     $rootScope.toggleLeft = buildToggler('left')
@@ -78,11 +96,26 @@ angular
 
     if (LocalStorage.itemExist($rootScope.keySettingsApp)) {
       $rootScope.settings = LocalStorage.getItem($rootScope.keySettingsApp)
+
+      if ($rootScope.settings.customTranslationsPathEnabled)
+      {
+        if ($rootScope.settings.customTranslationsPath)
+        {
+          DataAccessor.setCustomTranslationPathOnApi($rootScope.settings.customTranslationsPath).then(function () {
+            console.log('Custom path is successfully settled')
+          }, function (response) {
+            Toast.showCustomToast('error', $i18next.t('commons.toast.customTranslationsPath.fail'), 'fail')
+            console.error('Unable to set custom translation path "' + $rootScope.settings.customTranslationsPath + '"', response)
+          })
+        }
+      }
     } else {
       $rootScope.settings = {
-        locale: 'en',
+        customTranslationsPathEnabled: false,
+        keepLanguagesEdit: false,
+        locale: 'en-US',
         theme: 'green',
-        selectedDisplayFormat: 'card'
+        selectedDisplayFormat: 'card',
       }
       LocalStorage.setItem($rootScope.keySettingsApp, $rootScope.settings)
     }
@@ -91,15 +124,16 @@ angular
 
     window.i18next.init({
       debug: false,
-      lng: $rootScope.settings.locale, // If not given, i18n will detect the browser language.
-      fallbackLng: '', // Default is dev
+      lng: $rootScope.settings.locale,
+      fallbackLng: '',
       backend: {
-        loadPath: '../app/locales/{{lng}}/translation.json'
+        loadPath: '../app/locales/' + $rootScope.settings.locale + '.json'
       },
       useCookie: false,
-      useLocalStorage: false
-    }, function (err, t) {
-      err ? console.error('error load translation', err) : null
+      useLocalStorage: false,
+      initImmediate: false
+    }, function (err) {
+      if (err) { console.error('Unable to load translation', err) }
       console.log('Translation loaded')
     })
 
@@ -108,10 +142,4 @@ angular
         $rootScope.loading = false
       })
     }, 1000)
-
-    function buildToggler (componentId) {
-      return function () {
-        $mdSidenav(componentId).toggle()
-      }
-    }
   })

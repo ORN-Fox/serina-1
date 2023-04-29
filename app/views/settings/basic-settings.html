@@ -1,13 +1,19 @@
 <md-subheader class="md-no-sticky"><md-icon>widgets</md-icon> {{'pages.settings.basic.title' | i18next}}</md-subheader>
 <md-list-item>
     <p>{{'pages.settings.basic.choiceDisplayFormatOfLanguages' | i18next}}</p>
-    <md-button ng-repeat="format in displayFormat" ng-class="{'md-raised md-primary': settings.selectedDisplayFormat === format.label}" ng-click="changeDisplayFormat(format.label)">
-        <md-icon>{{format.icon}}</md-icon> {{format.label}}
+    <md-button ng-repeat="format in $ctrl.displayFormat" ng-class="{'md-raised md-primary': $root.settings.selectedDisplayFormat === format.label}" ng-click="$ctrl.changeDisplayFormat(format.label)">
+        <md-icon>{{format.icon}}</md-icon> {{'pages.settings.basic.' + format.label | i18next}}
     </md-button>
 </md-list-item>
+
 <md-list-item>
     <p>{{'pages.settings.basic.choiceLanguageOfApp' | i18next}}</p>
-    <md-button ng-repeat="language in languages" ng-class="{'md-raised md-primary': settings.locale === language.code}" ng-click="changeLocaleOfApplication(language.code)">
-        <img ng-src="images/flags/{{language.code}}.png" alt="" class="flag"/> {{language.code | uppercase}}
+    <md-button ng-repeat="language in $ctrl.languages" ng-class="{'md-raised md-primary': $root.settings.locale === language.code}" ng-click="$ctrl.changeLocaleOfApplication(language.code)">
+        <img ng-src="node_modules/svg-country-flags/svg/{{language.code.slice(-2).toLowerCase()}}.svg" alt="" class="flag"/> {{'pages.settings.languages.' + language.code | i18next}}
     </md-button>
+</md-list-item>
+
+<md-list-item>
+    <p>{{'pages.settings.basic.keepLanguagesBeingEditedWhenChangingPages' | i18next}}</p>
+    <md-switch class="md-primary" ng-model="$root.settings.keepLanguagesEdit" ng-change="$ctrl.changeKeepLanguagesEdit($root.settings.keepLanguagesEdit)"></md-switch>
 </md-list-item>

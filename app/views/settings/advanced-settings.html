@@ -1,8 +1,18 @@
-<md-subheader class="md-no-sticky"><md-icon>settings</md-icon> {{'pages.settings.advanced.title' | i18next}} <i>"{{'commons.availableOnVersion' | i18next}} 0.3"</i></md-subheader>
+<md-subheader class="md-no-sticky"><md-icon>settings</md-icon> {{'pages.settings.advanced.title' | i18next}}</md-subheader>
 <md-list-item>
     <p>{{'pages.settings.advanced.customPathOfFile' | i18next}}</p>
-    <md-input-container>
-       <label>Custom Path</label>
-       <input value=".../project/app/locales" placeholder="Custom path" readonly disabled>
-     </md-input-container>
+
+    <md-switch class="md-primary" ng-model="$root.settings.customTranslationsPathEnabled" ng-change="$ctrl.toggleCustomTranslationsPathStatus($root.settings.customTranslationsPathEnabled)">
+</md-list-item>
+
+<md-list-item>
+  <md-input-container class="md-block" flex-gt-xs>
+    <label>{{'pages.settings.advanced.folderPath' | i18next}}</label>
+    <input ng-model="$root.settings.customTranslationsPath" placeholder="{{'pages.settings.advanced.folderPath' | i18next}}" ng-disabled="!$root.settings.customTranslationsPathEnabled">
+  </md-input-container>
+
+  <md-button class="md-icon-button" ng-click="$ctrl.saveCustomTranslationsPath($root.settings.customTranslationsPath)" ng-disabled="!$root.settings.customTranslationsPathEnabled || !$root.settings.customTranslationsPath">
+      <md-tooltip md-direction="bottom">{{'commons.actions.save' | i18next}}</md-tooltip>
+      <md-icon>save</md-icon>
+  </md-button>
 </md-list-item>

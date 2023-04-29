@@ -1,10 +1,6 @@
 .level {
   .swap {
-    margin: 8px 8px 8px 0px;
-
-    input {
-      text-transform: uppercase;
-    }
+    margin: 8px 8px 8px 0;
 
     .swap-languages {
       height: 90%;
@@ -16,7 +12,7 @@
     }
   }
 
-  md-list-item, .md-subheader, .swap, group div.layout-row {
+  .swap, group div.layout-row {
     background-color: $white;
   }
 
@@ -48,7 +44,7 @@
     }
   }
 
-  translation {
+  translations {
     .layout-column {
       padding: 0 16px;
     }
