@@ -9,10 +9,10 @@ Serina | GitHub page [here](https://orn-fox.github.io/serina-1/)
 
 ## 🖼 Preview (_Serina R0.3.0_)
 
-![Serina Screenshot Home](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/home.jpg)
-![Serina Screenshot Edit translations](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/edit-translation.jpg)
-![Serina Screenshot View json](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/view-json.jpg)
-![Serina Screenshot Settings](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/settings.jpg)
+![Serina Screenshot Home](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/home.JPG)
+![Serina Screenshot Edit translations](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/edit-translation.JPG)
+![Serina Screenshot View json](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/view-json.JPG)
+![Serina Screenshot Settings](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/settings.JPG)
 
 ## 💾 Download
 
