@@ -1,7 +1,7 @@
-# R0.3 Comming soon
+# R0.3.0 Comming soon
 
 - Refactor flags systems
-- Refactor multi-language support (ex: en-US, fr-FR, ..)
+- Refactor multi-language support (ex: en-US, fr-FR, fr-CA, etc ...)
 - Refactor and tests API
 - Add preview for json files
 - Add import file support
@@ -10,7 +10,7 @@
 - Convert commons directives to components
 - Added more shortcuts in package.json
 - Maj dependencies :
-  - Electron version (1.7.9 -> 9.0.3)
+  - Electron version (1.7.9 -> 18.1.0)
   - AngularJS version (1.6.8 -> 1.8.3)
 - Fix : Problem with count translation return 0 when the files are not empty
 
@@ -49,7 +49,7 @@
 - Added keyboard shortcuts for toggle search bar
 
 
-# [R0.2](https://github.com/foxdog05000/serina/releases/tag/R0.2) (2017-11-19)
+# [R0.2.0](https://github.com/foxdog05000/serina/releases/tag/R0.2) (2017-11-19)
 
 - Adding second language selection (swap)
 - CRUD improvement of groups and translations on the api side in order to manage several languages
@@ -77,7 +77,7 @@
 - Toast animation conflit with overflow
 
 
-# [R0.1](https://github.com/foxdog05000/serina/releases/tag/R0.1) / (2017-08-31)
+# [R0.1.0](https://github.com/foxdog05000/serina/releases/tag/R0.1) / (2017-08-31)
 
 - Electron package
 - Basic UI with Angular Material integration
