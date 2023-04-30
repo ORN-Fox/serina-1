@@ -2,7 +2,7 @@
   "name": "serina",
   "author": "ORN-Fox",
   "license": "MIT",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "api/api.js",
   "repository": {
     "type": "git",

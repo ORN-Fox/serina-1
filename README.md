@@ -7,7 +7,7 @@ Serina | GitHub page [here](https://orn-fox.github.io/serina-1/)
 
 > GUI for create translation files for i18next
 
-## 🖼 Preview (_Serina R0.3.0_)
+## 🖼 Preview (_Serina R0.4.0_)
 
 ![Serina Screenshot Home](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/home.JPG)
 ![Serina Screenshot Edit translations](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/edit-translations.JPG)
