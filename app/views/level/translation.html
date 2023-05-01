@@ -37,13 +37,13 @@
         <md-input-container>
             <label>{{'commons.value' | i18next}} <span ng-if="secondLanguageIsValid">{{languages[0]}}</span></label>
             <md-icon>label</md-icon>
-            <input type="text" ng-model="translation.value[0]">
+            <textarea type="text" ng-model="translation.value[0]" md-maxlength="3000"></textarea>
         </md-input-container>
 
         <md-input-container ng-if="secondLanguageIsValid">
             <label>{{'commons.value' | i18next}} {{secondLanguage}}</label>
             <md-icon>label</md-icon>
-            <input type="text" ng-model="translation.value[1]">
+            <textarea type="text" ng-model="translation.value[1]" md-maxlength="3000"></textarea>
         </md-input-container>
     </md-card-content>
 </md-card>
