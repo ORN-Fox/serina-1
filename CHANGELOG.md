@@ -1,6 +1,8 @@
 # R0.4.0 Available soon ...
 
-- 
+- Update translation input by textarea for support large text (max 3000 characters)
+- Maj dependancies :
+ - AngularJS Material (1.1.10 -> 1.2.5)
 
 
 # [R0.3.0](https://github.com/ORN-Fox/serina-1/releases/tag/R0.3.0) (2023-04-29)
