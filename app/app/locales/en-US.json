@@ -41,6 +41,7 @@
       "advanced": {
         "title": "Advanced settings",
         "customPathOfFile": "Custom path of language files (absolute path only)",
+        "enableSortAscJson": "Sort generated JSON files alphabetically",
         "folderPath": "Folder path"
       },
       "about": {
@@ -125,6 +126,9 @@
       "deleteGroup": {
         "success": "Group successfully deleted",
         "fail": "Unable to delete group '{{groupName}}'"
+      },
+      "advancedSettings": {
+        "fail": "Unable to change advanced settings"
       }
     },
     "matchingElement": "matching element",

@@ -112,6 +112,7 @@ angular
     } else {
       $rootScope.settings = {
         customTranslationsPathEnabled: false,
+        enableSortAscJson: true,
         keepLanguagesEdit: false,
         locale: 'en-US',
         theme: 'green',

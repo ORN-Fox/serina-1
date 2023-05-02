@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+  ENABLE_SORT_ASC_JSON: true,
   JSON_NB_SPACES_INDENT: 2,
   PATH_API: '/api',
   PATH_JSON_FOLDER: path.join(__dirname, '../json'),
