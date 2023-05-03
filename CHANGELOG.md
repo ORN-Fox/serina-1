@@ -1,5 +1,6 @@
 # R0.4.0 Available soon ...
 
+- Add an option to enable / disabled sort by alpha order the jsons
 - Update translation input by textarea for support large text (max 3000 characters)
 - Maj dependancies :
  - AngularJS Material (1.1.10 -> 1.2.5)
