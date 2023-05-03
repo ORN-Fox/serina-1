@@ -97,18 +97,13 @@ angular
     if (LocalStorage.itemExist($rootScope.keySettingsApp)) {
       $rootScope.settings = LocalStorage.getItem($rootScope.keySettingsApp)
 
-      if ($rootScope.settings.customTranslationsPathEnabled)
-      {
-        if ($rootScope.settings.customTranslationsPath)
-        {
-          DataAccessor.setCustomTranslationPathOnApi($rootScope.settings.customTranslationsPath).then(function () {
-            console.log('Custom path is successfully settled')
-          }, function (response) {
-            Toast.showCustomToast('error', $i18next.t('commons.toast.customTranslationsPath.fail'), 'fail')
-            console.error('Unable to set custom translation path "' + $rootScope.settings.customTranslationsPath + '"', response)
-          })
-        }
-      }
+      var customTranslationsPath = $rootScope.settings.customTranslationsPathEnabled && $rootScope.settings.customTranslationsPath ? $rootScope.settings.customTranslationsPath : '-1'
+      DataAccessor.updateAdvancedSettings(customTranslationsPath, $rootScope.settings.enableSortAscJson).then(function () {
+        console.log('Advanced settings is successfully settled')
+      }, function (response) {
+        Toast.showCustomToast('error', $i18next.t('commons.toast.advancedSettings.fail'), 'fail')
+        console.error('Unable to set advanced settings', response)
+      })
     } else {
       $rootScope.settings = {
         customTranslationsPathEnabled: false,
