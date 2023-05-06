@@ -63,6 +63,10 @@ angular.module('serinaApp').directive('translations', function ($rootScope, $rou
         translationCopy = null
       }
 
+      scope.moveTranslation = function (ev, translation) {
+        console.log('move translation', translation)
+      }
+
       scope.sendTranslation = function (ev, translation) {
         ev.stopPropagation()
         if (!translation.save) {
