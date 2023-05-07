@@ -1,4 +1,4 @@
-# R0.4.0 Available soon ...
+# [R0.4.0](https://github.com/ORN-Fox/serina-1/releases/tag/R0.4.0) (2023-05-07)
 
 - Add an option to enable / disabled sort by alpha order the jsons
 - Update translation input by textarea for support large text (max 3000 characters)
