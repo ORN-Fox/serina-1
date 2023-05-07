@@ -45,7 +45,7 @@ api.get(constants.PATH_API + '/', (req, res) => {
       address + '/translation/add',
       address + '/translation/update',
       address + '/translation/delete',
-      address + '/settings/set-custom-translation-path'
+      address + '/settings/update'
     ]
   })
 })

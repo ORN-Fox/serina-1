@@ -41,6 +41,7 @@
       "advanced": {
         "title": "Paramétres avancées",
         "customPathOfFile": "Emplacement personnalisé des fichiers de langue (chemin absolu uniquement)",
+        "enableSortAscJson": "Trier les fichiers JSON générés par ordre alphabétique",
         "folderPath": "Emplacement du dossier"
       },
       "about": {
@@ -125,6 +126,9 @@
       "deleteGroup": {
         "success": "Groupe supprimé avec succés",
         "fail": "Impossible de supprimer le groupe '{{groupName}}'"
+      },
+      "advancedSettings": {
+        "fail": "Impossible de modifier les paramètres avancés"
       }
     },
     "matchingElement": "élément correspondant",

@@ -57,7 +57,9 @@ moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) 
           break
       }
 
-      obj = utilities.sortJSON(obj)
+      if (constants.ENABLE_SORT_ASC_JSON) {
+        obj = utilities.sortJSON(obj)
+      }
 
       jsonfile.writeFile(file, obj, { spaces: constants.JSON_NB_SPACES_INDENT }, (err) => {
         if (err) { return console.log('Error on ' + action + ' trad on json file : ' + file, 'err', err) }

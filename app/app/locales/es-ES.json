@@ -86,6 +86,9 @@
       "majTranslation": {
         "fail": "Incapaz de renombrar la traducción '{{translation}}'",
         "success": "Cambió exitosamente el nombre por el de '{{translation}}'"
+      },
+      "advancedSettings": {
+        "fail": "No se puede cambiar la configuración avanzada"
       }
     },
     "translation": "Traducción",
@@ -116,6 +119,7 @@
       },
       "advanced": {
         "customPathOfFile": "Ubicación personalizada de los archivos de idioma (solo ruta absoluta)",
+        "enableSortAscJson": "Ordenar los archivos JSON generados alfabéticamente",
         "title": "Parámetros avanzados",
         "folderPath": "Ruta de la carpeta"
       },

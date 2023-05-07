@@ -47,8 +47,8 @@ angular.module('serinaApp').factory('DataAccessor', function ($rootScope, $http)
       return $http.post($rootScope.endPoint + '/translation/delete', { languages: languages, levels: levels, translation: translation })
     },
 
-    setCustomTranslationPathOnApi: function (customTranslationsPath) {
-      return $http.post($rootScope.endPoint + '/settings/set-custom-translation-path', { customTranslationsPath: customTranslationsPath })
+    updateAdvancedSettings: function (customTranslationsPath, enableSortAscJson) {
+      return $http.post($rootScope.endPoint + '/settings/update', { customTranslationsPath: customTranslationsPath, enableSortAscJson: enableSortAscJson })
     }
 
   }

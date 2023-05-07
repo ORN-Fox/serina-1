@@ -1,3 +1,12 @@
+# R0.4.0 Available soon ...
+
+- Add an option to enable / disabled sort by alpha order the jsons
+- Update translation input by textarea for support large text (max 3000 characters)
+- Maj dependancies :
+  - AngularJS Material (1.1.10 -> 1.2.5)
+  - Electron version (18.1.0 -> 24.2.0)
+
+
 # [R0.3.0](https://github.com/ORN-Fox/serina-1/releases/tag/R0.3.0) (2023-04-29)
 
 - Refactor flags systems
@@ -10,8 +19,8 @@
 - Convert commons directives to components
 - Added more shortcuts in package.json
 - Maj dependencies :
-  - Electron version (1.7.9 -> 18.1.0)
   - AngularJS version (1.6.8 -> 1.8.3)
+  - Electron version (1.7.9 -> 18.1.0)
 - Fix : Problem with count translation return 0 when the files are not empty
 
 

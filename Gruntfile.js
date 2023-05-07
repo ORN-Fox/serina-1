@@ -414,6 +414,7 @@ module.exports = function (grunt) {
             'busboy/**',
             'bytes/**',
             'call-bind/**',
+            'concat-stream/**',
             'content-disposition/**',
             'content-type/**',
             'cookie-signature/**',

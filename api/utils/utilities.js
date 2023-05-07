@@ -1,5 +1,7 @@
 'use strict'
 
+const constants = require("./constants")
+
 let utilities = {
   isDefined: (value) => {
     return value !== undefined && value !== null
@@ -28,7 +30,6 @@ let utilities = {
       let r = utilities.sortAsc(json)
       return JSON.parse(JSON.stringify(r, null, 4))
     } catch (ex) {
-      console.log('Incorrect JSON object', ex)
       return json
     }
   },
