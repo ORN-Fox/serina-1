@@ -92,7 +92,7 @@
     "test": "grunt test",
     "test:api": "cd api && mocha -w  --full-trace",
     "build:api": "rimraf api/dist/ && babel ./api/ --out-dir api/dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "package": "npm run build:api && grunt package:linux",
+    "package:linux": "npm run build:api && grunt package:linux",
     "package:win": "npm run build:api && grunt package:win32",
     "package:mac": "npm run build:api && grunt package:macos"
   }

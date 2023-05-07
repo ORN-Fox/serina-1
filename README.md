@@ -16,7 +16,7 @@ Serina | GitHub page [here](https://orn-fox.github.io/serina-1/)
 
 ## 💾 Download
 
-Serina can be downloaded [here](https://github.com/ORN-Fox/serina-1/releases). Available versions for Linux and Windows (64bits). _MacOS available to later_
+Serina can be downloaded [here](https://github.com/ORN-Fox/serina-1/releases). Available versions for Linux, MacOS (64bits) and Windows (64bits).
 
 To use, unzip in the desired location and execute Serina.
 
@@ -68,7 +68,8 @@ The settings allow you to modify the app according to your preferences. A "About
 - The language of the application (EN, ES or FR for the moment)
 
 #### Advanced parameters
-- Custom location of translation files (Available in version 0.3)
+- Custom location of translation files (Available in version 0.3.0)
+- Alphabetical sorting of generated .json files  (Available in version 0.4.0)
 
 #### Others parameters
 - The theme of the application
@@ -89,20 +90,21 @@ If you want to contribute to Serina, create a new different version of Serina, o
 Clone/download source code from the github repo. Make sure you have _node_, _npm_, _yarn_ already installed in your system:
 
 1. `yarn` to install all the dependencies.
-2. `yarn start` to start _API_ on `localhost:7777`.
-3. `grunt serve` to start _Serina_ on `localhost:9000`.
-4. `yarn run package` to build _serina_ for linux (build will be placed in `packages` folder).
-    * `grunt package` to make builds for windows, linux and mac os.
-    * `grunt package:win32` to make build for windows (64bits).
-    * `grunt package:linux` to make build for linux.
-    * `grunt package:macos` to make build for mac os (64bits).
-5. `grunt test` to run the automated tests.
-    * `grunt test:loop` for loop automated tests.
-    * Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.
+2. `yarn run start:api` to start _API_ on `localhost:7777`.
+3. `yarn start` to start _Serina_ on `localhost:9000`.
+4. For build _serina_ (build will be placed in `packages` folder).
+    * `yarn run package:win` to make build for windows (64bits).
+    * `yarn run package:linux` to make build for linux.
+    * `yarn run package:macos` to make build for mac os (64bits).
+5. `yarn run test:api` to run the automated tests for _API_.
+6. `yarn run test` to run the automated tests for _Serina_.
+    * `yarn run test:loop` for loop automated tests.
+
+Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.
 
 ## 👏Acknowledgments
 
-* [Electron](https://electron.atom.io)  framework was used for the app development.
+* [Electron](https://electron.atom.io) framework was used for the app development.
 
 ## 📖 License
 
