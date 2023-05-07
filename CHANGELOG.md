@@ -1,3 +1,8 @@
+# R1.0.0 Comming soon
+
+- App migrated to Angular 15
+
+
 # [R0.4.0](https://github.com/ORN-Fox/serina-1/releases/tag/R0.4.0) (2023-05-07)
 
 - Add an option to enable / disabled sort by alpha order the jsons

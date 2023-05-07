@@ -7,7 +7,7 @@ Serina | GitHub page [here](https://orn-fox.github.io/serina-1/)
 
 > GUI for create translation files for i18next
 
-## 🖼 Preview (_Serina R0.4.0_)
+## 🖼 Preview (_Serina R1.0.0_)
 
 ![Serina Screenshot Home](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/home.JPG)
 ![Serina Screenshot Edit translations](https://raw.githubusercontent.com/ORN-Fox/serina-1/master/samples/edit-translations.JPG)
@@ -85,6 +85,8 @@ You can open a issue to explain your problem with a screenshot if possible.
 
 ## 🔨 Development
 
+TODO : review this section for angular app development
+
 If you want to contribute to Serina, create a new different version of Serina, or compile it from source code, follow these instructions.
 
 Clone/download source code from the github repo. Make sure you have _node_, _npm_, _yarn_ already installed in your system:
@@ -104,7 +106,8 @@ Please, ensure the tests are passing before creating a pull requests. Add tests 
 
 ## 👏Acknowledgments
 
-* [Electron](https://electron.atom.io) framework was used for the app development.
+* [Angular](https://angular.io) framework was used for the app development.
+* [Electron](https://electron.atom.io) framework was used for package app.
 
 ## 📖 License
 

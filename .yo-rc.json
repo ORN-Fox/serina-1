@@ -1,9 +1,0 @@
-{
-  "generator-karma": {
-    "base-path": "../",
-    "frameworks": "jasmine",
-    "browsers": "PhantomJS",
-    "app-files": "app/scripts/**/*.js",
-    "test-files": "test/mock/**/*.js,test/spec/**/*.js"
-  }
-}
