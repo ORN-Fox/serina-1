@@ -10,7 +10,7 @@ angular.module('serinaApp').directive('addLanguage', function ($i18next, DataAcc
         var codeLanguageAdd = scope.addLanguage.code
         var languageNotExist = true
         angular.forEach(scope.listLanguages, function (language) {
-          if (language === codeLanguageAdd) {
+          if (language.code === codeLanguageAdd) {
             languageNotExist = false
           }
         })
