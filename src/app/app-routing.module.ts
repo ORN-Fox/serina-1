@@ -7,10 +7,10 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { PreviewComponent } from './pages/preview/preview.component';
 
 const routes: Routes = [
-  { path: '/languages', component: LanguagesComponent },
-  { path: '/level', component: LevelComponent },
-  { path: '/preview', component: PreviewComponent },
-  { path: '/settings', component: SettingsComponent }
+  { path: 'languages', component: LanguagesComponent },
+  { path: 'level', component: LevelComponent },
+  { path: 'preview', component: PreviewComponent },
+  { path: 'settings', component: SettingsComponent }
 ];
 
 @NgModule({
