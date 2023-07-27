@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'languages', component: LanguagesComponent },
   { path: 'level', component: LevelComponent },
   { path: 'preview', component: PreviewComponent },
-  { path: 'settings', component: SettingsComponent }
+  { path: 'settings', component: SettingsComponent },
+  { path: '',   redirectTo: '/languages', pathMatch: 'full' }
 ];
 
 @NgModule({
