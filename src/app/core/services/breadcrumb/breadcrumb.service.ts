@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BreadcrumbLevel } from '../../models/breadcrumb-level.model';
+import { BreadcrumbLevel } from '../../models/breadcrumb-level/breadcrumb-level.model';
 
 @Injectable({
   providedIn: 'root'
