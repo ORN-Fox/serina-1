@@ -8,4 +8,8 @@ export class Language {
     this.nbTranslations = nbTranslations;
   }
 
+  getFlagSrc(): string {
+    return `/assets/images/svg-country-flags/${this.code.slice(-2).toLowerCase()}.svg`;
+  }
+
 }
