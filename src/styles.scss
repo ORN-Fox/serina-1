@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "assets/scss/commons/colors";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+md-list-item, .md-subheader {
+    background-color: $white;
+}
+
+md-list-item .flag {
+    position: relative;
+    padding-right: 1em;
+    top: 4px;
+    width: 2em;
+}
