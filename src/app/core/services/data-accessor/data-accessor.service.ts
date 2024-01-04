@@ -90,11 +90,11 @@ export class DataAccessorService {
 
   // Settings
   
-  public updateAdvancedSettings(customTranslationsPath: string, enableSortAscJson: string): Observable<void>{
-    return this.httpClient.post<void>(`${environment.endPointApi}/settings/update`, {
+  public updateAdvancedSettings(customTranslationsPath: string, enableSortAscJson: boolean): Observable<string> {
+    return this.httpClient.post(`${environment.endPointApi}/settings/update`, {
       customTranslationsPath: customTranslationsPath,
       enableSortAscJson: enableSortAscJson
-    });
+    }, {responseType: 'text'});
   }
 
 }
