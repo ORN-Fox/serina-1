@@ -14,7 +14,7 @@ moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
   const languages = req.body.languages
 
   let files = []
-  languages.map((file, index) => {
+  languages.map((_file, index) => {
     files[index] = constants.PATH_JSON_FOLDER + '/' + languages[index] + '.json'
   })
 

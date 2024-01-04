@@ -54,7 +54,7 @@ moduleLanguages.countTranslations = (obj) => {
   return nbTranslations
 }
 
-moduleLanguages.get(constants.PATH_API + '/languages', (req, res) => {
+moduleLanguages.get(constants.PATH_API + '/languages', (_req, res) => {
   let languages = []
   let files = fs.readdirSync(constants.PATH_JSON_FOLDER)
 
@@ -94,7 +94,7 @@ moduleLanguages.get(constants.PATH_API + '/language/:code/:action', (req, res) =
 moduleLanguages.post(constants.PATH_API + '/language/import', (req, res) => {
   let storage = multer.diskStorage({
     destination: constants.PATH_JSON_FOLDER,
-    filename: function (req, file, cb) {
+    filename: function (_req, file, cb) {
       if (fs.existsSync(path.join(constants.PATH_JSON_FOLDER, file.originalname))) {
         return
       } else {

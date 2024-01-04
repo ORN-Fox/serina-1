@@ -30,7 +30,7 @@ export class DataManagerService {
     return itemFind;
   }
 
-  public remove(list: any, item: any) {
+  public remove(list: any, item: any): any {
     return list.filter((element: any) => element !== item);
   }
 
