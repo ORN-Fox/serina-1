@@ -7,13 +7,15 @@ import { BreadcrumbLevel } from '../../models/breadcrumb-level/breadcrumb-level.
 })
 export class BreadcrumbService {
 
-  constructor() { }
+  constructor() {}
 
-  init(label: string, href: string) {
-    return [new BreadcrumbLevel(label, href)];
+  static init(label: string, href: string): BreadcrumbLevel[] {
+    return [
+      new BreadcrumbLevel(label, href)
+    ];
   }
 
-  build(currentBreadcrumb: BreadcrumbLevel[], lang: string, levels: string) {
+  static build(currentBreadcrumb: BreadcrumbLevel[], lang: string, levels: string): BreadcrumbLevel[] {
     let breadcrumb = currentBreadcrumb;
     let currentLevel = 1;
 
@@ -21,13 +23,13 @@ export class BreadcrumbService {
     splitedLevels.forEach((level) => {
       let hrefComputed = '';
       for (let iterator = 0; iterator < currentLevel; iterator++) {
-        hrefComputed += '/' + levels[iterator];
+        hrefComputed += `/${levels[iterator]}`;
       }
 
-      let computedHref = '/language/' + lang + hrefComputed;
+      let computedHref = `/language/${lang}${hrefComputed}`;
       breadcrumb.push(new BreadcrumbLevel(level, computedHref));
       currentLevel++;
-    })
+    });
     return breadcrumb;
   }
   
