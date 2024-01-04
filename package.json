@@ -22,7 +22,7 @@
   "homepage": "https://github.com/ORN-Fox/serina-1#readme",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "start:api": "npm run build:api && node api/dist/api.js",
     "build": "ng build",
     "build:api": "rimraf api/dist/ && babel ./api/ --out-dir api/dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
