@@ -1,0 +1,38 @@
+.hub {
+  display: flex;
+  height: calc(100% - 96px); // 64 px toolbar + 16 px * 2 for gutters
+  margin: 1rem 15%;
+
+  .languages-list-container, .add-language-container {
+    flex: 1;
+  }
+
+  .languages-list-container {
+    .language-item {
+      margin-bottom: 2rem;
+    }
+
+    mat-card.language-item {
+      mat-card-title {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+          margin-right: 1rem;
+        }
+      }
+
+      mat-card-actions {
+        justify-content: space-between;
+
+        button {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+
+  .add-language-container {
+    margin-left: 1rem;
+  }
+}
