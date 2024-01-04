@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button aria-label="App menu" matTooltip="{{'commons.menu' | translate}}" matTooltipPosition="below">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <h2 flex md-truncate class="breadcrumb">
+        <a *ngFor="let breadcrumbLevel of breadcrumbLevels; let first = first" [href]="breadcrumbLevel.href">
+            <span *ngIf="first">{{breadcrumbLevel.label | translate}}</span><span *ngIf="!first"> {{breadcrumbLevel.label}}</span>
+        </a>
+    </h2>
+
+    <span class="spacer"></span>
+</mat-toolbar>

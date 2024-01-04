@@ -1,0 +1,41 @@
+@import "src/assets/scss/commons/colors";
+
+.breadcrumb {
+  a {
+    display: inline;
+    color: rgba($white, .7);
+
+    &:last-child {
+      color: $white;
+    }
+
+    &+a:before {
+      color: rgba($white, .7);
+      content: ">";
+      padding: 8px;
+    }
+  }
+}
+
+.search-bar {
+  * {
+    color: $white !important;
+  }
+
+  input {
+    border-bottom-color: $white;
+  }
+
+  .md-errors-spacer {
+    display: none;
+  }
+
+  .matching-elements {
+    display: inline-flex;
+
+    .md-button {
+      padding-top: 1.4em;
+    }
+  }
+}
+  
