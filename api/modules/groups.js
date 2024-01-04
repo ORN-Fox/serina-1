@@ -63,7 +63,7 @@ moduleGroups.post(constants.PATH_API + '/group/:action', (req, res) => {
       })
     })
   })
-  res.sendStatus(200)
+  res.send({})
 })
 
 module.exports = moduleGroups

@@ -15,7 +15,7 @@ jsonfile.spaces = constants.JSON_NB_SPACES_INDENT
 let createLanguage = (res, languageCode) => {
   jsonfile.writeFile(constants.PATH_JSON_FOLDER + '/' + languageCode + '.json', { }, { spaces: constants.JSON_NB_SPACES_INDENT }, (err) => {
     if (err) { return console.log('Error on create ' + languageCode + '.json file', err) }
-    res.sendStatus(200)
+    res.send({})
   })
 }
 
@@ -26,7 +26,7 @@ let deleteLanguage = (res, languageCode) => {
     fs.unlink(constants.PATH_JSON_FOLDER + '/' + languageCode + '.json', (err) => {
       if (err) { return console.log(err) }
       console.log('file "' + languageCode + '.json" deleted successfully')
-      res.sendStatus(200)
+      res.send({})
     })
   })
 }
@@ -114,7 +114,7 @@ moduleLanguages.post(constants.PATH_API + '/language/import', (req, res) => {
       res.sendStatus(500)
     }
 
-    res.sendStatus(200)
+    res.send({})
   })
 })
 

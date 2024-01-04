@@ -66,7 +66,7 @@ moduleTranslations.post(constants.PATH_API + '/translation/:action', (req, res) 
       })
     })
   })
-  res.sendStatus(200)
+  res.send({})
 })
 
 module.exports = moduleTranslations

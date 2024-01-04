@@ -14,7 +14,7 @@ moduleSettings.post(constants.PATH_API + '/settings/update', (req, res) => {
   if (utilities.isDefined(customTranslationsPath) && utilities.isDefined(enableSortAscJson)) {
     constants.PATH_JSON_FOLDER = customTranslationsPath == '-1' ? constants.DEFAULT_PATH_JSON_FOLDER : customTranslationsPath
     constants.ENABLE_SORT_ASC_JSON = enableSortAscJson
-    res.sendStatus(200)
+    res.send({})
   } else {
     console.error('Unable to update settings because is invalid or incorrect', customTranslationsPath, enableSortAscJson)
     res.sendStatus(400)
