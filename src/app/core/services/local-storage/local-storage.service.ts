@@ -7,12 +7,16 @@ export class LocalStorageService {
 
   constructor() { }
 
-  itemExist(key: string) {
-    return localStorage.getItem(key) !== null;
+  isItemExist(key: string): boolean {
+    return this.getItem(key) !== null;
   }
 
-  getItem(key: string): any {
-    return JSON.parse(this.getItem(key));
+  getItem(key: string): any | null {
+    let result = localStorage.getItem(key);
+    if (result) {
+      return JSON.parse(result);
+    }
+    return null;
   }
 
   setItem(key: string, data: object) {
