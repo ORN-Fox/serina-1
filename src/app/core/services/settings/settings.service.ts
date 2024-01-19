@@ -62,4 +62,28 @@ export class SettingsService {
     return this.settings;
   }
 
+  setSettings(settings: Settings, setAdvancedSettings: boolean = false) {
+    this.settings = settings;
+    this.localStorage.setItem(this.keySettingsApp, settings);
+
+    if (setAdvancedSettings) {
+      let customTranslationsPath = this.settings.customTranslationsPathEnabled && this.settings.customTranslationsPath ? this.settings.customTranslationsPath : '-1'
+      this.dataAccessor.updateAdvancedSettings(customTranslationsPath, this.settings.enableSortAscJson).subscribe({
+        next: () => {
+          console.debug('Advanced settings is successfully settled');
+        },
+        error: (response) => {
+          this._snackBar.open(this.translateService.instant('commons.toast.advancedSettings.fail'), undefined, { panelClass: 'app-notification-error' });
+          console.error('Unable to set advanced settings', response);
+        }
+      });
+    }
+  }
+
+  setThemeApp() {
+    let themeAppLinkElement = document.getElementById("themeApp") as HTMLLinkElement;
+    themeAppLinkElement.rel = "stylesheet";
+    themeAppLinkElement.href = `/assets/styles/vendor/angular-material-prebuilt-themes/${this.settings.theme}.css`;
+  }
+
 }

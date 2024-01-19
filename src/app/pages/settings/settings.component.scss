@@ -1,0 +1,61 @@
+@import "src/assets/scss/commons/colors";
+
+.settings {
+    display: flex;
+    height: calc(100% - 96px); // 64 px toolbar + 16 px * 2 for gutters
+    margin: 1rem 15%;
+
+    mat-list-item {
+        height: 100%;
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .flag {
+        height: 20px;
+    }
+
+    // Shortcuts related
+
+    .keyboard-key {
+        background: $white;
+        border: 1px solid #D6DADC;
+        border-bottom-color: #CDD2D4;
+        border-radius: 5px;
+        box-shadow: 0 2px 3px rgba($black, .1);
+        cursor: default;
+        display: inline-block;
+        font-size: 1.3em;
+        margin: 0 5px;
+        min-width: 1.5em;
+        padding: 6px 10px;
+        text-align: center;
+    
+        mat-icon {
+          height: 21px;
+          min-height: 21px;
+          min-width: 21px;
+          width: 21px;
+        }
+    }
+
+    // Themes related
+    .theme-deeppurple-amber-button {
+        background-color: #673ab7;
+    }
+
+    .theme-indigo-pink-button {
+        background-color: #3f51b5;
+    }
+
+    .theme-pink-bluegrey-button {
+        background-color: #c2185b;
+    }
+
+    .theme-purple-green-button {
+        background-color: #7b1fa2;
+    }
+}

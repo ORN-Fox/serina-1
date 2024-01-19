@@ -73,6 +73,10 @@
       "save": "Save"
     },
     "themeColor": {
+      "deeppurple-amber": "Deep purple - Amber",
+      "indigo-pink": "Indigo - Pink",
+      "pink-bluegrey": "Pink - Blue grey",
+      "purple-green": "Puple - Green",
       "brown": "Brown",
       "green": "Green",
       "grey": "Grey",

@@ -44,6 +44,10 @@
     "noTranslation": "Sin traducción",
     "secondLanguage": "Segundo idioma",
     "themeColor": {
+      "deeppurple-amber": "Deep purple - Amber",
+      "indigo-pink": "Indigo - Pink",
+      "pink-bluegrey": "Pink - Blue grey",
+      "purple-green": "Puple - Green",
       "brown": "Marrón Castaño",
       "green": "Verde",
       "grey": "Gris",

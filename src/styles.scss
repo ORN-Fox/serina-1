@@ -15,3 +15,9 @@ md-list-item .flag {
     top: 4px;
     width: 2em;
 }
+
+.mdc-list-item__primary-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

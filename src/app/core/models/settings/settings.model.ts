@@ -1,3 +1,5 @@
+import { Language } from "../language/language.model";
+
 export enum SettingLanguageDisplayFormat {
   Card = 'card',
   List = 'list'
@@ -52,6 +54,16 @@ export class Settings {
 
   shouldDisplayLanguageInListFormat(): boolean {
     return this.selectedDisplayFormat == SettingLanguageDisplayFormat.List;
+  }
+
+  // Others related
+
+  static getAppLanguages(): Language[] {
+    return [
+      new Language('es-ES', 0),
+      new Language('en-US', 0),
+      new Language('fr-FR', 0)
+    ];
   }
 
 }

@@ -73,6 +73,10 @@
       "save": "Enregistrer"
     },
     "themeColor": {
+      "deeppurple-amber": "Violet profond - Ambre",
+      "indigo-pink": "Bleu marine - Rose",
+      "pink-bluegrey": "Rose - Bleu gris",
+      "purple-green": "Violet - Vert",
       "brown": "Marron",
       "green": "Vert",
       "grey": "Gris",

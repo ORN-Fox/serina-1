@@ -1,1 +1,128 @@
-<p>settings works!</p>
+<div class="settings">
+  <mat-accordion multi>
+    
+    <!-- Basic -->
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title><mat-icon>widgets</mat-icon> {{'pages.settings.basic.title' | translate}}</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <span>{{'pages.settings.basic.choiceDisplayFormatOfLanguages' | translate}}</span>
+
+          <div>
+            <ng-container *ngFor="let format of languageDisplayFormats">
+              <button mat-raised-button color="primary" [ngClass]="{'mat-raised mat-primary': settings.selectedDisplayFormat === format.label}" (click)="changeLanguageDisplayFormat(format)">
+                <mat-icon>{{format.icon}}</mat-icon> {{'pages.settings.basic.' + format.label | translate}}
+              </button>
+            </ng-container>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+            <span>{{'pages.settings.basic.choiceLanguageOfApp' | translate}}</span>
+            
+            <div>
+              <ng-container *ngFor="let language of languages">
+                <button mat-raised-button color="primary" [ngClass]="{'mat-raised mat-primary': settings.locale === language.code}" (click)="changeLocaleOfApplication(language.code)">
+                  <img [src]="language.getFlagSrc()" alt="" class="flag"/> {{'pages.settings.languages.' + language.code | translate}}
+                </button>
+              </ng-container>
+            </div>
+        </mat-list-item>
+
+        <mat-list-item role="listitem" style="display: flex; justify-content: space-between;">
+            <span>{{'pages.settings.basic.keepLanguagesBeingEditedWhenChangingPages' | translate}}</span>
+            <mat-slide-toggle color="primary" [(ngModel)]="settings.keepLanguagesEdit" (ngModelChange)="changeKeepLanguagesEdit(settings.keepLanguagesEdit)"></mat-slide-toggle>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+
+    <!-- Shortcuts -->
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title><mat-icon>keyboard</mat-icon> {{'pages.settings.shortcuts.keyboardShortcuts' | translate}}</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list role="list">
+        <mat-list-item *ngFor="let shortcut of shortcuts" role="listitem">
+          <span>{{'pages.settings.shortcuts.' + shortcut.descriptionKey | translate}}</span>
+
+          <div>
+            <span class="keyboard-key">CTRL</span>
+            <span *ngIf="shortcut.key" class="keyboard-key">{{shortcut.key}}</span>
+            <span *ngIf="shortcut.icon" class="keyboard-key"><mat-icon>{{shortcut.icon}}</mat-icon></span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+
+    <!-- Theming -->
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title><mat-icon>color_lens</mat-icon> {{'pages.settings.basic.theming' | translate}}</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list role="list">
+        <mat-list-item class="theming" role="listitem">
+          <span>{{'pages.settings.basic.choiceTheme' | translate}}</span>
+          <div>
+            <ng-container *ngFor="let theme of themes">
+              <button mat-raised-button [color]="theme" class="theme-{{theme}}-button" [ngClass]="{'mat-raised mat-primary': settings.theme === theme}" (click)="changeTheme(theme)">{{'commons.themeColor.' + theme | translate}}</button>
+            </ng-container>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+
+    <!-- Advanced -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title><mat-icon>settings</mat-icon> {{'pages.settings.advanced.title' | translate}}</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <span>{{'pages.settings.advanced.enableSortAscJson' | translate}}</span>
+          <mat-slide-toggle color="primary" [(ngModel)]="settings.enableSortAscJson" (ngModelChange)="toggleSortAscJson(settings.enableSortAscJson)" />
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+            <span>{{'pages.settings.advanced.customPathOfFile' | translate}}</span>
+            <mat-slide-toggle color="primary" [(ngModel)]="settings.customTranslationsPathEnabled" (ngModelChange)="toggleCustomTranslationsPathStatus(settings.customTranslationsPathEnabled)" />
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+          <mat-form-field>
+            <mat-label>{{'pages.settings.advanced.folderPath' | translate}}</mat-label>
+            <input matInput type="text" [(ngModel)]="settings.customTranslationsPath" placeholder="{{'pages.settings.advanced.folderPath' | translate}}" [disabled]="!settings.customTranslationsPathEnabled">
+          </mat-form-field>
+
+          <button mat-icon-button (click)="saveCustomTranslationsPath(settings.customTranslationsPath)" [disabled]="!settings.customTranslationsPathEnabled || !settings.customTranslationsPath" matTooltip="{{'commons.actions.save' | translate}}" matTooltipPosition="below">
+              <mat-icon>save</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+
+    <!-- About -->
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title><mat-icon>developer_mode</mat-icon> {{'pages.settings.about.title' | translate}}</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+            <p>{{'pages.settings.about.nameAppAndCreator' | translate}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            <p>{{'pages.settings.about.version' | translate}} : 1.0.0</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            <p>{{'pages.settings.about.licenceAndDownload' | translate}} : https://github.com/ORN-Fox/serina-1</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
