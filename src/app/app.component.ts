@@ -16,12 +16,7 @@ export class AppComponent {
   constructor(private settingsService: SettingsService) {
     this.settingsService.initSettings();
     this.settings = this.settingsService.getSettings();
-
-    let linkTheme = document.createElement("link");
-    linkTheme.href = `/assets/styles/vendor/angular-material-prebuilt-themes/${this.settings.theme}.css`;
-    linkTheme.type = "text/css";
-    linkTheme.rel = "stylesheet";
-    linkTheme.media = "screen,print";
-    document.head.appendChild(linkTheme);
+    this.settingsService.setThemeApp();
   }
+
 }
