@@ -3,7 +3,7 @@
 @import "assets/scss/commons/colors";
 @import "assets/scss/commons/spacing";
 
-html, body { height: 100%; }
+html, body, .mat-drawer-container { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 md-list-item, .md-subheader {
