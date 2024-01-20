@@ -10,7 +10,7 @@
                                 <mat-card-subtitle>{{'commons.format' | translate}} : i18n (.json)</mat-card-subtitle>
                                 <mat-card-subtitle>{{language.nbTranslations}} {{'commons.translation' + (language.nbTranslations > 1 ? 's' : '') | translate | lowercase}}</mat-card-subtitle>
                             </mat-card-header>
-                            <img mat-card-image mat-card-sm-image [src]="language.getFlagSrc()" alt="Flag {{language.code}}" class="me-2" />
+                            <img mat-card-image mat-card-sm-image [src]="language.getFlagSrc()" alt="Flag {{language.code}}" class="flag" />
                         </mat-card-title>
                         <mat-card-actions layout="row">
                             <app-btn-download-language [languageCode]="language.code"></app-btn-download-language>
