@@ -43,19 +43,42 @@
     }
 
     // Themes related
-    .theme-deeppurple-amber-button {
-        background-color: #673ab7;
-    }
+    .theming {
+        .mdc-button {
+            color: $white;
+            margin-left: 1rem;
+        }
 
-    .theme-indigo-pink-button {
-        background-color: #3f51b5;
-    }
+        .theme-deeppurple-amber-button {
+            background-color: #673ab7;
 
-    .theme-pink-bluegrey-button {
-        background-color: #c2185b;
-    }
+            &:hover {
+                background-color: #8d5ce0;
+            }
+        }
+    
+        .theme-indigo-pink-button {
+            background-color: #3f51b5;
 
-    .theme-purple-green-button {
-        background-color: #7b1fa2;
+            &:hover {
+                background-color: #6476e0;
+            }
+        }
+    
+        .theme-pink-bluegrey-button {
+            background-color: #c2185b;
+
+            &:hover {
+                background-color: #e14c87;
+            }
+        }
+    
+        .theme-purple-green-button {
+            background-color: #7b1fa2;
+
+            &:hover {
+                background-color: #a545ce;
+            }
+        }   
     }
 }
