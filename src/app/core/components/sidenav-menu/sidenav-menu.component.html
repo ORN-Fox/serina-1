@@ -1,0 +1,20 @@
+<h1>{{'sideMenu.serina' | translate}}</h1>
+
+<mat-list>
+    <mat-list-item routerLink="/languages" routerLinkActive="active" (click)="closeSideMenu()">
+        <mat-icon matListItemIcon>list</mat-icon>
+        <p matListItemTitle>{{'sideMenu.listOfLanguages' | translate}}</p>
+    </mat-list-item>
+
+    <mat-list-item routerLink="/preview" routerLinkActive="active" (click)="closeSideMenu()">
+        <mat-icon matListItemIcon>chrome_reader_mode</mat-icon>
+        <p matListItemTitle>{{'sideMenu.jsonOfLanguages' | translate}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item routerLink="/settings" routerLinkActive="active" (click)="closeSideMenu()">
+        <mat-icon matListItemIcon>settings</mat-icon>
+        <p matListItemTitle>{{'sideMenu.settings' | translate}}</p>
+    </mat-list-item>
+</mat-list>

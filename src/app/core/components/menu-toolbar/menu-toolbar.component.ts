@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
@@ -16,7 +17,9 @@ enum SearchNavigateSign {
 })
 export class MenuToolbarComponent {
 
-  breadcrumbLevels: BreadcrumbLevel[]; // Store on one same place (Breadcrumb service ?)
+  @Input() sideMenu: MatDrawer;
+
+  breadcrumbLevels: BreadcrumbLevel[] | null;
 
   // Search related
   searchIsOpen: boolean;
@@ -29,6 +32,10 @@ export class MenuToolbarComponent {
     this.clearSearch();
   }
 
+  toggleSideMenu() {
+    this.sideMenu.toggle();
+  }
+
   // Breadcrumb related
   addBreadcrumbLevel(label: string, href: string) {
     if (!this.breadcrumbLevels) {
@@ -36,6 +43,10 @@ export class MenuToolbarComponent {
     } else {
       this.breadcrumbLevels = BreadcrumbService.build(this.breadcrumbLevels, label, href);
     }
+  }
+
+  clearBreadcrumb() {
+    this.breadcrumbLevels = null;
   }
 
   // Search related

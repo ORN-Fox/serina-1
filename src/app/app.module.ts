@@ -34,6 +34,7 @@ import { LanguagesComponent } from './pages/languages/languages.component';
 import { LevelComponent } from './pages/level/level.component';
 import { PreviewComponent } from './pages/preview/preview.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { SidenavMenuComponent } from './core/components/sidenav-menu/sidenav-menu.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PreviewComponent,
     SettingsComponent,
     MenuToolbarComponent,
+    SidenavMenuComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,2 +1,13 @@
-<app-menu-toolbar></app-menu-toolbar>
-<router-outlet></router-outlet>
+<mat-drawer-container autosize>
+    <mat-drawer #drawer class="sidemenu-container" mode="side">
+        <app-sidenav-menu [sideMenu]="sideMenu"></app-sidenav-menu>
+    </mat-drawer>
+  
+    <div>
+        <app-menu-toolbar [sideMenu]="sideMenu"></app-menu-toolbar>
+        <router-outlet></router-outlet>
+    </div>
+  
+</mat-drawer-container>
+
+
