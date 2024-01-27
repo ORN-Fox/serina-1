@@ -3,7 +3,7 @@ import { BrowserModule,  } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -31,10 +31,10 @@ import { MessageNoLanguageComponent } from './core/components/message-no-languag
 
 // Pages
 import { LanguagesComponent } from './pages/languages/languages.component';
-import { LevelComponent } from './pages/level/level.component';
 import { PreviewComponent } from './pages/preview/preview.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavMenuComponent } from './core/components/sidenav-menu/sidenav-menu.component';
+import { TransaltionsLevelComponent } from './pages/translations-level/translations-level.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -47,15 +47,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     // Commons Components
     ConfirmDialogComponent,
     BtnDownloadLanguageComponent,
+    MenuToolbarComponent,
     MessageNoLanguageComponent,
 
     // Pages
     LanguagesComponent,
-    LevelComponent,
     PreviewComponent,
     SettingsComponent,
-    MenuToolbarComponent,
     SidenavMenuComponent,
+    TransaltionsLevelComponent,
   ],
   imports: [
     BrowserModule,

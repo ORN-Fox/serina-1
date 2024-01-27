@@ -22,3 +22,8 @@ md-list-item .flag {
     align-items: center;
     justify-content: space-between;
 }
+
+.mat-drawer-backdrop {
+    background: rgba(0, 0, 0, .45);
+    z-index: 2;
+}
