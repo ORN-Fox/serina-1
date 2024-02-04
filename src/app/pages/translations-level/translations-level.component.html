@@ -1,2 +1,23 @@
 <div class="level">
+    <div layout-xs="column" layout="row" layout-align="center">
+        <div flex-xs flex-gt-xs="25" flex-gt-lg="15" flex-lg="15" layout="column">
+            <!-- <app-swap></app-swap> -->
+        </div>
+        <div flex-xs flex-gt-xs="25" flex-gt-lg="20" layout="column">
+            <!-- <app--translations-groups [translationsGroups]></app--translations-groups> -->
+        </div>
+        <div flex-xs flex-gt-xs="40" layout="column">
+            <app-translations [languages]="languages" [levels]="levels" [translations]="translations"></app-translations>
+        </div>
+    </div>
+
+    <div layout="row">
+        <button mad-raised-button colo="primary" class="buttonReturn" (click)="goToBack()">
+            <mat-icon>reply</mat-icon> {{'commons.actions.return' | translate}}
+        </button>
+
+        <div flex></div>
+
+        <!-- <app-go-to-top></app-go-to-top> -->
+    </div>
 </div>

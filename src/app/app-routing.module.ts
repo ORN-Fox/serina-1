@@ -8,9 +8,9 @@ import { TransaltionsLevelComponent } from './pages/translations-level/translati
 
 const routes: Routes = [
   { path: 'languages', component: LanguagesComponent },
+  { path: 'language/:code', component: TransaltionsLevelComponent },
   { path: 'preview', component: PreviewComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: 'translations-level', component: TransaltionsLevelComponent },
   { path: '',   redirectTo: '/languages', pathMatch: 'full' }
 ];
 

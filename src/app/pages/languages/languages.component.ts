@@ -67,7 +67,7 @@ export class LanguagesComponent implements OnInit {
   }
 
   openLanguage(languageCode: string) {
-    this.router.navigate([`/language/${languageCode}`]);
+    this.router.navigate(['/language', languageCode]);
   }
 
   addLanguage() {
