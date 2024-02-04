@@ -25,21 +25,21 @@
         </div>
 
         <mat-form-field>
-            <label>{{'commons.key' | translate}}</label>
+            <mat-label>{{'commons.key' | translate}}</mat-label>
             <mat-icon>bookmark</mat-icon>
-            <input type="text" [(ngModel)]="translation.key" class="key">
+            <input matInput type="text" [(ngModel)]="translation.key" class="key">
         </mat-form-field>
 
         <mat-form-field>
-            <label>{{'commons.value' | translate}} <span *ngIf="languages[1]">{{languages[0]}}</span></label>
+            <mat-label>{{'commons.value' | translate}} <span *ngIf="languages[1]">{{languages[0]}}</span></mat-label>
             <mat-icon>label</mat-icon>
-            <textarea type="text" [(ngModel)]="translation.values[0]" maxlength="3000"></textarea>
+            <textarea matInput type="text" [(ngModel)]="translation.values[0]" maxlength="3000"></textarea>
         </mat-form-field>
 
         <mat-form-field *ngIf="languages[1]">
-            <label>{{'commons.value' | translate}} <span>{{languages[1]}}</span></label>
+            <mat-label>{{'commons.value' | translate}} <span>{{languages[1]}}</span></mat-label>
             <mat-icon>label</mat-icon>
-            <textarea type="text" [(ngModel)]="translation.values[1]" maxlength="3000"></textarea>
+            <textarea matInput type="text" [(ngModel)]="translation.values[1]" maxlength="3000"></textarea>
         </mat-form-field>
     </mat-card-content>
 </mat-card>
