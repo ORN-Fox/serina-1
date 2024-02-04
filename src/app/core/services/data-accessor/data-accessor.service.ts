@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Language } from '../../models/language/language.model';
+import { Translation } from '../../models/translation/translation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +65,7 @@ export class DataAccessorService {
 
   // Translations
 
-  public createTranslation(languages: string[], levels: string, translation: string): Observable<void>{
+  public createTranslation(languages: string[], levels: string, translation: Translation): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/translation/add`, {
       languages: languages,
       levels: levels,
@@ -72,7 +73,7 @@ export class DataAccessorService {
     });
   }
 
-  public updateTranslation(languages: string[], levels: string, translation: string): Observable<void>{
+  public updateTranslation(languages: string[], levels: string, translation: Translation): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/translation/update`, {
       languages: languages,
       levels: levels,
@@ -80,7 +81,7 @@ export class DataAccessorService {
     });
   }
 
-  public deleteTranslation(languages: string[], levels: string, translation: string): Observable<void>{
+  public deleteTranslation(languages: string[], levels: string, translation: Translation): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/translation/delete`, {
       languages: languages,
       levels: levels,
