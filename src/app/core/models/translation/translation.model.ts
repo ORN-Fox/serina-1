@@ -5,14 +5,12 @@ export class Translation {
     key: string;
     originalKey: string;
     values: string[];
-    secondValue: string;
     save: boolean;
     modified: boolean;
 
     constructor(
         key: string,
         values: string[],
-        secondValue: string = '',
         originalKey: string = key,
         save: boolean = false,
         modified: boolean = false
@@ -20,7 +18,6 @@ export class Translation {
         this.key = key;
         this.originalKey = originalKey;
         this.values = values;
-        this.secondValue = secondValue;
         this.save = save;
         this.modified = modified;
     }
