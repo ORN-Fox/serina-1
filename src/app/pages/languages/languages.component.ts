@@ -94,9 +94,7 @@ export class LanguagesComponent implements OnInit {
   deleteLanguage(event: Event, languageCode: string) {
     event.stopPropagation();
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent);
-
-    dialogRef.afterClosed().subscribe((action: number) => {
+    this.dialog.open(ConfirmDialogComponent).afterClosed().subscribe((action: number) => {
       if (action == ConfirmDialogActionEnum.Validate) {
         this.dataAccessor.deleteLanguage(languageCode).subscribe({
           next: () => {
