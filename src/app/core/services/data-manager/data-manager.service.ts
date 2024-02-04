@@ -7,7 +7,7 @@ export class DataManagerService {
 
   constructor() { }
 
-  public find(list: any, item: any, type: string): boolean {
+  public findItem(list: any, item: any, type: string): boolean {
     let itemFind = false;
     list.forEach((element: any) => {
       switch (type) {
@@ -30,7 +30,7 @@ export class DataManagerService {
     return itemFind;
   }
 
-  public remove(list: any, item: any): any {
+  public removeItem(list: any, item: any): any {
     return list.filter((element: any) => element !== item);
   }
 
