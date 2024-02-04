@@ -1,0 +1,45 @@
+<mat-card>
+    <mat-card-content layout="column">
+        <div layout layout-align="end start">
+            <span flex></span>
+
+            <button mat-icon-button color="primary" *ngIf="!translation.save || translation.modified" (click)="saveTranslation(translation)" [disabled]="translation.shouldDisableSaveAction()" matTooltip="{{'commons.actions.save' | translate}}" matTooltipPosition="below">
+                <mat-icon>save</mat-icon>
+            </button>
+
+            <button mat-icon-button *ngIf="translation.save" (click)="duplicateTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.copy' | translate}}" matTooltipPosition="below">
+                <mat-icon>content_copy</mat-icon>
+            </button>
+
+            <button mat-icon-button *ngIf="translation.save" (click)="generatePluralTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.generatePlural' | translate}}" matTooltipPosition="below">
+                <mat-icon>plus_one</mat-icon>
+            </button>
+
+            <button mat-icon-button *ngIf="translation.save" (click)="moveTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.move' | translate}}" matTooltipPosition="below">
+                <mat-icon>exit_to_app</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="deleteTranslation(translation)" matTooltip="{{'commons.actions.delete' | translate}}" matTooltipPosition="below">
+                <mat-icon>delete_outline</mat-icon>
+            </button>
+        </div>
+
+        <mat-form-field>
+            <label>{{'commons.key' | translate}}</label>
+            <mat-icon>bookmark</mat-icon>
+            <input type="text" [(ngModel)]="translation.key" class="key">
+        </mat-form-field>
+
+        <mat-form-field>
+            <label>{{'commons.value' | translate}} <span *ngIf="languages[1]">{{languages[0]}}</span></label>
+            <mat-icon>label</mat-icon>
+            <textarea type="text" [(ngModel)]="translation.values[0]" maxlength="3000"></textarea>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="languages[1]">
+            <label>{{'commons.value' | translate}} <span>{{languages[1]}}</span></label>
+            <mat-icon>label</mat-icon>
+            <textarea type="text" [(ngModel)]="translation.values[1]" maxlength="3000"></textarea>
+        </mat-form-field>
+    </mat-card-content>
+</mat-card>
