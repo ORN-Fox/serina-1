@@ -1,7 +1,7 @@
 <mat-card layout="row">
     <mat-card-title>
         <mat-card-header>
-            <mat-card-title>{{(translations.length > 1 ? 'commons.translations' : 'commons.translation') | translate}}</mat-card-title>
+            <mat-card-title *ngIf="translations">{{(translations.length > 1 ? 'commons.translations' : 'commons.translation') | translate}}</mat-card-title>
         </mat-card-header>
     </mat-card-title>
 
@@ -24,7 +24,7 @@
     ></app-translation>
 </ng-container>
 
-<mat-card layout="row" *ngIf="translations.length === 0">
+<mat-card layout="row" *ngIf="translations?.length === 0">
     <mat-card-title>
         <mat-card-header>
             <mat-card-title>{{'commons.noTranslation' | translate}}</mat-card-title>
