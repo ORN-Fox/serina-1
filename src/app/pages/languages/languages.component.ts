@@ -77,8 +77,8 @@ export class LanguagesComponent implements OnInit {
     if (languageNotExist) {
       this.dataAccessor.createLanguage(addLanguageCode).subscribe({
         next: () => {
-          this.snackBarService.open(this.translateService.instant('commons.toast.addLanguage.success', { language: addLanguageCode }), undefined, { panelClass: 'app-notification-success' });
-          this.addLanguageForm.value.code = null;
+          this.snackBarService.open(this.translateService.instant('commons.toast.addLanguage.success', { language: addLanguageCode }), undefined, { panelClass: 'app-notification-success' })
+          this.addLanguageForm.resetForm();
           this.getLanguages();
         },
         error: (response) => {
