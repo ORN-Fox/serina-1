@@ -21,7 +21,7 @@ let utilities = {
 
   isValidTranslationIndex: (translation, index) => {
     if (utilities.isDefined(translation) && utilities.isDefined(index))
-      return index >= 0 && index < translation.value.length
+      return index >= 0 && index < translation.values.length
     return false
   },
 
