@@ -37,6 +37,7 @@ import { SidenavMenuComponent } from './core/components/sidenav-menu/sidenav-men
 import { TransaltionsLevelComponent } from './pages/translations-level/translations-level.component';
 import { TranslationComponent } from './core/components/translation/translation.component';
 import { TranslationsComponent } from './core/components/translations/translations.component';
+import { TranslationsGroupsComponent } from './core/components/translations-groups/translations-groups.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -60,6 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TransaltionsLevelComponent,
     TranslationComponent,
     TranslationsComponent,
+    TranslationsGroupsComponent,
   ],
   imports: [
     BrowserModule,

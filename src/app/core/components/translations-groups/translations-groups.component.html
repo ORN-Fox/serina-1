@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-title>
+        <mat-card-header>
+            <mat-card-title *ngIf="translationsGroups">{{(translationsGroups.length > 1 ? 'commons.groups' : 'commons.group') | translate}}</mat-card-title>
+        
+            <button mat-mini-fab color="primary" (click)="openDialogAddTranslationsGroup()" matTooltip="{{'commons.actions.add' | translate}}" matTooltipPosition="below">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-card-header>
+    </mat-card-title>
+
+    <mat-card-content>
+        <mat-list flex>
+            <mat-list-item *ngFor="let translationsGroup of translationsGroups" (click)="openTranslationsGroup(translationsGroup)">
+                <p class="md-headline">{{translationsGroup.key}}</p>
+        
+                <div class="actions-container">
+                    <button mat-icon-button color="primary" (click)="opendDialogUpdateTranslationsGroup(translationsGroup.key)" aria-label="update group" matTooltip="{{'commons.actions.edit' | translate}}" matTooltipPosition="below">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+            
+                    <button mat-icon-button color="warn" (click)="openDialogDeleteTranslationsGroup(translationsGroup.key)" aria-label="delete group" matTooltip="{{'commons.actions.delete' | translate}}" matTooltipPosition="below">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </div>
+            </mat-list-item>
+        
+            <mat-list-item *ngIf="translationsGroups?.length === 0">
+                <p>{{'commons.noGroup' | translate}}</p>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
