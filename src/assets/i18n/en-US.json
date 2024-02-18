@@ -66,6 +66,7 @@
       "import": "Import",
       "return": "Return",
       "previous": "Previous",
+      "move": "Move",
       "next": "Next",
       "validate": "Validate",
       "search": "Search",
