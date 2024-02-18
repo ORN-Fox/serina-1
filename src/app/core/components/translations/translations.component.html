@@ -1,33 +1,27 @@
-<mat-card layout="row">
+<mat-card>
     <mat-card-title>
         <mat-card-header>
             <mat-card-title *ngIf="translations">{{(translations.length > 1 ? 'commons.translations' : 'commons.translation') | translate}}</mat-card-title>
+        
+            <button mat-mini-fab color="primary" (click)="addTranslation()" matTooltip="{{'commons.actions.add' | translate}}" matTooltipPosition="below">
+                <mat-icon>add</mat-icon>
+            </button>
         </mat-card-header>
     </mat-card-title>
 
-    <span flex></span>
+    <mat-card-content>
+        <ng-container *ngFor="let translation of translations">
+            <app-translation 
+                [languages]="languages"
+                [translation]="translation"
+                (TranslationComponentDidDeleteTranslationEvent)="onDeleteTranslation($event)"
+                (TranslationComponentDidDuplicateTranslationEvent)="onDuplicateTranslation($event)"
+                (TranslationComponentDidGeneratePluralTranslationEvent)="onGeneratePluralTranslation($event)"
+                (TranslationComponentDidMoveTranslationEvent)="onMoveTranslation($event)"
+                (TranslationComponentDidSaveTranslationEvent)="onSaveTranslation($event)"
+            ></app-translation>
+        </ng-container>
 
-    <md-button class="md-primary md-fab md-mini md-raised" (click)="addTranslation()" matTooltip="{{'commons.actions.add' | translate}}" matTooltipPosition="below">
-        <mat-icon>add</mat-icon>
-    </md-button>
-</mat-card>
-
-<ng-container *ngFor="let translation of translations">
-    <app-translation 
-        [languages]="languages"
-        [translation]="translation"
-        (TranslationComponentDidDeleteTranslationEvent)="onDeleteTranslation($event)"
-        (TranslationComponentDidDuplicateTranslationEvent)="onDuplicateTranslation($event)"
-        (TranslationComponentDidGeneratePluralTranslationEvent)="onGeneratePluralTranslation($event)"
-        (TranslationComponentDidMoveTranslationEvent)="onMoveTranslation($event)"
-        (TranslationComponentDidSaveTranslationEvent)="onSaveTranslation($event)"
-    ></app-translation>
-</ng-container>
-
-<mat-card layout="row" *ngIf="translations?.length === 0">
-    <mat-card-title>
-        <mat-card-header>
-            <mat-card-title>{{'commons.noTranslation' | translate}}</mat-card-title>
-        </mat-card-header>
-    </mat-card-title>
+        <p *ngIf="translations?.length === 0">{{'commons.noTranslation' | translate}}</p>
+    </mat-card-content>
 </mat-card>
