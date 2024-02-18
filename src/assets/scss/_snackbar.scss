@@ -1,0 +1,17 @@
+// Snakbar
+.mat-mdc-snack-bar-container {
+  --mat-mdc-snack-bar-button-color: #{$white};
+  --mdc-snackbar-supporting-text-color: #{$white};
+
+  &.app-notification-success {
+    --mdc-snackbar-container-color: #{$green};
+  }
+
+  &.app-notification-warning {
+    --mdc-snackbar-container-color: #{$orange};
+  }
+
+  &.app-notification-error {
+    --mdc-snackbar-container-color: #{$red};
+  }
+}
