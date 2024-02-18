@@ -24,7 +24,7 @@ export class TransaltionsLevelComponent {
 
   levels: string;
 
-  groups: TranslationsGroup[];
+  translationsGroups: TranslationsGroup[];
   translations: Translation[];
   originalTranslations: Translation[];
 
@@ -67,10 +67,10 @@ export class TransaltionsLevelComponent {
     });
   }
 
-  getListGroupsAndTranslations(content: any, levels: any) {
-    console.log('getListGroupsAndTranslations', typeof content, typeof levels);
+  getListGroupsAndTranslations(content: Object, levels: string | undefined) {
+    console.log('getListGroupsAndTranslations', content, levels);
     
-    this.groups = [];
+    this.translationsGroups = [];
     this.translations = [];
     this.originalTranslations = [];
 
@@ -79,15 +79,15 @@ export class TransaltionsLevelComponent {
       content = eval('content.' + levels);
     }
 
-    content.forEach((value: string, key: string) => {
+    for (const [key, value] of Object.entries(content)) {
       if (isObject(value)) {
         let translationsGroup = new TranslationsGroup(key);
-        this.groups.push(translationsGroup);
+        this.translationsGroups.push(translationsGroup);
       } else {
-        let translation = new Translation(key, [value]);
+        let translation = new Translation(key, [value], true);
         this.translations.push(translation);
       }
-    });
+    }
 
     this.originalTranslations = cloneDeep(this.translations);
   }
