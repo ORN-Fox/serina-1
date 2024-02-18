@@ -1,23 +1,23 @@
-<div class="level">
-    <div layout-xs="column" layout="row" layout-align="center">
-        <div flex-xs flex-gt-xs="25" flex-gt-lg="15" flex-lg="15" layout="column">
-            <!-- <app-swap></app-swap> -->
-        </div>
-        <div flex-xs flex-gt-xs="25" flex-gt-lg="20" layout="column">
-            <!-- <app--translations-groups [translationsGroups]></app--translations-groups> -->
-        </div>
-        <div flex-xs flex-gt-xs="40" layout="column">
-            <app-translations [languages]="languages" [levels]="levels" [translations]="translations"></app-translations>
-        </div>
+<div class="translations-level">
+    <!-- <div flex-xs flex-gt-xs="25" flex-gt-lg="15" flex-lg="15" layout="column">
+        <app-swap></app-swap>
+    </div> -->
+
+    <div class="translations-groups-container">
+        <app-translations-groups [languages]="languages" [levels]="levels" [translationsGroups]="translationsGroups"></app-translations-groups>
     </div>
 
-    <div layout="row">
+    <div class="translations-container">
+        <app-translations [languages]="languages" [levels]="levels" [translations]="translations"></app-translations>
+    </div>
+
+    <!-- <div layout="row">
         <button mat-raised-button color="primary" class="buttonReturn" (click)="goToBack()">
             <mat-icon>reply</mat-icon> {{'commons.actions.return' | translate}}
         </button>
 
         <div flex></div>
 
-        <!-- <app-go-to-top></app-go-to-top> -->
-    </div>
+        <app-go-to-top></app-go-to-top>
+    </div> -->
 </div>
