@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="mb-2">
     <mat-card-title>
         <mat-card-header>
             <mat-card-title *ngIf="translations">{{(translations.length > 1 ? 'commons.translations' : 'commons.translation') | translate}}</mat-card-title>
@@ -8,20 +8,24 @@
             </button>
         </mat-card-header>
     </mat-card-title>
+</mat-card>
 
+<mat-card *ngFor="let translation of translations" class="translation-container mb-2">
     <mat-card-content>
-        <ng-container *ngFor="let translation of translations">
-            <app-translation 
-                [languages]="languages"
-                [translation]="translation"
-                (TranslationComponentDidDeleteTranslationEvent)="onDeleteTranslation($event)"
-                (TranslationComponentDidDuplicateTranslationEvent)="onDuplicateTranslation($event)"
-                (TranslationComponentDidGeneratePluralTranslationEvent)="onGeneratePluralTranslation($event)"
-                (TranslationComponentDidMoveTranslationEvent)="onMoveTranslation($event)"
-                (TranslationComponentDidSaveTranslationEvent)="onSaveTranslation($event)"
-            ></app-translation>
-        </ng-container>
+        <app-translation 
+            [languages]="languages"
+            [translation]="translation"
+            (TranslationComponentDidDeleteTranslationEvent)="onDeleteTranslation($event)"
+            (TranslationComponentDidDuplicateTranslationEvent)="onDuplicateTranslation($event)"
+            (TranslationComponentDidGeneratePluralTranslationEvent)="onGeneratePluralTranslation($event)"
+            (TranslationComponentDidMoveTranslationEvent)="onMoveTranslation($event)"
+            (TranslationComponentDidSaveTranslationEvent)="onSaveTranslation($event)"
+        ></app-translation>
+    </mat-card-content>
+</mat-card>
 
-        <p *ngIf="translations?.length === 0">{{'commons.noTranslation' | translate}}</p>
+<mat-card *ngIf="translations?.length === 0" class="mb-2">
+    <mat-card-content>
+        <p>{{'commons.noTranslation' | translate}}</p>
     </mat-card-content>
 </mat-card>
