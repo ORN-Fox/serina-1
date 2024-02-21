@@ -1,8 +1,8 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isUndefined } from 'lodash';
 
 import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
 import { DataManagerService } from '../../services/data-manager/data-manager.service';
@@ -17,11 +17,12 @@ import { ItemType } from '../../enums/itemType.enum';
   templateUrl: './translations.component.html',
   styleUrls: ['./translations.component.scss']
 })
-export class TranslationsComponent implements OnChanges {
+export class TranslationsComponent implements OnInit {
 
   @Input() languages: string[];
   @Input() levels: string;
   @Input() translations: Translation[];
+
   originalTranslations: Translation[];
 
   constructor(
@@ -34,39 +35,8 @@ export class TranslationsComponent implements OnChanges {
 
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
-
-    // $watch('this.translations', function (newValue, oldValue) {
-  //   if (newValue !== oldValue && !_.isUndefined(oldValue)) {
-  //     let nbEntitiesNotSave = 0
-  //     for (let nbEntitiesNotSaveIterator = 0; nbEntitiesNotSaveIterator < newValue.length; nbEntitiesNotSaveIterator++) {
-  //       if (!newValue[nbEntitiesNotSaveIterator].save) {
-  //         nbEntitiesNotSave++
-  //       }
-  //     }
-
-  //     for (let iterator = 0; iterator < oldValue.length; iterator++) {
-  //       if (!_.isUndefined(newValue[iterator + nbEntitiesNotSave]) && (newValue[iterator + nbEntitiesNotSave].save && oldValue[iterator].save)) {
-  //         if (!$rootScope.secondLanguageIsValid) {
-  //           if (angular.equals(newValue[iterator + nbEntitiesNotSave].key, originalListTranslations[iterator].key) && angular.equals(newValue[iterator + nbEntitiesNotSave].value[0], originalListTranslations[iterator].value[0])) {
-  //             this.translations[iterator].modified = false
-  //           } else {
-  //             this.translations[iterator].modified = true
-  //             this.translations[iterator].originalKey = originalListTranslations[iterator].key
-  //           }
-  //         } else {
-  //           if (angular.equals(newValue[iterator + nbEntitiesNotSave].key, originalListTranslations[iterator].key) && angular.equals(newValue[iterator + nbEntitiesNotSave].value[0], originalListTranslations[iterator].value[0])  && angular.equals(newValue[iterator + nbEntitiesNotSave].value[1], originalListTranslations[iterator].value[1])) {
-  //             this.translations[iterator].modified = false
-  //           } else {
-  //             this.translations[iterator].modified = true
-  //             this.translations[iterator].originalKey = originalListTranslations[iterator].key
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }, true)
+  ngOnInit() {
+    this.originalTranslations = cloneDeep(this.translations);
   }
 
   addTranslation() {
@@ -87,10 +57,10 @@ export class TranslationsComponent implements OnChanges {
 
   saveTranslation(translation: Translation) {
     if (!translation.save) {
-      if (translation.key !== '' && translation.values[0] !== '' && !this.dataManager.findItem(this.translations, translation.key, ItemType.Translation)) {
+      if (translation.isValid() && !this.dataManager.findItem(this.translations, translation.key, ItemType.Translation)) {
         this.dataAccessor.createTranslation(this.languages, this.levels, translation).subscribe({
           next: () => {
-            translation.save = true;
+            translation.applySave();
             this.originalTranslations = cloneDeep(this.translations);
             this.snackBarService.open(this.translateService.instant('commons.toast.addTranslation.success', { translation: translation.key }), undefined, { panelClass: 'app-notification-success' });
           },
@@ -100,14 +70,12 @@ export class TranslationsComponent implements OnChanges {
           }
         });
       } else {
-        this.snackBarService.open(this.translateService.instant('commons.toast.addTranslation.translationExist', { translation: translation.key }), undefined, { panelClass: 'app-notification-error' });
-        this.translations = this.dataManager.removeItem(this.translations, translation);
-        this.originalTranslations = cloneDeep(this.translations);
+        this.snackBarService.open(this.translateService.instant('commons.toast.addTranslation.translationExist', { translation: translation.key }), undefined, { panelClass: 'app-notification-warning' });
       }
     } else {
       this.dataAccessor.updateTranslation(this.languages, this.levels, translation).subscribe({
         next: () => {
-          translation.modified = false;
+          translation.applySave();
           this.originalTranslations = cloneDeep(this.translations);
           this.snackBarService.open(this.translateService.instant('commons.toast.majTranslation.success', { translation: translation.key }), undefined, { panelClass: 'app-notification-success' });
         },

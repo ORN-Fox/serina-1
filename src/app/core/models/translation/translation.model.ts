@@ -1,41 +1,60 @@
-import { clone } from "lodash";
+import { clone, cloneDeep } from "lodash";
 
 export class Translation {
 
     key: string;
-    originalKey: string;
     values: string[];
     save: boolean;
     modified: boolean;
 
+    // local data
+    savedKey: string;
+    savedValues: string[];
+
     constructor(
         key: string,
         values: string[],
-        originalKey: string = key,
         save: boolean = false,
         modified: boolean = false
     ) {
         this.key = key;
-        this.originalKey = originalKey;
         this.values = values;
         this.save = save;
         this.modified = modified;
+
+        this.setSavedValues();
     }
 
     duplicate(): Translation {
-        let duplicateTranslation = clone(this);
-        duplicateTranslation.key += '_copy';
-        duplicateTranslation.save = false;
-        duplicateTranslation.modified = false;
+        let duplicateTranslation = new Translation(`${this.key}_copy`, cloneDeep(this.values));
         return duplicateTranslation;
     }
 
     generatePlural(): Translation {
-        let pluralTranslation = clone(this);
-        pluralTranslation.key += '_plural';
-        pluralTranslation.save = false;
-        pluralTranslation.modified = false;
+        let pluralTranslation = new Translation(`${this.key}_plural`, cloneDeep(this.values));
         return pluralTranslation;
+    }
+
+    handleKeyUpdate(key: string) {
+        this.modified = key !== this.savedKey;
+    }
+
+    handleValueUpdate(valueIndex: number, value: string) {
+        this.modified = value !== this.savedValues[valueIndex];
+    }
+
+    applySave() {
+        this.save = true;
+        this.modified = false;
+        this.setSavedValues();
+    }
+
+    isValid(): boolean {
+        return this.key !== '' && this.values[0] !== '';
+    }
+
+    shouldDisplaySaveAction(): boolean {
+        return !this.save || this.modified;
     }
 
     shouldDisableSaveAction(): boolean {
@@ -44,6 +63,11 @@ export class Translation {
 
     shouldDisabledDuplicateGeneralPluralMoveActions(): boolean {
         return !this.save || this.modified;
+    }
+
+    private setSavedValues() {
+        this.savedKey = clone(this.key);
+        this.savedValues = cloneDeep(this.values);
     }
 
 }
