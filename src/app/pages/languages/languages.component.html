@@ -55,7 +55,7 @@
         <form #addLanguageForm="ngForm" (ngSubmit)="addLanguage()">
             <mat-card-content>
                 <mat-form-field>
-                    <label>{{'commons.language' | translate}}</label>
+                    <label><mat-icon>language</mat-icon> {{'commons.language' | translate}}</label>
                     <input matInput type="text" name="code" ngModel placeholder="en-US" minlength="5" maxlength="5" pattern="[a-z]{2}-[A-Z]{2}" required>
                 </mat-form-field>
             </mat-card-content>
