@@ -50,17 +50,14 @@ export class TranslationsGroupsComponent {
             next: () => {
               this.translationsGroups.push(new TranslationsGroup(groupName));
               this.snackBarService.open(this.translateService.instant('commons.toast.addGroup.success', { groupName: groupName }), undefined, { panelClass: 'app-notification-success' });
-              // Toast.showCustomToast('check', this.translateService.instant('commons.toast.addGroup.success', { 'groupName': groupName }), 'good');
             },
             error: (response) => {
               this.snackBarService.open(this.translateService.instant('commons.toast.addGroup.fail', { groupName: groupName }), undefined, { panelClass: 'app-notification-error' });
-              // Toast.showCustomToast('warning', this.translateService.instant('commons.toast.addGroup.fail', { 'groupName': groupName }), 'fail');
               console.error('Error on add new group', response);
             }
           });
         } else {
           this.snackBarService.open(this.translateService.instant('commons.toast.addGroup.groupExist', { groupName: groupName }), undefined, { panelClass: 'app-notification-warning' });
-          // Toast.showCustomToast('info_outline', this.translateService.instant('commons.toast.addGroup.groupExist', { 'groupName': groupName }), 'medium');
         }
       }
     });
