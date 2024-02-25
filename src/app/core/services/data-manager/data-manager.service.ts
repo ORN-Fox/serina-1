@@ -14,7 +14,7 @@ export class DataManagerService {
     list.forEach((element: any) => {
       switch (type) {
         case ItemType.Group:
-          if (element === item) {
+          if (element.key === item) {
             itemFind = true;
           }
           break
