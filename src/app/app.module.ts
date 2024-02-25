@@ -38,6 +38,7 @@ import { TransaltionsLevelComponent } from './pages/translations-level/translati
 import { TranslationComponent } from './core/components/translation/translation.component';
 import { TranslationsComponent } from './core/components/translations/translations.component';
 import { TranslationsGroupsComponent } from './core/components/translations-groups/translations-groups.component';
+import { CrudTranslationGroupDialogComponent } from './core/components/crud-translation-group-dialog/crud-translation-group-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -62,6 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslationComponent,
     TranslationsComponent,
     TranslationsGroupsComponent,
+    CrudTranslationGroupDialogComponent,
   ],
   imports: [
     BrowserModule,

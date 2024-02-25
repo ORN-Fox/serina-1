@@ -12,6 +12,7 @@ import { ItemType } from '../../enums/itemType.enum';
 import { TranslationsGroup } from '../../models/translations-group/translations-group.model';
 
 import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { CrudTranslationGroupDialogComponent } from '../crud-translation-group-dialog/crud-translation-group-dialog.component';
 import { MenuToolbarComponent } from '../menu-toolbar/menu-toolbar.component';
 
 @Component({
@@ -37,23 +38,14 @@ export class TranslationsGroupsComponent {
   }
 
   openDialogAddTranslationsGroup() {
-    // TODO use translations for dialog
-    // let options = {
-    //   title: this.translateService.instant('commons.dialog.addGroup.title'),
-    //   placeholder: this.translateService.instant('commons.dialog.addGroup.placeholder'),
-    //   ariaLabel: this.translateService.instant('commons.dialog.addGroup.title'),
-    //   targetEvent: ev,
-    //   ok: this.translateService.instant('commons.actions.add'),
-    //   cancel: this.translateService.instant('commons.actions.cancel')
-    // }
-
-    // TODO get group name from dialog value
-    let groupName = "";
-
-    // Dialog.showPrompt(options).then((groupName: string) => {
-    this.dialog.open(ConfirmDialogComponent).afterClosed().subscribe((action: number) => {
-      if (action == ConfirmDialogActionEnum.Validate) {
-        if (!this.dataManager.findItem(this.translationsGroups, groupName, ItemType.Group)) {
+    let dialogRef = this.dialog.open(CrudTranslationGroupDialogComponent, {
+      data: { groupName: null }
+    });
+    
+    dialogRef.afterClosed().subscribe((groupName: string) => {
+      if (groupName) {
+        let groupExist = this.dataManager.findItem(this.translationsGroups, groupName, ItemType.Group);
+        if (!groupExist) {
           this.dataAccessor.createGroup(groupName, this.languages, this.levels).subscribe({
             next: () => {
               this.translationsGroups.push(new TranslationsGroup(groupName));
@@ -76,39 +68,27 @@ export class TranslationsGroupsComponent {
 
   opendDialogUpdateTranslationsGroup(groupName: string) {
     let originalGroupName = groupName;
-    // TODO use translations for dialog
-    // let options = {
-    //   title: this.translateService.instant('commons.dialog.majGroup.title'),
-    //   placeholder: this.translateService.instant('commons.dialog.majGroup.placeholder'),
-    //   ariaLabel: this.translateService.instant('commons.dialog.majGroup.title'),
-    //   initialValue: groupName,
-    //   targetEvent: ev,
-    //   ok: this.translateService.instant('commons.actions.validate'),
-    //   cancel: this.translateService.instant('commons.actions.cancel')
-    // }
 
-    // Dialog.showPrompt(options).then((groupName: string) => {
+    let dialogRef = this.dialog.open(CrudTranslationGroupDialogComponent, {
+      data: { groupName: groupName }
+    });
 
-    this.dialog.open(ConfirmDialogComponent).afterClosed().subscribe((action: number) => {
-      if (action == ConfirmDialogActionEnum.Validate) {
-        if (originalGroupName !== groupName) {
-          this.dataAccessor.updateGroup(groupName, this.languages, this.levels, originalGroupName).subscribe({
-            next: () => {
-              this.snackBarService.open(this.translateService.instant('commons.toast.majGroup.success', { groupName: groupName }), undefined, { panelClass: 'app-notification-success' });
-              // Toast.showCustomToast('check', this.translateService.instant('commons.toast.majGroup.success', { 'groupName': groupName }), 'good')
-              this.translationsGroups.forEach((value, index) => {
-                if (value.key === originalGroupName) {
-                  this.translationsGroups[index].key = groupName;
-                }
-              });
-            },
-            error: (error) => {
-              this.snackBarService.open(this.translateService.instant('commons.toast.majGroup.fail', { groupName: groupName }), undefined, { panelClass: 'app-notification-error' });
-              // Toast.showCustomToast('warning', this.translateService.instant('commons.toast.majGroup.fail', { 'groupName': groupName }), 'fail');
-              console.error('Error on rename group', error);
-            }
-          });
-        }
+    dialogRef.afterClosed().subscribe((groupName: string) => {
+      if (originalGroupName !== groupName) {
+        this.dataAccessor.updateGroup(groupName, this.languages, this.levels, originalGroupName).subscribe({
+          next: () => {
+            this.snackBarService.open(this.translateService.instant('commons.toast.majGroup.success', { groupName: groupName }), undefined, { panelClass: 'app-notification-success' });
+            this.translationsGroups.forEach((value, index) => {
+              if (value.key === originalGroupName) {
+                this.translationsGroups[index].key = groupName;
+              }
+            });
+          },
+          error: (error) => {
+            this.snackBarService.open(this.translateService.instant('commons.toast.majGroup.fail', { groupName: groupName }), undefined, { panelClass: 'app-notification-error' });
+            console.error('Error on rename group', error);
+          }
+        });
       }
     });
   }
@@ -120,11 +100,9 @@ export class TranslationsGroupsComponent {
           next: () => {
             this.translationsGroups = this.dataManager.removeItem(this.translationsGroups, groupName);
             this.snackBarService.open(this.translateService.instant('commons.toast.deleteGroup.success', { groupName: groupName }), undefined, { panelClass: 'app-notification-success' });
-            // Toast.showCustomToast('check', this.translateService.instant('commons.toast.deleteGroup.success', { 'groupName': groupName }), 'good');
           },
           error: (error) => {
-            this.snackBarService.open(this.translateService.instant('commons.toast.deleteGroup.succesfails', { groupName: groupName }), undefined, { panelClass: 'app-notification-error' });
-            // Toast.showCustomToast('warning', this.translateService.instant('commons.toast.deleteGroup.fail', { 'groupName': groupName }), 'fail');
+            this.snackBarService.open(this.translateService.instant('commons.toast.deleteGroup.fail', { groupName: groupName }), undefined, { panelClass: 'app-notification-error' });
             console.error('Error on delete group', error);
           }
         });
