@@ -28,6 +28,12 @@ export class CrudTranslationGroupDialogComponent implements OnInit {
     this.titleKey = `commons.dialog.${isAddMode? "addGroup" : "majGroup"}.title`;
     this.placeholderKey = `commons.dialog.${isAddMode? "addGroup" : "majGroup"}.placeholder`;
     this.confirmButtonKey = `commons.actions.${isAddMode? "add" : "rename"}`;
+
+    this.formatGroupName(this.data.groupName);
+  }
+
+  formatGroupName(groupName: string) {
+    this.data.groupName = groupName?.replace(' ', '_');
   }
 
   cancel() {

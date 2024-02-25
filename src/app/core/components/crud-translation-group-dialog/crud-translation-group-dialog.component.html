@@ -2,7 +2,7 @@
 <mat-dialog-content>
     <mat-form-field class="w-100">
         <mat-label>{{placeholderKey | translate}}</mat-label>
-        <input matInput [(ngModel)]="data.groupName">
+        <input matInput [(ngModel)]="data.groupName" (ngModelChange)="formatGroupName(data.groupName)">
     </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
