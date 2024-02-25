@@ -67,6 +67,7 @@ export class LanguagesComponent implements OnInit {
   }
 
   openLanguage(languageCode: string) {
+    MenuToolbarComponent.prototype.clearBreadcrumb();
     this.router.navigate(['/language', languageCode]);
   }
 
