@@ -85,10 +85,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "serina:build:production"
+              "buildTarget": "serina:build:production"
             },
             "development": {
-              "browserTarget": "serina:build:development"
+              "buildTarget": "serina:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -96,7 +96,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "serina:build"
+            "buildTarget": "serina:build"
           }
         },
         "test": {
