@@ -4,11 +4,20 @@
     </div> -->
 
     <div class="translations-groups-container">
-        <app-translations-groups [languages]="languages" [levels]="levels" [translationsGroups]="translationsGroups"></app-translations-groups>
+        <app-translations-groups 
+            [languages]="languages" 
+            [levels]="levels" 
+            [translationsGroups]="translationsGroups"
+            (TranslationsGroupsComponentDidOpenGroupEvent)="onOpenTranslationGroup($event)"
+        ></app-translations-groups>
     </div>
 
     <div class="translations-container">
-        <app-translations [languages]="languages" [levels]="levels" [translations]="translations"></app-translations>
+        <app-translations 
+            [languages]="languages" 
+            [levels]="levels" 
+            [translations]="translations"
+        ></app-translations>
     </div>
 
     <!-- <div layout="row">
