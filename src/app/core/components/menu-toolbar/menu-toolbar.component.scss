@@ -6,6 +6,11 @@
   a {
     display: inline;
     color: rgba($white, .7);
+    text-decoration: none;
+
+    &:hover {
+      color: $white;
+    }
 
     &:last-child {
       color: $white;
