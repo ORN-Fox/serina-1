@@ -6,12 +6,28 @@ import { PreviewComponent } from './pages/preview/preview.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TransaltionsLevelComponent } from './pages/translations-level/translations-level.component';
 
-const routes: Routes = [
-  { path: 'languages', component: LanguagesComponent },
-  { path: 'language/:code', component: TransaltionsLevelComponent },
-  { path: 'preview', component: PreviewComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: '',   redirectTo: '/languages', pathMatch: 'full' }
+let routes: Routes = [
+  {
+    path: 'languages',
+    component: LanguagesComponent
+  },
+  {
+    path: 'language/:code',
+    component: TransaltionsLevelComponent
+  },
+  {
+    path: 'preview', 
+    component: PreviewComponent
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent
+  },
+  {
+    path: '',
+    redirectTo: '/languages',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
