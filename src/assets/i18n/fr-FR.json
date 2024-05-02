@@ -107,6 +107,12 @@
         "success": "Langue '{{language}}' supprimé avec succés",
         "fail": "Impossible de supprimer la langue '{{language}}'"
       },
+      "loadLanguage": {
+        "fail": "Erreur lors du chargement de la langue"
+      },
+      "loadLanguages": {
+        "fail": "Erreur lors du chargement des la langues"
+      },
       "addTranslation": {
         "success": "Traduction '{{translation}}' ajouté avec succés",
         "fail": "Erreur lors de l'ajout de la traduction '{{translation}}'",

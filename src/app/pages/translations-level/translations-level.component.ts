@@ -61,6 +61,7 @@ export class TransaltionsLevelComponent {
           // $rootScope.breadcrumb = BreadcrumbService.build($rootScope.breadcrumb, this.languages[0], this.levels)
         },
         error: (error) => {
+          this.snackBarService.open(this.translateService.instant('commons.toast.loadLanguage.fail'), undefined, { panelClass: 'app-notification-error' });
           console.error('Error on open language ' + this.languages[0], error);
         }
       });

@@ -59,8 +59,7 @@ export class LanguagesComponent implements OnInit {
       error: (response) => {
         this.languages = [];
 
-        // TODO: Add translated error message
-        this.snackBarService.open(this.translateService.instant('TODO'), undefined, { panelClass: 'app-notification-error' });
+        this.snackBarService.open(this.translateService.instant('commons.toast.loadLanguages.fail'), undefined, { panelClass: 'app-notification-error' });
         console.error('Unable to retrieve languages', response);
       }
     });

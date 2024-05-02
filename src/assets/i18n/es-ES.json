@@ -68,6 +68,12 @@
         "langExist": "El lenguaje '{{language}}' ya existe",
         "success": "Lengua '{{idioma}}' añadido con éxito"
       },
+      "loadLanguage": {
+        "fail": "Error al cargar el idioma"
+      },
+      "loadLanguages": {
+        "fail": "Error al cargar idiomas"
+      },
       "addTranslation": {
         "fail": "Error al añadir la traducción '{{translation}}'",
         "success": "Se ha añadido con éxito el término '{{translation}}\"",

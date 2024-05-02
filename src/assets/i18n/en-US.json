@@ -107,6 +107,12 @@
         "success": "Language '{{language}}' successfully deleted",
         "fail": "Unable to delete language '{{language}}'"
       },
+      "loadLanguage": {
+        "fail": "Error loading language"
+      },
+      "loadLanguages": {
+        "fail": "Error loading languages"
+      },
       "addTranslation": {
         "success": "Translation '{{translation}}' added with success",
         "fail": "Error adding translation '{{translation}}' ",
