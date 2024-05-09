@@ -9,7 +9,7 @@ export class DataManagerService {
 
   constructor() { }
 
-  public findItem(list: any, item: any, type: number): boolean {
+  public static findItem(list: any, item: any, type: number): boolean {
     let itemFind = false;
     list.forEach((element: any) => {
       switch (type) {
@@ -32,8 +32,23 @@ export class DataManagerService {
     return itemFind;
   }
 
-  public removeItem(list: any, item: any): any {
+  public static removeItem(list: any, item: any): any {
     return list.filter((element: any) => element !== item);
+  }
+
+  private static getItemRecursive(list: any, levels: string[], levelIndex: number): any {
+    for (const [key, value] of Object.entries(list)) {
+      if (isObject(value)) {
+        if (levels[levelIndex] == key) {
+          if ((levels.length - 1) == levelIndex) {
+            return value;
+          } else {
+            levelIndex++;
+            return DataManagerService.getItemRecursive(value, levels, levelIndex);
+          }
+        }
+      }
+    }
   }
 
 }
