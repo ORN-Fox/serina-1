@@ -2,15 +2,17 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { cloneDeep, isUndefined } from 'lodash';
+import { cloneDeep } from 'lodash';
 
 import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
 import { DataManagerService } from '../../services/data-manager/data-manager.service';
+import { LanguagesService } from '../../services/languages/languages.service';
+
+import { ItemType } from '../../enums/itemType.enum';
 
 import { Translation } from '../../models/translation/translation.model';
 
 import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { ItemType } from '../../enums/itemType.enum';
 
 @Component({
   selector: 'app-translations',
@@ -20,7 +22,6 @@ import { ItemType } from '../../enums/itemType.enum';
 export class TranslationsComponent implements OnInit {
 
   @Input() languages: string[];
-  @Input() levels: string;
   @Input() translations: Translation[];
 
   originalTranslations: Translation[];
@@ -28,7 +29,7 @@ export class TranslationsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private dataAccessor: DataAccessorService,
-    private dataManager: DataManagerService,
+    private languagesService: LanguagesService,
     private snackBarService: MatSnackBar,
     private translateService: TranslateService,
   ) {
@@ -57,8 +58,8 @@ export class TranslationsComponent implements OnInit {
 
   saveTranslation(translation: Translation) {
     if (!translation.save) {
-      if (translation.isValid() && !this.dataManager.findItem(this.translations, translation.key, ItemType.Translation)) {
-        this.dataAccessor.createTranslation(this.languages, this.levels, translation).subscribe({
+      if (translation.isValid() && !DataManagerService.findItem(this.translations, translation.key, ItemType.Translation)) {
+        this.dataAccessor.createTranslation(this.languages, this.languagesService.getLevelsConcatened(), translation).subscribe({
           next: () => {
             translation.applySave();
             this.originalTranslations = cloneDeep(this.translations);
@@ -73,7 +74,7 @@ export class TranslationsComponent implements OnInit {
         this.snackBarService.open(this.translateService.instant('commons.toast.addTranslation.translationExist', { translation: translation.key }), undefined, { panelClass: 'app-notification-warning' });
       }
     } else {
-      this.dataAccessor.updateTranslation(this.languages, this.levels, translation).subscribe({
+      this.dataAccessor.updateTranslation(this.languages, this.languagesService.getLevelsConcatened(), translation).subscribe({
         next: () => {
           translation.applySave();
           this.originalTranslations = cloneDeep(this.translations);
@@ -89,13 +90,13 @@ export class TranslationsComponent implements OnInit {
 
   deleteTranslation(translation: Translation) {
     if (!translation.save) {
-      this.translations = this.dataManager.removeItem(this.translations, translation);
+      this.translations = DataManagerService.removeItem(this.translations, translation);
     } else {
       this.dialog.open(ConfirmDialogComponent).afterClosed().subscribe((action: number) => {
         if (action == ConfirmDialogActionEnum.Validate) {
-          this.dataAccessor.deleteTranslation(this.languages, this.levels, translation).subscribe({
+          this.dataAccessor.deleteTranslation(this.languages, this.languagesService.getLevelsConcatened(), translation).subscribe({
             next: () => {
-              this.translations = this.dataManager.removeItem(this.translations, translation);
+              this.translations = DataManagerService.removeItem(this.translations, translation);
               this.originalTranslations = cloneDeep(this.translations);
               this.snackBarService.open(this.translateService.instant('commons.toast.deleteTranslation.success', { translation: translation.key }), undefined, { panelClass: 'app-notification-success' });
             },
@@ -126,7 +127,7 @@ export class TranslationsComponent implements OnInit {
   onDuplicateTranslation(event: { translation: Translation; }) {
     this.duplicateTranslation(event.translation);
   }
-  
+
   onDeleteTranslation(event: { translation: Translation; }) {
     this.deleteTranslation(event.translation);
   }

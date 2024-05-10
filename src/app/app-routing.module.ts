@@ -12,11 +12,14 @@ let routes: Routes = [
     component: LanguagesComponent
   },
   {
-    path: 'language/:code',
-    component: TransaltionsLevelComponent
+    path: 'language',
+    component: TransaltionsLevelComponent,
+    data: {
+      languageCode: ''
+    }
   },
   {
-    path: 'preview', 
+    path: 'preview',
     component: PreviewComponent
   },
   {

@@ -32,5 +32,5 @@ export class BreadcrumbService {
     });
     return breadcrumb;
   }
-  
+
 }

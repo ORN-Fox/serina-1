@@ -45,6 +45,10 @@ export class MenuToolbarComponent {
     }
   }
 
+  removeLastBreadcrumbLevel() {
+    this.breadcrumbLevels?.pop();
+  }
+
   clearBreadcrumb() {
     this.breadcrumbLevels = null;
   }

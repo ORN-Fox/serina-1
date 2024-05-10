@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { cloneDeep, isObject, isUndefined } from 'lodash';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { cloneDeep, isObject } from 'lodash';
 
-import { BreadcrumbService } from 'src/app/core/services/breadcrumb/breadcrumb.service';
 import { DataAccessorService } from 'src/app/core/services/data-accessor/data-accessor.service';
+import { DataManagerService } from 'src/app/core/services/data-manager/data-manager.service';
+import { LanguagesService } from 'src/app/core/services/languages/languages.service';
+import { SettingsService } from 'src/app/core/services/settings/settings.service';
 
 import { Language } from 'src/app/core/models/language/language.model';
+import { Settings } from 'src/app/core/models/settings/settings.model';
 import { Translation } from 'src/app/core/models/translation/translation.model';
 import { TranslationsGroup } from 'src/app/core/models/translations-group/translations-group.model';
 
@@ -22,62 +27,67 @@ export class TransaltionsLevelComponent {
   language: Language;
   secondLanguage: Language;
 
-  levels: string;
+  levels: string[];
+
+  contentSource: any;
 
   translationsGroups: TranslationsGroup[];
   translations: Translation[];
   originalTranslations: Translation[];
 
+  settings: Settings;
+
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private dataAccessor: DataAccessorService
+    private dataAccessor: DataAccessorService,
+    private languagesService: LanguagesService,
+    private settingsService: SettingsService,
+    private snackBarService: MatSnackBar,
+    private translateService: TranslateService
   ) {
-    this.route.params.subscribe(params => {
-      this.language = new Language(params['code'], 0);
-      this.levels = params['levels'];
+    this.settings = this.settingsService.getSettings();
 
-      if (this.secondLanguage) {
-        MenuToolbarComponent.prototype.addBreadcrumbLevel(`${this.language.code} / ${this.secondLanguage.code}`, `/language/${this.language.code}`);
-      } else {
-        MenuToolbarComponent.prototype.addBreadcrumbLevel(this.language.code, `/language/${this.language.code}`);
+    this.languages = this.languagesService.getLanguages();
+    this.language = new Language(this.languages[0], 0);
+    this.levels = this.languagesService.getLevels();
+
+    MenuToolbarComponent.prototype.addBreadcrumbLevel(this.language.code, `/language/${this.language.code}`);
+
+    if (this.secondLanguage) {
+      this.languagesService.addLanguage(this.secondLanguage.code)
+      MenuToolbarComponent.prototype.addBreadcrumbLevel(`${this.language.code} / ${this.secondLanguage.code}`, `/language/${this.language.code}`);
+    }
+
+    this.dataAccessor.openLanguage(this.languages[0]).subscribe({
+      next: (response) => {
+        this.contentSource = response;
+        console.log('levels', this.languagesService.getLevels());
+
+        this.getListGroupsAndTranslations(response, this.languagesService.getLevels());
+
+        // if (!isUndefined(this.secondLanguage) && this.secondLanguage.code.length === 5) {
+        //   $rootScope.secondLanguageIsValid = true;
+        //   this.recoverSecondaryLanguage(this.secondLanguage)
+        // }
+        // $rootScope.breadcrumb = BreadcrumbService.build($rootScope.breadcrumb, this.languages[0], this.levels)
+      },
+      error: (error) => {
+        this.snackBarService.open(this.translateService.instant('commons.toast.loadLanguage.fail'), undefined, { panelClass: 'app-notification-error' });
+        console.error(`Error on open language ${this.languages[0]}`, error);
       }
-
-      this.languages = [this.language.code];
-
-      // this.secondLanguage = SecondLanguage.definedSecondLanguage($rootScope.secondLanguage)
-      if (this.secondLanguage) {
-        this.languages.push(this.secondLanguage.code);
-      }
-      
-      this.dataAccessor.openLanguage(this.languages[0]).subscribe({
-        next: (response) => {
-          this.getListGroupsAndTranslations(response, this.levels);
-  
-          // if (!isUndefined(this.secondLanguage) && this.secondLanguage.code.length === 5) {
-          //   $rootScope.secondLanguageIsValid = true;
-          //   this.recoverSecondaryLanguage(this.secondLanguage)
-          // }
-          // $rootScope.breadcrumb = BreadcrumbService.build($rootScope.breadcrumb, this.languages[0], this.levels)
-        },
-        error: (error) => {
-          this.snackBarService.open(this.translateService.instant('commons.toast.loadLanguage.fail'), undefined, { panelClass: 'app-notification-error' });
-          console.error('Error on open language ' + this.languages[0], error);
-        }
-      });
     });
   }
 
-  getListGroupsAndTranslations(content: Object, levels: string | undefined) {
+  getListGroupsAndTranslations(content: Object, levels: string[]) {
     console.log('getListGroupsAndTranslations', content, levels);
-    
+
     this.translationsGroups = [];
     this.translations = [];
     this.originalTranslations = [];
 
-    if (!isUndefined(levels)) {
-      levels = levels.replace(/\//g, '.');
-      content = eval('content.' + levels);
+    if (levels.length > 0) {
+      content = DataManagerService.getItem(content, levels);
+      console.log('result', content);
     }
 
     for (const [key, value] of Object.entries(content)) {
@@ -93,29 +103,41 @@ export class TransaltionsLevelComponent {
     this.originalTranslations = cloneDeep(this.translations);
   }
 
+  onOpenTranslationGroup(event: { groupName: string }) {
+    console.log('levels', this.languagesService.getLevels());
+    let groupName = event.groupName;
+    MenuToolbarComponent.prototype.closeSearch();
+    MenuToolbarComponent.prototype.addBreadcrumbLevel(groupName, groupName);
+    this.languagesService.addLevel(groupName);
+    this.settings.openedLevels.push(event.groupName);
+    this.settingsService.setSettings(this.settings);
+    console.log('levels', this.languagesService.getLevels());
+    this.getListGroupsAndTranslations(this.contentSource, this.languagesService.getLevels());
+  }
+
   goToBack() {
     MenuToolbarComponent.prototype.closeSearch();
-    MenuToolbarComponent.prototype.clearBreadcrumb();
 
-    let currentUrl = this.router.url;
-    if (currentUrl === '/language/' + this.language.code) {
+    console.log('current levels', this.languagesService.getLevels());
+
+    if (this.languagesService.getLevels().length == 0) {
+      console.log('1');
+      MenuToolbarComponent.prototype.clearBreadcrumb();
+      this.languagesService.clear();
+      if (!this.settings.keepLanguagesEdit) {
+        this.settings.openedLanguages = [];
+      }
+      this.settings.openedLevels = [];
+      this.settingsService.setSettings(this.settings);
       this.router.navigate(['/languages']);
     } else {
-      let currentUrlSplit = currentUrl.split('/');
-      currentUrlSplit.pop();
-      let newUrl = '';
-      let iterator = 0;
-      currentUrlSplit.forEach(level => {
-        if (level === '') {
-          newUrl += '/';
-          iterator++;
-        } else {
-          newUrl += level;
-          newUrl += iterator < currentUrlSplit.length - 1 ? '/' : '';
-          iterator++;
-        }
-      })
-      this.router.navigate([newUrl]);
+      MenuToolbarComponent.prototype.removeLastBreadcrumbLevel();
+      this.languagesService.removeLastLevel();
+      this.settings.openedLevels.pop();
+      this.settingsService.setSettings(this.settings);
+      console.log('2', this.languagesService.getLastLevel());
+
+      this.getListGroupsAndTranslations(this.contentSource, this.languagesService.getLevels());
     }
   }
 

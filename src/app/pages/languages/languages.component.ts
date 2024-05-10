@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DataAccessorService } from 'src/app/core/services/data-accessor/data-accessor.service';
+import { LanguagesService } from 'src/app/core/services/languages/languages.service';
 import { SettingsService } from 'src/app/core/services/settings/settings.service';
 
 import { Language } from 'src/app/core/models/language/language.model';
@@ -13,6 +14,8 @@ import { Settings } from 'src/app/core/models/settings/settings.model';
 
 import { ConfirmDialogActionEnum, ConfirmDialogComponent } from 'src/app/core/components/confirm-dialog/confirm-dialog.component';
 import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-toolbar.component';
+import { DataManagerService } from 'src/app/core/services/data-manager/data-manager.service';
+import { ItemType } from 'src/app/core/enums/itemType.enum';
 
 interface IaddLanguageForm {
   code: string;
@@ -34,6 +37,7 @@ export class LanguagesComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private dataAccessor: DataAccessorService,
+    private languagesService: LanguagesService,
     private router: Router,
     private translateService: TranslateService,
     private settingsService: SettingsService,
@@ -67,7 +71,12 @@ export class LanguagesComponent implements OnInit {
 
   openLanguage(languageCode: string) {
     MenuToolbarComponent.prototype.clearBreadcrumb();
-    this.router.navigate(['/language', languageCode]);
+    this.languagesService.addLanguage(languageCode);
+    if (!DataManagerService.findItem(this.settings.openedLanguages, languageCode, ItemType.Language)) {
+      this.settings.openedLanguages.push(languageCode);
+      this.settingsService.setSettings(this.settings);
+    }
+    this.router.navigate(['/language']);
   }
 
   addLanguage() {

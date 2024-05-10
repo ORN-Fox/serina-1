@@ -27,15 +27,19 @@ export class Settings {
   locale: string;
   theme: string;
   selectedDisplayFormat: string;
+  openedLanguages: string[];
+  openedLevels: string[];
 
   constructor(
-    customTranslationsPathEnabled: boolean = false, 
-    customTranslationsPath: string | null = null, 
-    enableSortAscJson: boolean = true, 
+    customTranslationsPathEnabled: boolean = false,
+    customTranslationsPath: string | null = null,
+    enableSortAscJson: boolean = true,
     keepLanguagesEdit: boolean = false,
     locale: string = SettingAppLanguage.EnUS,
     theme: string = SettingAppTheme.PurpleGreen,
-    selectedDisplayFormat: string = SettingLanguageDisplayFormat.Card
+    selectedDisplayFormat: string = SettingLanguageDisplayFormat.Card,
+    openedLanguages: string[] = [],
+    openedLevels: string[] = []
   ) {
     this.customTranslationsPathEnabled = customTranslationsPathEnabled;
     this.customTranslationsPath = customTranslationsPath;
@@ -44,6 +48,8 @@ export class Settings {
     this.locale = locale;
     this.theme = theme;
     this.selectedDisplayFormat = selectedDisplayFormat;
+    this.openedLanguages = openedLanguages;
+    this.openedLevels = openedLevels;
   }
 
   // Language display format related

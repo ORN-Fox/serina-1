@@ -4,29 +4,23 @@
     </div> -->
 
     <div class="translations-groups-container">
-        <app-translations-groups 
-            [languages]="languages" 
-            [levels]="levels" 
+        <app-translations-groups
+            [languages]="languages"
             [translationsGroups]="translationsGroups"
             (TranslationsGroupsComponentDidOpenGroupEvent)="onOpenTranslationGroup($event)"
         ></app-translations-groups>
     </div>
 
     <div class="translations-container">
-        <app-translations 
-            [languages]="languages" 
-            [levels]="levels" 
+        <app-translations
+            [languages]="languages"
             [translations]="translations"
         ></app-translations>
     </div>
-
-    <!-- <div layout="row">
-        <button mat-raised-button color="primary" class="buttonReturn" (click)="goToBack()">
-            <mat-icon>reply</mat-icon> {{'commons.actions.return' | translate}}
-        </button>
-
-        <div flex></div>
-
-        <app-go-to-top></app-go-to-top>
-    </div> -->
 </div>
+
+<button mat-raised-button color="primary" class="btn-back" (click)="goToBack()">
+    <mat-icon>reply</mat-icon> {{'commons.actions.return' | translate}}
+</button>
+
+<!-- <app-go-to-top></app-go-to-top> -->

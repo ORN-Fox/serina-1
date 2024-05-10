@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DataAccessorService } from '../data-accessor/data-accessor.service';
+import { LanguagesService } from '../languages/languages.service';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
 import { Settings } from '../../models/settings/settings.model';
@@ -18,15 +19,16 @@ export class SettingsService {
   constructor(
     private _snackBar: MatSnackBar,
     private translateService: TranslateService,
-    private dataAccessor: DataAccessorService,
-    private localStorage: LocalStorageService
+    private dataAccessorService: DataAccessorService,
+    private languagesService: LanguagesService,
+    private localStorageService: LocalStorageService
   ) {
     this.keySettingsApp = 'serinaSettings';
   }
 
   initSettings() {
-    if (this.localStorage.isItemExist(this.keySettingsApp)) {
-      let storedSettings = this.localStorage.getItem(this.keySettingsApp);
+    if (this.localStorageService.isItemExist(this.keySettingsApp)) {
+      let storedSettings = this.localStorageService.getItem(this.keySettingsApp);
       this.settings = new Settings(
         storedSettings.customTranslationsPathEnabled,
         storedSettings.customTranslationsPath,
@@ -34,11 +36,16 @@ export class SettingsService {
         storedSettings.keepLanguagesEdit,
         storedSettings.locale,
         storedSettings.theme,
-        storedSettings.selectedDisplayFormat
+        storedSettings.selectedDisplayFormat,
+        storedSettings.openedLanguages,
+        storedSettings.openedLevels
       );
 
+      this.languagesService.addLanguages(this.settings.openedLanguages);
+      this.languagesService.addLevels(this.settings.openedLevels);
+
       let customTranslationsPath = this.settings.customTranslationsPathEnabled && this.settings.customTranslationsPath ? this.settings.customTranslationsPath : '-1'
-      this.dataAccessor.updateAdvancedSettings(customTranslationsPath, this.settings.enableSortAscJson).subscribe({
+      this.dataAccessorService.updateAdvancedSettings(customTranslationsPath, this.settings.enableSortAscJson).subscribe({
         next: () => {
           console.debug('Advanced settings is successfully settled');
         },
@@ -49,7 +56,7 @@ export class SettingsService {
       });
     } else {
       this.settings = new Settings();
-      this.localStorage.setItem(this.keySettingsApp, this.settings);
+      this.localStorageService.setItem(this.keySettingsApp, this.settings);
     }
 
     this.translateService.use(this.settings.locale);
@@ -64,11 +71,11 @@ export class SettingsService {
 
   setSettings(settings: Settings, setAdvancedSettings: boolean = false) {
     this.settings = settings;
-    this.localStorage.setItem(this.keySettingsApp, settings);
+    this.localStorageService.setItem(this.keySettingsApp, settings);
 
     if (setAdvancedSettings) {
       let customTranslationsPath = this.settings.customTranslationsPathEnabled && this.settings.customTranslationsPath ? this.settings.customTranslationsPath : '-1'
-      this.dataAccessor.updateAdvancedSettings(customTranslationsPath, this.settings.enableSortAscJson).subscribe({
+      this.dataAccessorService.updateAdvancedSettings(customTranslationsPath, this.settings.enableSortAscJson).subscribe({
         next: () => {
           console.debug('Advanced settings is successfully settled');
         },

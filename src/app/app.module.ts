@@ -20,6 +20,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
+// Root services
+import { LanguagesService } from './core/services/languages/languages.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -99,7 +102,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       useValue: {
         duration: 2500
       }
-    }
+    },
+    LanguagesService
   ],
   bootstrap: [AppComponent]
 })

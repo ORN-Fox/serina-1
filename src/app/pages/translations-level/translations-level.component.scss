@@ -2,7 +2,7 @@
     display: flex;
     height: calc(100% - 96px); // 64 px toolbar + 16 px * 2 for gutters
     margin: 1rem 15%;
-  
+
     .translations-groups-container, .translations-container {
       flex: 1;
     }
@@ -10,4 +10,10 @@
     .translations-groups-container {
       margin-right: 1rem;
     }
+}
+
+.btn-back {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
 }

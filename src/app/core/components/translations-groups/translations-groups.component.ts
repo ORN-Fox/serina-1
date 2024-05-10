@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
 import { DataManagerService } from '../../services/data-manager/data-manager.service';
+import { LanguagesService } from '../../services/languages/languages.service';
 
 import { ItemType } from '../../enums/itemType.enum';
 
@@ -23,14 +23,14 @@ import { MenuToolbarComponent } from '../menu-toolbar/menu-toolbar.component';
 export class TranslationsGroupsComponent {
 
   @Input() languages: string[];
-  @Input() levels: string;
   @Input() translationsGroups: TranslationsGroup[];
+
+  @Output() TranslationsGroupsComponentDidOpenGroupEvent: EventEmitter<{ groupName: string }> = new EventEmitter();
 
   constructor(
     public dialog: MatDialog,
     private dataAccessor: DataAccessorService,
-    private dataManager: DataManagerService,
-    private router: Router,
+    private languagesService: LanguagesService,
     private snackBarService: MatSnackBar,
     private translateService: TranslateService,
   ) {
@@ -41,12 +41,12 @@ export class TranslationsGroupsComponent {
     let dialogRef = this.dialog.open(CrudTranslationGroupDialogComponent, {
       data: { groupName: null }
     });
-    
+
     dialogRef.afterClosed().subscribe((groupName: string) => {
       if (groupName) {
-        let groupExist = this.dataManager.findItem(this.translationsGroups, groupName, ItemType.Group);
+        let groupExist = DataManagerService.findItem(this.translationsGroups, groupName, ItemType.Group);
         if (!groupExist) {
-          this.dataAccessor.createGroup(groupName, this.languages, this.levels).subscribe({
+          this.dataAccessor.createGroup(groupName, this.languages, this.languagesService.getLevelsConcatened()).subscribe({
             next: () => {
               this.translationsGroups.push(new TranslationsGroup(groupName));
               this.snackBarService.open(this.translateService.instant('commons.toast.addGroup.success', { groupName: groupName }), undefined, { panelClass: 'app-notification-success' });
@@ -63,7 +63,9 @@ export class TranslationsGroupsComponent {
     });
   }
 
-  opendDialogUpdateTranslationsGroup(groupName: string) {
+  opendDialogUpdateTranslationsGroup(event: Event, groupName: string) {
+    event.stopImmediatePropagation();
+
     let originalGroupName = groupName;
 
     let dialogRef = this.dialog.open(CrudTranslationGroupDialogComponent, {
@@ -71,8 +73,8 @@ export class TranslationsGroupsComponent {
     });
 
     dialogRef.afterClosed().subscribe((groupName: string) => {
-      if (originalGroupName !== groupName) {
-        this.dataAccessor.updateGroup(groupName, this.languages, this.levels, originalGroupName).subscribe({
+      if (groupName && originalGroupName !== groupName) {
+        this.dataAccessor.updateGroup(groupName, this.languages, this.languagesService.getLevelsConcatened(), originalGroupName).subscribe({
           next: () => {
             this.snackBarService.open(this.translateService.instant('commons.toast.majGroup.success', { groupName: groupName }), undefined, { panelClass: 'app-notification-success' });
             this.translationsGroups.forEach((value, index) => {
@@ -90,12 +92,14 @@ export class TranslationsGroupsComponent {
     });
   }
 
-  openDialogDeleteTranslationsGroup(groupName: string) {
+  openDialogDeleteTranslationsGroup(event: Event, groupName: string) {
+    event.stopImmediatePropagation();
+
     this.dialog.open(ConfirmDialogComponent).afterClosed().subscribe((action: number) => {
       if (action == ConfirmDialogActionEnum.Validate) {
-        this.dataAccessor.deleteGroup(groupName, this.languages, this.levels).subscribe({
+        this.dataAccessor.deleteGroup(groupName, this.languages, this.languagesService.getLevelsConcatened()).subscribe({
           next: () => {
-            this.translationsGroups = this.dataManager.removeItem(this.translationsGroups, groupName);
+            this.translationsGroups = DataManagerService.removeItem(this.translationsGroups, groupName);
             this.snackBarService.open(this.translateService.instant('commons.toast.deleteGroup.success', { groupName: groupName }), undefined, { panelClass: 'app-notification-success' });
           },
           error: (error) => {
@@ -108,9 +112,9 @@ export class TranslationsGroupsComponent {
   }
 
   openTranslationsGroup(translationsGroup: TranslationsGroup) {
-    let currentUrl = this.router.url;
-    MenuToolbarComponent.prototype.closeSearch();
-    this.router.navigate([`${currentUrl}/${translationsGroup.key}`]);
+    console.log('openTranslationsGroup', translationsGroup);
+
+    this.TranslationsGroupsComponentDidOpenGroupEvent.emit({ groupName: translationsGroup.key });
   }
 
 }
