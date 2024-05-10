@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isObject } from 'lodash';
 
 import { ItemType } from '../../enums/itemType.enum';
 
@@ -30,6 +31,11 @@ export class DataManagerService {
       }
     })
     return itemFind;
+  }
+
+  public static getItem(list: any, levels: string[]): any {
+    let levelIndex = 0;
+    return DataManagerService.getItemRecursive(list, levels, levelIndex);
   }
 
   public static removeItem(list: any, item: any): any {
