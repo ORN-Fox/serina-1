@@ -1,5 +1,11 @@
 @import "src/assets/scss/commons/colors";
 
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
 .breadcrumb {
   margin-bottom: 0;
 
@@ -45,4 +51,3 @@
     }
   }
 }
-  
