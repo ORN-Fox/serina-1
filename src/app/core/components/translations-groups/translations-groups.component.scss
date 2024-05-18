@@ -4,11 +4,31 @@ mat-card-header {
     justify-content: space-between;
 }
 
-mat-list, mat-list-item {
-    padding: 0;
+.add-translations-group {
+    position: sticky;
+    top: 5rem;
+    z-index: 500;
 }
 
-.actions-container {
-    display: flex;
-    justify-content: end;
+.translations-group {
+    mat-card-content {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:first-child {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    .actions-container {
+        display: flex;
+        justify-content: end;
+    }
 }

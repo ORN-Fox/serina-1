@@ -1,8 +1,8 @@
-<mat-card class="mb-2">
+<mat-card class="add-translation mb-2">
     <mat-card-title>
         <mat-card-header>
             <mat-card-title *ngIf="translations">{{(translations.length > 1 ? 'commons.translations' : 'commons.translation') | translate}}</mat-card-title>
-        
+
             <button mat-mini-fab color="primary" (click)="addTranslation()" matTooltip="{{'commons.actions.add' | translate}}" matTooltipPosition="below">
                 <mat-icon>add</mat-icon>
             </button>
@@ -12,7 +12,7 @@
 
 <mat-card *ngFor="let translation of translations" class="translation-container mb-2">
     <mat-card-content>
-        <app-translation 
+        <app-translation
             [languages]="languages"
             [translation]="translation"
             (TranslationComponentDidDeleteTranslationEvent)="onDeleteTranslation($event)"

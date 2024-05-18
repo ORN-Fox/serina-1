@@ -4,6 +4,12 @@ mat-card-header {
     justify-content: space-between;
 }
 
+.add-translation {
+    position: sticky;
+    top: 5rem;
+    z-index: 500;
+}
+
 .translation-container .mat-mdc-card-content {
     padding: 0 1rem;
 }
