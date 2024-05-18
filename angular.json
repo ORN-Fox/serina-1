@@ -45,6 +45,7 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
+              "file-saver",
               "lodash"
             ]
           },

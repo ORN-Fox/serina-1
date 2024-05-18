@@ -24,10 +24,6 @@ export class DataAccessorService {
     return this.httpClient.get<Language>(`${environment.endPointApi}/language/${languageCode}/open`);
   }
 
-  public downloadLanguage(languageCode: string): Observable<Language>{
-    return this.httpClient.get<Language>(`${environment.endPointApi}/language/${languageCode}/download`);
-  }
-
   public createLanguage(languageCode: string): Observable<Language>{
     return this.httpClient.get<Language>(`${environment.endPointApi}/language/${languageCode}/create`);
   }
@@ -90,7 +86,7 @@ export class DataAccessorService {
   }
 
   // Settings
-  
+
   public updateAdvancedSettings(customTranslationsPath: string, enableSortAscJson: boolean): Observable<string> {
     return this.httpClient.post(`${environment.endPointApi}/settings/update`, {
       customTranslationsPath: customTranslationsPath,

@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { saveAs } from 'file-saver';
 
 import { environment } from 'src/environments/environment';
-
-import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
 
 @Component({
   selector: 'app-btn-download-language',
@@ -13,23 +12,10 @@ export class BtnDownloadLanguageComponent {
 
   @Input() languageCode: string;
 
-  constructor(
-    private dataAccessorService: DataAccessorService
-  ) {}
+  constructor() {}
 
   downloadLanguage() {
-    // TODO replace angular jquery like by saveAs lib or vanilla solution
-    // this.dataAccessorService.downloadLanguage(this.languageCode).subscribe(() => {
-    //   var anchor = angular.element('<a/>')
-    //   anchor.attr({
-    //     href: `${environment.endPointApi}/download/${this.languageCode}`,
-    //     target: '_blank',
-    //     rel: 'noopener',
-    //     download: 'translation.json'
-    //   })[0].click();
-    // }, () => {
-
-    // });
+    saveAs(`${environment.endPointApi}/language/${this.languageCode}/download`, `${this.languageCode}.json`);
   }
 
 }
