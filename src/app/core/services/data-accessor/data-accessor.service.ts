@@ -34,7 +34,7 @@ export class DataAccessorService {
 
   // Groups
 
-  public createGroup(groupName: string, languages: string[], levels: string): Observable<void>{
+  public createGroup(groupName: string, languages: string[], levels: string | null): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/group/add`, {
       groupName: groupName,
       languages: languages,
@@ -42,7 +42,7 @@ export class DataAccessorService {
     });
   }
 
-  public updateGroup(groupName: string, languages: string[], levels: string, originalGroupName: string): Observable<void>{
+  public updateGroup(groupName: string, languages: string[], levels: string | null, originalGroupName: string): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/group/update`, {
       groupName: groupName,
       languages: languages,
@@ -51,7 +51,7 @@ export class DataAccessorService {
     });
   }
 
-  public deleteGroup(groupName: string, languages: string[], levels: string): Observable<void>{
+  public deleteGroup(groupName: string, languages: string[], levels: string | null): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/group/delete`, {
       groupName: groupName,
       languages: languages,
@@ -61,7 +61,7 @@ export class DataAccessorService {
 
   // Translations
 
-  public createTranslation(languages: string[], levels: string, translation: Translation): Observable<void>{
+  public createTranslation(languages: string[], levels: string | null, translation: Translation): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/translation/add`, {
       languages: languages,
       levels: levels,
@@ -69,7 +69,7 @@ export class DataAccessorService {
     });
   }
 
-  public updateTranslation(languages: string[], levels: string, translation: Translation): Observable<void>{
+  public updateTranslation(languages: string[], levels: string | null, translation: Translation): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/translation/update`, {
       languages: languages,
       levels: levels,
@@ -77,7 +77,7 @@ export class DataAccessorService {
     });
   }
 
-  public deleteTranslation(languages: string[], levels: string, translation: Translation): Observable<void>{
+  public deleteTranslation(languages: string[], levels: string | null, translation: Translation): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/translation/delete`, {
       languages: languages,
       levels: levels,

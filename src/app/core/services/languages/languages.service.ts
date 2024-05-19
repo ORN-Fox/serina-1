@@ -40,8 +40,11 @@ export class LanguagesService {
     return cloneDeep(this.levels);
   }
 
-  getLevelsConcatened(): string {
-    return this.levels.join('.');
+  getLevelsConcatened(): string | null {
+    if (this.levels.length > 0) {
+      return this.levels.join('.');
+    }
+    return null;
   }
 
   addLevels(levels: string[]) {
