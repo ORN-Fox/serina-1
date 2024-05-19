@@ -61,7 +61,8 @@
       "addGroup": {
         "fail": "No se puede añadir el grupo '{{groupName}}'",
         "groupExist": "El grupo '{{groupName}}' ya existe",
-        "success": "Grupo '{{groupName}}' añadido con éxito"
+        "success": "Grupo '{{groupName}}' añadido con éxito",
+        "translationExistAndConflitWithAddGroup": "Existe una traducción con el mismo nombre que el grupo '{{groupName}}'"
       },
       "addLanguage": {
         "fail": "Error al añadir el lenguaje '{{language}}'",

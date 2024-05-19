@@ -129,7 +129,8 @@
       "addGroup": {
         "success": "Groupe '{{groupName}}' ajouté avec succés",
         "fail": "Impossible d'ajouter le groupe '{{groupName}}'",
-        "groupExist": "Le groupe '{{groupName}}' existe déjà"
+        "groupExist": "Le groupe '{{groupName}}' existe déjà",
+        "translationExistAndConflitWithAddGroup": "Une traduction existe avec le même nom que le groupe '{{groupName}}'"
       },
       "majGroup": {
         "success": "Groupe '{{groupName}}' renommé avec succés",

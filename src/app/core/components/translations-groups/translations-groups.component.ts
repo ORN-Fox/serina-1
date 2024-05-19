@@ -9,6 +9,7 @@ import { LanguagesService } from '../../services/languages/languages.service';
 
 import { ItemType } from '../../enums/itemType.enum';
 
+import { Translation } from '../../models/translation/translation.model';
 import { TranslationsGroup } from '../../models/translations-group/translations-group.model';
 
 import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -23,6 +24,7 @@ import { MenuToolbarComponent } from '../menu-toolbar/menu-toolbar.component';
 export class TranslationsGroupsComponent {
 
   @Input() languages: string[];
+  @Input() translations: Translation[];
   @Input() translationsGroups: TranslationsGroup[];
 
   @Output() TranslationsGroupsComponentDidOpenGroupEvent: EventEmitter<{ groupName: string }> = new EventEmitter();
@@ -44,6 +46,12 @@ export class TranslationsGroupsComponent {
 
     dialogRef.afterClosed().subscribe((groupName: string) => {
       if (groupName) {
+        let translationExist = DataManagerService.findItem(this.translations, groupName, ItemType.Translation);
+        if (translationExist) {
+          this.snackBarService.open(this.translateService.instant('commons.toast.addGroup.translationExistAndConflitWithAddGroup', { groupName: groupName }), undefined, { panelClass: 'app-notification-warning' });
+          return;
+        }
+
         let groupExist = DataManagerService.findItem(this.translationsGroups, groupName, ItemType.Group);
         if (!groupExist) {
           this.dataAccessor.createGroup(groupName, this.languages, this.languagesService.getLevelsConcatened()).subscribe({

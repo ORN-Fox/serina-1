@@ -6,6 +6,7 @@
     <div class="translations-groups-container">
         <app-translations-groups
             [languages]="languages"
+            [translations]="translations"
             [translationsGroups]="translationsGroups"
             (TranslationsGroupsComponentDidOpenGroupEvent)="onOpenTranslationGroup($event)"
         ></app-translations-groups>
