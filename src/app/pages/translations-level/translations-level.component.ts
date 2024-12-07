@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { cloneDeep, isObject } from 'lodash';
 
+import { BreadcrumbService } from 'src/app/core/services/breadcrumb/breadcrumb.service';
 import { DataAccessorService } from 'src/app/core/services/data-accessor/data-accessor.service';
 import { DataManagerService } from 'src/app/core/services/data-manager/data-manager.service';
 import { LanguagesService } from 'src/app/core/services/languages/languages.service';
@@ -39,23 +40,25 @@ export class TransaltionsLevelComponent {
 
   constructor(
     private router: Router,
+    private breadcrumbService: BreadcrumbService,
     private dataAccessor: DataAccessorService,
     private languagesService: LanguagesService,
     private settingsService: SettingsService,
     private snackBarService: MatSnackBar,
     private translateService: TranslateService
   ) {
+    this.breadcrumbService.initBreadcrumb();
     this.settings = this.settingsService.getSettings();
 
     this.languages = this.languagesService.getLanguages();
     this.language = new Language(this.languages[0], 0);
     this.levels = this.languagesService.getLevels();
 
-    MenuToolbarComponent.prototype.addBreadcrumbLevel(this.language.code, `/language/${this.language.code}`);
-
     if (this.secondLanguage) {
       this.languagesService.addLanguage(this.secondLanguage.code)
-      MenuToolbarComponent.prototype.addBreadcrumbLevel(`${this.language.code} / ${this.secondLanguage.code}`, `/language/${this.language.code}`);
+      this.breadcrumbService.addBreadcrumbLevel(`${this.language.code} / ${this.secondLanguage.code}`, '/language');
+    } else {
+      this.breadcrumbService.addBreadcrumbLevel(this.language.code, '/language');
     }
 
     this.dataAccessor.openLanguage(this.languages[0]).subscribe({
@@ -107,7 +110,7 @@ export class TransaltionsLevelComponent {
     console.log('levels', this.languagesService.getLevels());
     let groupName = event.groupName;
     MenuToolbarComponent.prototype.closeSearch();
-    MenuToolbarComponent.prototype.addBreadcrumbLevel(groupName, groupName);
+    // MenuToolbarComponent.prototype.addBreadcrumbLevel(groupName, groupName);
     this.languagesService.addLevel(groupName);
     this.settings.openedLevels.push(event.groupName);
     this.settingsService.setSettings(this.settings);
@@ -122,7 +125,7 @@ export class TransaltionsLevelComponent {
 
     if (this.languagesService.getLevels().length == 0) {
       console.log('1');
-      MenuToolbarComponent.prototype.clearBreadcrumb();
+      // MenuToolbarComponent.prototype.clearBreadcrumb();
       this.languagesService.clear();
       if (!this.settings.keepLanguagesEdit) {
         this.settings.openedLanguages = [];
@@ -131,7 +134,7 @@ export class TransaltionsLevelComponent {
       this.settingsService.setSettings(this.settings);
       this.router.navigate(['/languages']);
     } else {
-      MenuToolbarComponent.prototype.removeLastBreadcrumbLevel();
+      // MenuToolbarComponent.prototype.removeLastBreadcrumbLevel();
       this.languagesService.removeLastLevel();
       this.settings.openedLevels.pop();
       this.settingsService.setSettings(this.settings);

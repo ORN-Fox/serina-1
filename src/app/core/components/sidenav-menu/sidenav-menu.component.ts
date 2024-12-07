@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { MenuToolbarComponent } from '../menu-toolbar/menu-toolbar.component';
 
 @Component({
   selector: 'app-sidenav-menu',
@@ -17,7 +16,6 @@ export class SidenavMenuComponent {
 
   closeSideMenu() {
     this.sideMenu.close();
-    MenuToolbarComponent.prototype.clearBreadcrumb();
   }
 
 }

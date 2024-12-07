@@ -36,14 +36,13 @@ export class LanguagesComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private dataAccessor: DataAccessorService,
+    private dataAccessorService: DataAccessorService,
     private languagesService: LanguagesService,
     private router: Router,
     private translateService: TranslateService,
     private settingsService: SettingsService,
     private snackBarService: MatSnackBar
   ) {
-    MenuToolbarComponent.prototype.addBreadcrumbLevel('sideMenu.listOfLanguages', '/languages');
     this.settings = this.settingsService.getSettings();
   }
 
@@ -52,7 +51,7 @@ export class LanguagesComponent implements OnInit {
   }
 
   getLanguages() {
-    this.dataAccessor.getLanguages().subscribe({
+    this.dataAccessorService.getLanguages().subscribe({
       next: (languagesJson) => {
         let languages: Language[] = [];
         languagesJson.forEach((languageJson) => {
@@ -70,7 +69,6 @@ export class LanguagesComponent implements OnInit {
   }
 
   openLanguage(languageCode: string) {
-    MenuToolbarComponent.prototype.clearBreadcrumb();
     this.languagesService.addLanguage(languageCode);
     if (!DataManagerService.findItem(this.settings.openedLanguages, languageCode, ItemType.Language)) {
       this.settings.openedLanguages.push(languageCode);
@@ -84,7 +82,7 @@ export class LanguagesComponent implements OnInit {
     let languageNotExist = this.languages.filter((language) => language.code == addLanguageCode).length == 0;
 
     if (languageNotExist) {
-      this.dataAccessor.createLanguage(addLanguageCode).subscribe({
+      this.dataAccessorService.createLanguage(addLanguageCode).subscribe({
         next: () => {
           this.snackBarService.open(this.translateService.instant('commons.toast.addLanguage.success', { language: addLanguageCode }), undefined, { panelClass: 'app-notification-success' })
           this.addLanguageForm.resetForm();
@@ -105,7 +103,7 @@ export class LanguagesComponent implements OnInit {
 
     this.dialog.open(ConfirmDialogComponent).afterClosed().subscribe((action: number) => {
       if (action == ConfirmDialogActionEnum.Validate) {
-        this.dataAccessor.deleteLanguage(languageCode).subscribe({
+        this.dataAccessorService.deleteLanguage(languageCode).subscribe({
           next: () => {
             this.snackBarService.open(this.translateService.instant('commons.toast.deleteLanguage.success', { language: languageCode }), undefined, { panelClass: 'app-notification-success' });
             this.getLanguages();

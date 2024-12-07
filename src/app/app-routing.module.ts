@@ -6,30 +6,35 @@ import { PreviewComponent } from './pages/preview/preview.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TransaltionsLevelComponent } from './pages/translations-level/translations-level.component';
 
-let routes: Routes = [
+const routes: Routes = [
   {
     path: 'languages',
-    component: LanguagesComponent
+    component: LanguagesComponent,
+    data: { breadcrumb: 'Languages' }
   },
   {
     path: 'language',
     component: TransaltionsLevelComponent,
     data: {
+      breadcrumb: 'Language',
       languageCode: ''
     }
   },
   {
     path: 'preview',
-    component: PreviewComponent
+    component: PreviewComponent,
+    data: { breadcrumb: 'Preview' }
   },
   {
     path: 'settings',
-    component: SettingsComponent
+    component: SettingsComponent,
+    data: { breadcrumb: 'Settings' }
   },
   {
     path: '',
     redirectTo: '/languages',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: { breadcrumb: 'Languages' }
   }
 ];
 

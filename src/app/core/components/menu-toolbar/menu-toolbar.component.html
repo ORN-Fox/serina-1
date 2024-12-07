@@ -3,9 +3,11 @@
         <mat-icon>menu</mat-icon>
     </button>
 
+    {{breadcrumbs | json}}
+
     <h2 flex md-truncate class="breadcrumb">
-        <a *ngFor="let breadcrumbLevel of breadcrumbLevels; let first = first" [href]="breadcrumbLevel.href">
-            <span *ngIf="first">{{breadcrumbLevel.label | translate}}</span><span *ngIf="!first"> {{breadcrumbLevel.label}}</span>
+        <a *ngFor="let breadcrumb of breadcrumbs; let first = first" [href]="breadcrumb.href">
+            <span *ngIf="first">{{breadcrumb.label | translate}}</span><span *ngIf="!first"> {{breadcrumb.label}}</span>
         </a>
     </h2>
 </mat-toolbar>

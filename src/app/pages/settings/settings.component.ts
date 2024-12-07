@@ -29,7 +29,7 @@ export class SettingsComponent {
     private settingsService: SettingsService,
     private translateService: TranslateService
   ) {
-    MenuToolbarComponent.prototype.addBreadcrumbLevel('sideMenu.settings', '/settings');
+    // MenuToolbarComponent.prototype.addBreadcrumbLevel('sideMenu.settings', '/settings');
     this.settings = this.settingsService.getSettings();
 
     this.languageDisplayFormats = [
