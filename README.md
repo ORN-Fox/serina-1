@@ -85,29 +85,29 @@ You can open a issue to explain your problem with a screenshot if possible.
 
 ## 🔨 Development
 
-TODO : review this section for angular app development
-
 If you want to contribute to Serina, create a new different version of Serina, or compile it from source code, follow these instructions.
 
 Clone/download source code from the github repo. Make sure you have _node_, _npm_, _yarn_ already installed in your system:
 
 1. `yarn` to install all the dependencies.
 2. `yarn run start:api` to start _API_ on `localhost:7777`.
-3. `yarn start` to start _Serina_ on `localhost:9000`.
-4. For build _serina_ (build will be placed in `packages` folder).
+3. `yarn start` to start _Serina_ on `localhost:4200`.
+4. `yarn run test:api` to run the automated tests for _API_.
+5. `yarn run test` to run the automated tests for _Serina_.
+    * `yarn run test:loop` for loop automated tests.
+6. For build _serina_ (build will be placed in `packages` folder).
     * `yarn run package:win` to make build for windows (64bits).
     * `yarn run package:linux` to make build for linux.
     * `yarn run package:macos` to make build for mac os (64bits).
-5. `yarn run test:api` to run the automated tests for _API_.
-6. `yarn run test` to run the automated tests for _Serina_.
-    * `yarn run test:loop` for loop automated tests.
 
 Please, ensure the tests are passing before creating a pull requests. Add tests for your changes.
 
 ## 👏Acknowledgments
 
 * [Angular](https://angular.io) framework was used for the app development.
-* [Electron](https://electron.atom.io) framework was used for package app.
+* [Node](https://nodejs.org/) was used for the api development.
+* [Express](https://expressjs.com/) was used for the api development.
+* [Electron](https://electron.atom.io) was used for package app.
 
 ## 📖 License
 
