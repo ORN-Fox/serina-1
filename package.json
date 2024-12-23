@@ -10,11 +10,13 @@
   },
   "description": "GUI for create translation files for i18next",
   "keywords": [
-    "electron",
     "translation",
+    "i18next",
     "gui",
     "graphical",
-    "i18next"
+    "electron",
+    "angular",
+    "node"
   ],
   "bugs": {
     "url": "https://github.com/ORN-Fox/serina-1/issues"
