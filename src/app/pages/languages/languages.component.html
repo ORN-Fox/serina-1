@@ -14,7 +14,7 @@
                         </mat-card-title>
                         <mat-card-actions layout="row">
                             <app-btn-download-language [languageCode]="language.code"></app-btn-download-language>
-                
+
                             <div>
                                 <button mat-raised-button color="primary" (click)="openLanguage(language.code)" matTooltip="{{'commons.actions.edit' | translate}}" matTooltipPosition="below">
                                     <mat-icon>edit</mat-icon> {{'commons.actions.edit' | translate}}
@@ -28,13 +28,13 @@
                 </ng-container>
             <!-- </div>
         </cdk-virtual-scroll-viewport> -->
-        
+
         <mat-list *ngIf="settings.shouldDisplayLanguageInListFormat()">
             <mat-list-item *ngFor="let language of languages" class="language-item" (click)="openLanguage(language.code)">
                 <img matListItemIcon [src]="language.getFlagSrc()" alt="Flag {{language.code}}" class="flag"/> <span>{{language.code}}</span>
                 <p matListItemTitle>{{language.code | translate}}</p>
                 <p matListItemLine>{{language.nbTranslations}} {{'commons.translation' + (language.nbTranslations > 1 ? 's' : '') | translate | lowercase}}</p>
-    
+
                 <div>
                     <app-btn-download-language [languageCode]="language.code"></app-btn-download-language>
                     <button mat-icon-button color="warn" (click)="deleteLanguage($event, language.code)" matTooltip="{{'commons.actions.delete' | translate}}" matTooltipPosition="below">
@@ -43,10 +43,10 @@
                 </div>
             </mat-list-item>
         </mat-list>
-                
+
         <app-message-no-language *ngIf="languages?.length === 0"></app-message-no-language>
     </div>
-    
+
     <mat-card class="add-language-container">
         <img mat-card-image src="/assets/images/languages.jpg" alt="">
         <mat-card-header>
@@ -56,7 +56,7 @@
             <mat-card-content>
                 <mat-form-field>
                     <label><mat-icon>language</mat-icon> {{'commons.language' | translate}}</label>
-                    <input matInput type="text" name="code" ngModel placeholder="en-US" minlength="5" maxlength="5" pattern="[a-z]{2}-[A-Z]{2}" required>
+                    <input matInput type="text" name="code" ngModel placeholder="fr-CA" minlength="5" maxlength="5" pattern="[a-z]{2}-[A-Z]{2}" required>
                 </mat-form-field>
             </mat-card-content>
             <mat-card-actions align="end">
