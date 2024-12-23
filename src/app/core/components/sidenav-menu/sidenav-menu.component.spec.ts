@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { SidenavMenuComponent } from './sidenav-menu.component';
 
@@ -8,7 +9,10 @@ describe('SidenavMenuComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SidenavMenuComponent]
+      declarations: [SidenavMenuComponent],
+      imports: [
+        TranslateModule.forRoot()
+      ]
     });
     fixture = TestBed.createComponent(SidenavMenuComponent);
     component = fixture.componentInstance;

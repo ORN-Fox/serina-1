@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MessageNoLanguageComponent } from './message-no-language.component';
 
@@ -8,7 +9,10 @@ describe('MessageNoLanguageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MessageNoLanguageComponent]
+      declarations: [MessageNoLanguageComponent],
+      imports: [
+        TranslateModule.forRoot()
+      ]
     });
     fixture = TestBed.createComponent(MessageNoLanguageComponent);
     component = fixture.componentInstance;

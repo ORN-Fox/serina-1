@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 
@@ -8,7 +9,10 @@ describe('ConfirmDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ConfirmDialogComponent]
+      declarations: [ConfirmDialogComponent],
+      imports: [
+        TranslateModule.forRoot()
+      ]
     });
     fixture = TestBed.createComponent(ConfirmDialogComponent);
     component = fixture.componentInstance;

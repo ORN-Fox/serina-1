@@ -89,8 +89,10 @@ export class SettingsService {
 
   setThemeApp() {
     let themeAppLinkElement = document.getElementById("themeApp") as HTMLLinkElement;
-    themeAppLinkElement.rel = "stylesheet";
-    themeAppLinkElement.href = `/assets/styles/vendor/angular-material-prebuilt-themes/${this.settings.theme}.css`;
+    if (themeAppLinkElement) {
+      themeAppLinkElement.rel = "stylesheet";
+      themeAppLinkElement.href = `/assets/styles/vendor/angular-material-prebuilt-themes/${this.settings.theme}.css`;
+    }
   }
 
 }

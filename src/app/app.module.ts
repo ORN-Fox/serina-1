@@ -99,7 +99,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         }
     }),
     AppRoutingModule
-],
+  ],
   providers: [
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { BtnDownloadLanguageComponent } from './btn-download-language.component';
 
@@ -8,7 +9,10 @@ describe('BtnDownloadLanguageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BtnDownloadLanguageComponent]
+      declarations: [BtnDownloadLanguageComponent],
+      imports: [
+        TranslateModule.forRoot()
+      ]
     });
     fixture = TestBed.createComponent(BtnDownloadLanguageComponent);
     component = fixture.componentInstance;
