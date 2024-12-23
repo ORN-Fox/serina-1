@@ -11,8 +11,6 @@
       "noLanguage": "No language"
     },
     "jsonOfLanguages": {
-      "dropJsonOrUploadFile": "Drag a .json file or click to upload a file (if the file exists it will not be overwritten)",
-      "dropJsonOrUploadFileNotSupported": "File Drag/Drop is not supported for this browser"
     },
     "settings": {
       "basic": {
@@ -66,6 +64,7 @@
       "import": "Import",
       "rename": "Rename",
       "return": "Return",
+      "preview": "Preview",
       "previous": "Previous",
       "move": "Move",
       "next": "Next",
@@ -73,6 +72,11 @@
       "search": "Search",
       "swap": "Swap",
       "save": "Save"
+    },
+    "fileUpload": {
+      "dragAndDrop": "Drag and Drop",
+      "files": "files",
+      "orClickHere": "or click here"
     },
     "themeColor": {
       "deeppurple-amber": "Deep purple - Amber",

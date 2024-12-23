@@ -20,8 +20,8 @@ export class DataAccessorService {
     return this.httpClient.get<Language[]>(`${environment.endPointApi}/languages`);
   }
 
-  public openLanguage(languageCode: string): Observable<Language>{
-    return this.httpClient.get<Language>(`${environment.endPointApi}/language/${languageCode}/open`);
+  public openLanguage(languageCode: string): Observable<JSON>{
+    return this.httpClient.get<JSON>(`${environment.endPointApi}/language/${languageCode}/open`);
   }
 
   public createLanguage(languageCode: string): Observable<Language>{
@@ -30,6 +30,12 @@ export class DataAccessorService {
 
   public deleteLanguage(languageCode: string): Observable<void>{
     return this.httpClient.get<void>(`${environment.endPointApi}/language/${languageCode}/delete`);
+  }
+
+  public importLanguage(file: File): Observable<void>{
+    const fd = new FormData();
+    fd.append("file", file, file.name);
+    return this.httpClient.post<void>(`${environment.endPointApi}/language/import`, fd);
   }
 
   // Groups

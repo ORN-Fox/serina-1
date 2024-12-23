@@ -13,6 +13,7 @@
       "import": "Importación",
       "rename": "rebautizar",
       "return": "Regreso",
+      "preview": "Avance",
       "previous": "Anterior",
       "move": "Mover",
       "next": "Próximo",
@@ -35,6 +36,11 @@
         "placeholder": "Nuevo nombre de grupo",
         "title": "Renombrar el grupo"
       }
+    },
+    "fileUpload": {
+      "dragAndDrop": "Arrastrar y soltar",
+      "files": "archivos",
+      "orClickHere": "o haga clic aquí"
     },
     "format": "Formato",
     "group": "Grupo",
@@ -114,8 +120,6 @@
       "noLanguage": "No hay idioma"
     },
     "jsonOfLanguages": {
-      "dropJsonOrUploadFile": "Arrastre un archivo .json o haga clic para cargar un archivo (si el archivo existe, no se sobrescribirá)",
-      "dropJsonOrUploadFileNotSupported": "Arrastrar y soltar archivos no es compatible con este navegador"
     },
     "settings": {
       "about": {

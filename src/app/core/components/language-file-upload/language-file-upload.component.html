@@ -1,0 +1,9 @@
+<file-upload [(ngModel)]="uploadedFiles" (ngModelChange)="upload(uploadedFiles)" accept="application/json">
+    <ng-template #placeholder>
+        <file-upload-drop-zone><b>{{'commons.fileUpload.dragAndDrop' | translate}}</b> {{'commons.fileUpload.files' | translate}}<br> {{'commons.fileUpload.orClickHere' | translate}}</file-upload-drop-zone>
+    </ng-template>
+
+    <ng-template let-i="index" let-file="file" let-control="control" #item>
+        <file-upload-list-item  [index]="i" [file]="file" [control]="control">{{'commons.actions.remove' | translate}}</file-upload-list-item>
+    </ng-template>
+</file-upload>

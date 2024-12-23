@@ -43,6 +43,7 @@ import { TranslationComponent } from './core/components/translation/translation.
 import { TranslationsComponent } from './core/components/translations/translations.component';
 import { TranslationsGroupsComponent } from './core/components/translations-groups/translations-groups.component';
 import { CrudTranslationGroupDialogComponent } from './core/components/crud-translation-group-dialog/crud-translation-group-dialog.component';
+import { LanguageFileUploadComponent } from "./core/components/language-file-upload/language-file-upload.component";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -68,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslationsComponent,
     TranslationsGroupsComponent,
     CrudTranslationGroupDialogComponent,
+    LanguageFileUploadComponent
   ],
   imports: [
     BrowserModule,
