@@ -15,7 +15,9 @@ export class BtnDownloadLanguageComponent {
   constructor() {}
 
   downloadLanguage() {
-    saveAs(`${environment.endPointApi}/language/${this.languageCode}/download`, `${this.languageCode}.json`);
+    if (this.languageCode) {
+      saveAs(`${environment.endPointApi}/language/${this.languageCode}/download`, `${this.languageCode}.json`);
+    }
   }
 
 }
