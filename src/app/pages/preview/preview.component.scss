@@ -1,0 +1,9 @@
+.preview {
+    display: flex;
+    height: calc(100% - 96px); // 64 px toolbar + 16 px * 2 for gutters
+    margin: 1rem 15%;
+
+    .languages-list-container, .preview-language-container {
+      flex: 1;
+    }
+}

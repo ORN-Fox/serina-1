@@ -1,1 +1,23 @@
-<p>preview works!</p>
+<div class="preview">
+    <div class="languages-list-container">
+        <mat-action-list>
+            <mat-list-item *ngFor="let language of languages" (click)="previewLanguage(language.code)">
+                <img matListItemIcon [src]="language.getFlagSrc()" alt="Flag {{language.code}}" class="flag"/> <span>{{language.code}}</span>
+
+                <div>
+                    <app-btn-download-language [languageCode]="language.code"></app-btn-download-language>
+                    <mat-icon matTooltip="{{'commons.actions.preview' | translate}}" matTooltipPosition="below" attr.aria-label="{{'commons.actions.preview' | translate}}">{{selectedLanguageCode === language.code ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </div>
+            </mat-list-item>
+        </mat-action-list>
+
+
+        <app-message-no-language *ngIf="languages?.length === 0"></app-message-no-language>
+    </div>
+
+    <div class="preview-language-container">
+        <mat-card>
+            <div id="jsonFormatterPreview"></div>
+        </mat-card>
+    </div>
+</div>
