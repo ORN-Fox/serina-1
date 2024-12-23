@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule,  } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -71,6 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FileUploadModule,
     FormsModule,
     HttpClientModule,
     MatExpansionModule,
@@ -88,14 +90,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTooltipModule,
     ScrollingModule,
     TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
     }),
     AppRoutingModule
-  ],
+],
   providers: [
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
