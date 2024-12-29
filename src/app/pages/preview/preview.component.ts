@@ -15,6 +15,7 @@ import { Language } from 'src/app/core/models/language/language.model';
 export class PreviewComponent implements OnInit {
 
   languages: Language[];
+  languageCodes: string[];
   selectedLanguageCode: string;
   selectedLanguageTranslations: JSON;
 
@@ -36,6 +37,7 @@ export class PreviewComponent implements OnInit {
           languages.push(new Language(languageJson.code, languageJson.nbTranslations));
         });
         this.languages = languages;
+        this.languageCodes = this.languages.map((language) => language.code);
       },
       error: (response) => {
         this.languages = [];

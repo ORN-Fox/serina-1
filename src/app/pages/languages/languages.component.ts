@@ -31,6 +31,7 @@ export class LanguagesComponent implements OnInit {
   @ViewChild('addLanguageForm') addLanguageForm!: NgForm;
 
   languages: Language[];
+  languageCodes: string[];
 
   settings: Settings;
 
@@ -58,6 +59,7 @@ export class LanguagesComponent implements OnInit {
           languages.push(new Language(languageJson.code, languageJson.nbTranslations));
         });
         this.languages = languages;
+        this.languageCodes = this.languages.map((language) => language.code);
       },
       error: (response) => {
         this.languages = [];

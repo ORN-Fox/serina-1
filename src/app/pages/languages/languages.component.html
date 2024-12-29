@@ -66,7 +66,10 @@
             </mat-card-actions>
         </form>
 
-        <app-language-file-upload (LanguageFileUploadComponentDidUploadEvent)="getLanguages()"></app-language-file-upload>
+        <app-language-file-upload
+            [existingLanguageCodes]="languageCodes"
+            (LanguageFileUploadComponentDidUploadEvent)="getLanguages()"
+        ></app-language-file-upload>
     </mat-card>
 </div>
 

@@ -11,7 +11,10 @@
             </mat-list-item>
         </mat-action-list>
 
-        <app-language-file-upload (LanguageFileUploadComponentDidUploadEvent)="getLanguages()"></app-language-file-upload>
+        <app-language-file-upload
+            [existingLanguageCodes]="languageCodes"
+            (LanguageFileUploadComponentDidUploadEvent)="getLanguages()"
+        ></app-language-file-upload>
 
         <app-message-no-language *ngIf="languages?.length === 0"></app-message-no-language>
     </div>
