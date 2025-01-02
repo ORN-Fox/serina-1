@@ -16,7 +16,7 @@ let settings = require('./modules/settings')
 
 jsonfile.spaces = constants.JSON_NB_SPACES_INDENT
 
-api.use((req, res, next) => {
+api.use((_req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()

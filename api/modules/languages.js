@@ -6,6 +6,7 @@ const jsonfile = require('jsonfile')
 const fs = require('fs')
 const path = require('path')
 const multer  = require('multer')
+const httpStatusCodes = require('http-status-codes').StatusCodes
 
 let constants = require('../utils/constants')
 let utilities = require('../utils/utilities')
@@ -87,7 +88,7 @@ moduleLanguages.get(constants.PATH_API + '/language/:code/:action', (req, res) =
     }
   } else {
     console.error('Language code is not valid', languageCode)
-    res.sendStatus(400)
+    res.sendStatus(httpStatusCodes.BAD_REQUEST)
   }
 })
 
@@ -108,10 +109,10 @@ moduleLanguages.post(constants.PATH_API + '/language/import', (req, res) => {
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       console.error('Error', err)
-      res.sendStatus(500)
+      res.sendStatus(httpStatusCodes.INTERNAL_SERVER_ERROR)
     } else if (err) {
       console.error('Unknow err', err)
-      res.sendStatus(500)
+      res.sendStatus(httpStatusCodes.INTERNAL_SERVER_ERROR)
     }
 
     res.send({})
