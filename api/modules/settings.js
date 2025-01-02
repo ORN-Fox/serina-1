@@ -2,6 +2,7 @@
 
 const express = require ('express')
 const moduleSettings = express.Router()
+const httpStatusCodes = require('http-status-codes').StatusCodes
 
 let constants = require('../utils/constants')
 let utilities = require('../utils/utilities')
@@ -17,7 +18,7 @@ moduleSettings.post(constants.PATH_API + '/settings/update', (req, res) => {
     res.send({})
   } else {
     console.error('Unable to update settings because is invalid or incorrect', customTranslationsPath, enableSortAscJson)
-    res.sendStatus(400)
+    res.sendStatus(httpStatusCodes.BAD_REQUEST)
   }
 
 })
