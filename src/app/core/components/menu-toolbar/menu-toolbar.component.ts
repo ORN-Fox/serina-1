@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { filter } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatDrawer } from '@angular/material/sidenav';
 
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
@@ -16,7 +17,7 @@ enum SearchNavigateSign {
   templateUrl: './menu-toolbar.component.html',
   styleUrls: ['./menu-toolbar.component.scss']
 })
-export class MenuToolbarComponent implements OnInit {
+export class MenuToolbarComponent {
 
   @Input() sideMenu: MatDrawer;
 
@@ -29,46 +30,25 @@ export class MenuToolbarComponent implements OnInit {
   currentMatchingElement: number;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private breadcrumbService: BreadcrumbService,
     private router: Router
   ) {
     this.searchIsOpen = false;
     this.clearSearch();
-  }
 
-  ngOnInit( ) {
-    console.log('ngOnInit');
-    this.breadcrumbs = this.breadcrumbService.getBreadcrumb();
+    this.breadcrumbs = this.breadcrumbService.initBreadcrumb();
+
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((route: any) => {
+      this.breadcrumbs = this.breadcrumbService.createBreadcrumbs(this.activatedRoute.root, route.url)
+    });
   }
 
   toggleSideMenu() {
     this.sideMenu.toggle();
   }
-
-  // Breadcrumb related
-  // addBreadcrumbLevel(label: string, href: string) {
-  //   this.breadcrumbService.addBreadcrumbLevel(label, href);
-  //   this.breadcrumbs = this.breadcrumbService?.getBreadcrumb();
-  //   // if (!this.breadcrumbs) {
-  //   //   this.breadcrumbs = this.breadcrumbService.init(label, href);
-  //   // } else {
-  //   //   this.breadcrumbs = this.breadcrumbService.build(this.breadcrumbs, label, href);
-  //   // }
-  // }
-  //
-  // removeLastBreadcrumbLevel() {
-  //   this.breadcrumbs?.pop();
-  //   this.breadcrumbs = this.breadcrumbService.getBreadcrumb();
-  // }
-  //
-  // clearBreadcrumb() {
-  //   this.breadcrumbService.initBreadcrumb();
-  //   this.breadcrumbs = this.breadcrumbService.getBreadcrumb();
-  // }
-  //
-  // updateBreadcrumb() {
-  //   this.breadcrumbs = this.breadcrumbService?.getBreadcrumb();
-  // }
 
   // Search related
 

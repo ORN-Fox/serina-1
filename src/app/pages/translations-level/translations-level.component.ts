@@ -47,7 +47,6 @@ export class TransaltionsLevelComponent {
     private snackBarService: MatSnackBar,
     private translateService: TranslateService
   ) {
-    this.breadcrumbService.initBreadcrumb();
     this.settings = this.settingsService.getSettings();
 
     this.languages = this.languagesService.getLanguages();
@@ -56,9 +55,7 @@ export class TransaltionsLevelComponent {
 
     if (this.secondLanguage) {
       this.languagesService.addLanguage(this.secondLanguage.code)
-      this.breadcrumbService.addBreadcrumbLevel(`${this.language.code} / ${this.secondLanguage.code}`, '/language');
     } else {
-      this.breadcrumbService.addBreadcrumbLevel(this.language.code, '/language');
     }
 
     this.dataAccessor.openLanguage(this.languages[0]).subscribe({
@@ -125,7 +122,6 @@ export class TransaltionsLevelComponent {
 
     if (this.languagesService.getLevels().length == 0) {
       console.log('1');
-      // MenuToolbarComponent.prototype.clearBreadcrumb();
       this.languagesService.clear();
       if (!this.settings.keepLanguagesEdit) {
         this.settings.openedLanguages = [];
@@ -134,7 +130,6 @@ export class TransaltionsLevelComponent {
       this.settingsService.setSettings(this.settings);
       this.router.navigate(['/languages']);
     } else {
-      // MenuToolbarComponent.prototype.removeLastBreadcrumbLevel();
       this.languagesService.removeLastLevel();
       this.settings.openedLevels.pop();
       this.settingsService.setSettings(this.settings);

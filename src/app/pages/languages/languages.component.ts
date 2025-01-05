@@ -13,7 +13,6 @@ import { Language } from 'src/app/core/models/language/language.model';
 import { Settings } from 'src/app/core/models/settings/settings.model';
 
 import { ConfirmDialogActionEnum, ConfirmDialogComponent } from 'src/app/core/components/confirm-dialog/confirm-dialog.component';
-import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-toolbar.component';
 import { DataManagerService } from 'src/app/core/services/data-manager/data-manager.service';
 import { ItemType } from 'src/app/core/enums/itemType.enum';
 

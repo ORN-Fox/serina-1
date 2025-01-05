@@ -10,31 +10,39 @@ const routes: Routes = [
   {
     path: 'languages',
     component: LanguagesComponent,
-    data: { breadcrumb: 'Languages' }
+    data: {
+      breadcrumb: 'Languages'
+    },
   },
   {
     path: 'language',
     component: TransaltionsLevelComponent,
     data: {
       breadcrumb: 'Language',
-      languageCode: ''
+      languageCodes: []
     }
   },
   {
     path: 'preview',
     component: PreviewComponent,
-    data: { breadcrumb: 'Preview' }
+    data: {
+      breadcrumb: 'Preview'
+    }
   },
   {
     path: 'settings',
     component: SettingsComponent,
-    data: { breadcrumb: 'Settings' }
+    data: {
+      breadcrumb: 'Settings'
+    }
   },
   {
     path: '',
     redirectTo: '/languages',
     pathMatch: 'full',
-    data: { breadcrumb: 'Languages' }
+    data: {
+      breadcrumb: 'Languages'
+    }
   }
 ];
 
