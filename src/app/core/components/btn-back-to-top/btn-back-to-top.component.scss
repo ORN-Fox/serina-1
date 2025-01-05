@@ -1,0 +1,22 @@
+.btn-back-to-top {
+    bottom: 1rem;
+    right: 2rem;
+    position: fixed;
+    text-align: center;
+    transition: all .3s ease-in-out;
+    // visibility: hidden; // Temporary
+    z-index: 999;
+
+    &:hover, &.visible:hover {
+      opacity: 1;
+    }
+
+    &.visible {
+      visibility: visible;
+      opacity: .5;
+    }
+
+    mat-icon {
+      margin: 0;
+    }
+  }

@@ -29,6 +29,7 @@ import { AppComponent } from './app.component';
 
 // Commons Components
 import { ConfirmDialogComponent } from './core/components/confirm-dialog/confirm-dialog.component';
+import { BtnBackToTopComponent } from "./core/components/btn-back-to-top/btn-back-to-top.component";
 import { BtnDownloadLanguageComponent } from './core/components/btn-download-language/btn-download-language.component';
 import { MenuToolbarComponent } from './core/components/menu-toolbar/menu-toolbar.component';
 import { MessageNoLanguageComponent } from './core/components/message-no-language/message-no-language.component';
@@ -55,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     // Commons Components
     ConfirmDialogComponent,
+    BtnBackToTopComponent,
     BtnDownloadLanguageComponent,
     MenuToolbarComponent,
     MessageNoLanguageComponent,
