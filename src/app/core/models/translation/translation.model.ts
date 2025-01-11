@@ -13,7 +13,7 @@ export class Translation {
 
     constructor(
         key: string,
-        values: string[],
+        values: string[] = [],
         save: boolean = false,
         modified: boolean = false
     ) {
