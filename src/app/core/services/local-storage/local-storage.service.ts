@@ -20,7 +20,9 @@ export class LocalStorageService {
   }
 
   setItem(key: string, data: object) {
-    localStorage.setItem(key, JSON.stringify(data));
+    if (key && data) {
+      localStorage.setItem(key, JSON.stringify(data));
+    }
   }
 
 }
