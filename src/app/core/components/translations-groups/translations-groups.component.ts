@@ -119,7 +119,8 @@ export class TranslationsGroupsComponent {
     });
   }
 
-  openTranslationsGroup(translationsGroup: TranslationsGroup) {
+  openTranslationsGroup(event: Event, translationsGroup: TranslationsGroup) {
+    event.stopImmediatePropagation();
     console.log('openTranslationsGroup', translationsGroup);
 
     this.TranslationsGroupsComponentDidOpenGroupEvent.emit({ groupName: translationsGroup.key });

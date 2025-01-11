@@ -10,7 +10,7 @@
     </mat-card-title>
 </mat-card>
 
-<mat-card *ngFor="let translationsGroup of translationsGroups" class="translations-group mb-2" (click)="openTranslationsGroup(translationsGroup)">
+<mat-card *ngFor="let translationsGroup of translationsGroups" class="translations-group mb-2" (click)="openTranslationsGroup($event, translationsGroup)">
     <mat-card-content>
         <p class="md-headline">{{translationsGroup.key}}</p>
 
