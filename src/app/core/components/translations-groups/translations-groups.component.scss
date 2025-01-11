@@ -11,6 +11,10 @@ mat-card-header {
 }
 
 .translations-group {
+    &:hover {
+        background-color: #f5f5f5;
+    }
+
     mat-card-content {
         cursor: pointer;
         display: flex;
