@@ -71,7 +71,7 @@ export class TranslationsGroupsComponent {
     });
   }
 
-  opendDialogUpdateTranslationsGroup(event: Event, groupName: string) {
+  openDialogUpdateTranslationsGroup(event: Event, groupName: string) {
     event.stopImmediatePropagation();
 
     let originalGroupName = groupName;
