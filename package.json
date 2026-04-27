@@ -43,7 +43,7 @@
     "@angular/platform-browser": "^19.2.21",
     "@angular/platform-browser-dynamic": "^19.2.21",
     "@angular/router": "^19.2.21",
-    "@iplab/ngx-file-upload": "^18.1.1",
+    "@iplab/ngx-file-upload": "^19.0.4",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "body-parser": "^1.20.0",
