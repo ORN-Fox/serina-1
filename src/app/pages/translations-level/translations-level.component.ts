@@ -18,9 +18,10 @@ import { TranslationsGroup } from 'src/app/core/models/translations-group/transl
 import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-toolbar.component';
 
 @Component({
-  selector: 'app-translations-level',
-  templateUrl: './translations-level.component.html',
-  styleUrls: ['./translations-level.component.scss']
+    selector: 'app-translations-level',
+    templateUrl: './translations-level.component.html',
+    styleUrls: ['./translations-level.component.scss'],
+    standalone: false
 })
 export class TransaltionsLevelComponent {
 

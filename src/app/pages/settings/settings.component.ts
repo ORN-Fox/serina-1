@@ -12,9 +12,10 @@ import { Shortcut } from 'src/app/core/models/shortcut/shortcut.model';
 import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-toolbar.component';
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+    selector: 'app-settings',
+    templateUrl: './settings.component.html',
+    styleUrls: ['./settings.component.scss'],
+    standalone: false
 })
 export class SettingsComponent {
 

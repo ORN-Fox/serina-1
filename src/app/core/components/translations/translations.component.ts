@@ -15,9 +15,10 @@ import { Translation } from '../../models/translation/translation.model';
 import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-translations',
-  templateUrl: './translations.component.html',
-  styleUrls: ['./translations.component.scss']
+    selector: 'app-translations',
+    templateUrl: './translations.component.html',
+    styleUrls: ['./translations.component.scss'],
+    standalone: false
 })
 export class TranslationsComponent implements OnInit {
 

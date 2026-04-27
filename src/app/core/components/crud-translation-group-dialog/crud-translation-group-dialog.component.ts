@@ -7,9 +7,10 @@ export interface CrudTranslationGroupDialogData {
 }
 
 @Component({
-  selector: 'app-crud-translation-group-dialog',
-  templateUrl: './crud-translation-group-dialog.component.html',
-  styleUrls: ['./crud-translation-group-dialog.component.scss']
+    selector: 'app-crud-translation-group-dialog',
+    templateUrl: './crud-translation-group-dialog.component.html',
+    styleUrls: ['./crud-translation-group-dialog.component.scss'],
+    standalone: false
 })
 export class CrudTranslationGroupDialogComponent implements OnInit {
 

@@ -5,9 +5,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
 
 @Component({
-  selector: 'app-language-file-upload',
-  templateUrl: './language-file-upload.component.html',
-  styleUrl: './language-file-upload.component.scss'
+    selector: 'app-language-file-upload',
+    templateUrl: './language-file-upload.component.html',
+    styleUrl: './language-file-upload.component.scss',
+    standalone: false
 })
 export class LanguageFileUploadComponent {
 

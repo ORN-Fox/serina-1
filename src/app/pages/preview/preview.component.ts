@@ -8,9 +8,10 @@ import { DataAccessorService } from 'src/app/core/services/data-accessor/data-ac
 import { Language } from 'src/app/core/models/language/language.model';
 
 @Component({
-  selector: 'app-preview',
-  templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.scss']
+    selector: 'app-preview',
+    templateUrl: './preview.component.html',
+    styleUrls: ['./preview.component.scss'],
+    standalone: false
 })
 export class PreviewComponent implements OnInit {
 

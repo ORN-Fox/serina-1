@@ -3,9 +3,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Translation } from '../../models/translation/translation.model';
 
 @Component({
-  selector: 'app-translation',
-  templateUrl: './translation.component.html',
-  styleUrls: ['./translation.component.scss']
+    selector: 'app-translation',
+    templateUrl: './translation.component.html',
+    styleUrls: ['./translation.component.scss'],
+    standalone: false
 })
 export class TranslationComponent {
 

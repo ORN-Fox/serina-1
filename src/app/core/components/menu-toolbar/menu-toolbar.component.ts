@@ -13,9 +13,10 @@ enum SearchNavigateSign {
 }
 
 @Component({
-  selector: 'app-menu-toolbar',
-  templateUrl: './menu-toolbar.component.html',
-  styleUrls: ['./menu-toolbar.component.scss']
+    selector: 'app-menu-toolbar',
+    templateUrl: './menu-toolbar.component.html',
+    styleUrls: ['./menu-toolbar.component.scss'],
+    standalone: false
 })
 export class MenuToolbarComponent {
 

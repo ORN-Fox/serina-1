@@ -17,9 +17,10 @@ import { CrudTranslationGroupDialogComponent } from '../crud-translation-group-d
 import { MenuToolbarComponent } from '../menu-toolbar/menu-toolbar.component';
 
 @Component({
-  selector: 'app-translations-groups',
-  templateUrl: './translations-groups.component.html',
-  styleUrls: ['./translations-groups.component.scss']
+    selector: 'app-translations-groups',
+    templateUrl: './translations-groups.component.html',
+    styleUrls: ['./translations-groups.component.scss'],
+    standalone: false
 })
 export class TranslationsGroupsComponent {
 

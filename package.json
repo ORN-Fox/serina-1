@@ -33,16 +33,16 @@
     "test:api": "cd api && mocha -w  --full-trace"
   },
   "dependencies": {
-    "@angular/animations": "^18.2.14",
+    "@angular/animations": "^19.2.21",
     "@angular/cdk": "18.2.14",
-    "@angular/common": "^18.2.14",
-    "@angular/compiler": "^18.2.14",
-    "@angular/core": "^18.2.14",
-    "@angular/forms": "^18.2.14",
+    "@angular/common": "^19.2.21",
+    "@angular/compiler": "^19.2.21",
+    "@angular/core": "^19.2.21",
+    "@angular/forms": "^19.2.21",
     "@angular/material": "18.2.14",
-    "@angular/platform-browser": "^18.2.14",
-    "@angular/platform-browser-dynamic": "^18.2.14",
-    "@angular/router": "^18.2.14",
+    "@angular/platform-browser": "^19.2.21",
+    "@angular/platform-browser-dynamic": "^19.2.21",
+    "@angular/router": "^19.2.21",
     "@iplab/ngx-file-upload": "^18.1.1",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
@@ -58,12 +58,12 @@
     "rxjs": "~7.5.0",
     "svg-country-flags": "^1.2.10",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.4"
+    "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.21",
-    "@angular/cli": "^18.2.21",
-    "@angular/compiler-cli": "^18.2.14",
+    "@angular-devkit/build-angular": "^19.2.24",
+    "@angular/cli": "^19.2.24",
+    "@angular/compiler-cli": "^19.2.21",
     "@types/file-saver": "^2.0.7",
     "@types/jasmine": "~3.10.0",
     "@types/lodash": "^4.14.202",
@@ -82,6 +82,6 @@
     "mocha": "^5.2.0",
     "multer": "^1.4.4",
     "rimraf": "^2.6.1",
-    "typescript": "~5.4.3"
+    "typescript": "~5.8.3"
   }
 }
