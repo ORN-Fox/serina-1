@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
@@ -19,20 +19,19 @@ describe('LanguagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LanguagesComponent ],
-      imports: [
-        FormsModule,
-        HttpClientTestingModule,
+    declarations: [LanguagesComponent],
+    imports: [FormsModule,
         MatDialogModule,
-        TranslateModule.forRoot()
-      ],
-      providers: [
+        TranslateModule.forRoot()],
+    providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         MatSnackBar,
-        LanguagesService
-      ]
-    })
+        LanguagesService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
     .compileComponents();
 
     // Inject the http service and test controller for each test

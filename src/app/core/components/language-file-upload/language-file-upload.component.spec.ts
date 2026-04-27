@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { LanguageFileUploadComponent } from './language-file-upload.component';
 
@@ -14,12 +14,10 @@ describe('LanguageFileUploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LanguageFileUploadComponent],
-      imports: [
-        BrowserDynamicTestingModule,
-        HttpClientTestingModule
-      ]
-    })
+    declarations: [LanguageFileUploadComponent],
+    imports: [BrowserDynamicTestingModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
 
     // Inject the http service and test controller for each test

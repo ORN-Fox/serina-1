@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { DataAccessorService } from './data-accessor.service';
 
@@ -12,10 +12,9 @@ describe('DataAccessorService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ]
-    });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
     // Inject the http service and test controller for each test
     httpClient = TestBed.inject(HttpClient);

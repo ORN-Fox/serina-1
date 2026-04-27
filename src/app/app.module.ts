@@ -3,7 +3,7 @@ import { BrowserModule,  } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -50,67 +50,59 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-
-    // Commons Components
-    ConfirmDialogComponent,
-    BtnBackToTopComponent,
-    BtnDownloadLanguageComponent,
-    MenuToolbarComponent,
-    MessageNoLanguageComponent,
-
-    // Pages
-    LanguagesComponent,
-    PreviewComponent,
-    SettingsComponent,
-    SidenavMenuComponent,
-    TransaltionsLevelComponent,
-    TranslationComponent,
-    TranslationsComponent,
-    TranslationsGroupsComponent,
-    CrudTranslationGroupDialogComponent,
-    LanguageFileUploadComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FileUploadModule,
-    FormsModule,
-    HttpClientModule,
-    MatExpansionModule,
-    MatButtonModule,
-    MatCardModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatSidenavModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    ScrollingModule,
-    TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        }
-    }),
-    AppRoutingModule
-  ],
-  providers: [
-    {
-      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: {
-        duration: 2500
-      }
-    },
-    LanguagesService
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        // Commons Components
+        ConfirmDialogComponent,
+        BtnBackToTopComponent,
+        BtnDownloadLanguageComponent,
+        MenuToolbarComponent,
+        MessageNoLanguageComponent,
+        // Pages
+        LanguagesComponent,
+        PreviewComponent,
+        SettingsComponent,
+        SidenavMenuComponent,
+        TransaltionsLevelComponent,
+        TranslationComponent,
+        TranslationsComponent,
+        TranslationsGroupsComponent,
+        CrudTranslationGroupDialogComponent,
+        LanguageFileUploadComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        FileUploadModule,
+        FormsModule,
+        MatExpansionModule,
+        MatButtonModule,
+        MatCardModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatSidenavModule,
+        MatSlideToggleModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        ScrollingModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        AppRoutingModule], providers: [
+        {
+            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+            useValue: {
+                duration: 2500
+            }
+        },
+        LanguagesService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

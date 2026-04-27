@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -17,16 +17,15 @@ describe('SettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SettingsComponent ],
-      imports: [
-        HttpClientTestingModule,
-        MatSnackBarModule,
-        TranslateModule.forRoot()
-      ],
-      providers: [
-        LanguagesService
-      ]
-    })
+    declarations: [SettingsComponent],
+    imports: [MatSnackBarModule,
+        TranslateModule.forRoot()],
+    providers: [
+        LanguagesService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
     .compileComponents();
 
     // Inject the http service and test controller for each test

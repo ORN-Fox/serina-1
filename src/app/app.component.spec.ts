@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,20 +16,19 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         AppComponent
-      ],
-      imports: [
-        HttpClientTestingModule,
-        MatDialogModule,
+    ],
+    imports: [MatDialogModule,
         MatSnackBarModule,
         RouterTestingModule,
-        TranslateModule.forRoot()
-      ],
-      providers: [
-        LanguagesService
-      ]
-    }).compileComponents();
+        TranslateModule.forRoot()],
+    providers: [
+        LanguagesService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+}).compileComponents();
 
     // Inject the http service and test controller for each test
     httpClient = TestBed.inject(HttpClient);
