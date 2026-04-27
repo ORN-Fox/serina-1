@@ -1,36 +1,48 @@
 <div class="actions-container">
-    <button mat-icon-button color="primary" *ngIf="translation.shouldDisplaySaveAction()" (click)="saveTranslation(translation)" [disabled]="translation.shouldDisableSaveAction()" matTooltip="{{'commons.actions.save' | translate}}" matTooltipPosition="below">
-        <mat-icon>save</mat-icon>
+  @if (translation.shouldDisplaySaveAction()) {
+    <button mat-icon-button color="primary" (click)="saveTranslation(translation)" [disabled]="translation.shouldDisableSaveAction()" matTooltip="{{'commons.actions.save' | translate}}" matTooltipPosition="below">
+      <mat-icon>save</mat-icon>
     </button>
+  }
 
-    <button mat-icon-button *ngIf="translation.save" (click)="duplicateTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.copy' | translate}}" matTooltipPosition="below">
-        <mat-icon>content_copy</mat-icon>
+  @if (translation.save) {
+    <button mat-icon-button (click)="duplicateTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.copy' | translate}}" matTooltipPosition="below">
+      <mat-icon>content_copy</mat-icon>
     </button>
+  }
 
-    <button mat-icon-button *ngIf="translation.save" (click)="generatePluralTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.generatePlural' | translate}}" matTooltipPosition="below">
-        <mat-icon>plus_one</mat-icon>
+  @if (translation.save) {
+    <button mat-icon-button (click)="generatePluralTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.generatePlural' | translate}}" matTooltipPosition="below">
+      <mat-icon>plus_one</mat-icon>
     </button>
+  }
 
-    <button mat-icon-button *ngIf="translation.save" (click)="moveTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.move' | translate}}" matTooltipPosition="below">
-        <mat-icon>exit_to_app</mat-icon>
+  @if (translation.save) {
+    <button mat-icon-button (click)="moveTranslation(translation)" [disabled]="translation.shouldDisabledDuplicateGeneralPluralMoveActions()" matTooltip="{{'commons.actions.move' | translate}}" matTooltipPosition="below">
+      <mat-icon>exit_to_app</mat-icon>
     </button>
+  }
 
-    <button mat-icon-button color="warn" (click)="deleteTranslation(translation)" matTooltip="{{'commons.actions.delete' | translate}}" matTooltipPosition="below">
-        <mat-icon>delete_outline</mat-icon>
-    </button>
+  <button mat-icon-button color="warn" (click)="deleteTranslation(translation)" matTooltip="{{'commons.actions.delete' | translate}}" matTooltipPosition="below">
+    <mat-icon>delete_outline</mat-icon>
+  </button>
 </div>
 
 <mat-form-field>
-    <mat-label><mat-icon>bookmark</mat-icon> {{'commons.key' | translate}}</mat-label>
-    <input matInput type="text" class="key" [(ngModel)]="translation.key" (keyup)="translation.handleKeyUpdate(translation.key)">
+  <mat-label><mat-icon>bookmark</mat-icon> {{'commons.key' | translate}}</mat-label>
+  <input matInput type="text" class="key" [(ngModel)]="translation.key" (keyup)="translation.handleKeyUpdate(translation.key)">
 </mat-form-field>
 
 <mat-form-field>
-    <mat-label><mat-icon>label</mat-icon> {{'commons.value' | translate}} <span *ngIf="languages[1]">{{languages[0]}}</span></mat-label>
-    <textarea matInput type="text" [(ngModel)]="translation.values[0]" (keyup)="translation.handleValueUpdate(0, translation.values[0])" maxlength="3000"></textarea>
+  <mat-label><mat-icon>label</mat-icon> {{'commons.value' | translate}} @if (languages[1]) {
+  <span>{{languages[0]}}</span>
+}</mat-label>
+<textarea matInput type="text" [(ngModel)]="translation.values[0]" (keyup)="translation.handleValueUpdate(0, translation.values[0])" maxlength="3000"></textarea>
 </mat-form-field>
 
-<mat-form-field *ngIf="languages[1]">
+@if (languages[1]) {
+  <mat-form-field>
     <mat-label><mat-icon>label</mat-icon> {{'commons.value' | translate}} <span>{{languages[1]}}</span></mat-label>
     <textarea matInput type="text" [(ngModel)]="translation.values[1]" (keyup)="translation.handleValueUpdate(1, translation.values[1])" maxlength="3000"></textarea>
-</mat-form-field>
+  </mat-form-field>
+}

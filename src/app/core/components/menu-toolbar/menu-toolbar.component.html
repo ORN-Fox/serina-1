@@ -1,13 +1,19 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button (click)="toggleSideMenu()" aria-label="App menu" matTooltip="{{'commons.menu' | translate}}" matTooltipPosition="below">
-        <mat-icon>menu</mat-icon>
-    </button>
+  <button mat-icon-button (click)="toggleSideMenu()" aria-label="App menu" matTooltip="{{'commons.menu' | translate}}" matTooltipPosition="below">
+    <mat-icon>menu</mat-icon>
+  </button>
 
-    {{breadcrumbs | json}}
+  {{breadcrumbs | json}}
 
-    <h2 flex md-truncate class="breadcrumb">
-        <a *ngFor="let breadcrumb of breadcrumbs; let first = first" [href]="breadcrumb.href">
-            <span *ngIf="first">{{breadcrumb.label | translate}}</span><span *ngIf="!first"> {{breadcrumb.label}}</span>
-        </a>
-    </h2>
+  <h2 flex md-truncate class="breadcrumb">
+    @for (breadcrumb of breadcrumbs; track breadcrumb; let first = $first) {
+      <a [href]="breadcrumb.href">
+        @if (first) {
+          <span>{{breadcrumb.label | translate}}</span>
+          }@if (!first) {
+          <span> {{breadcrumb.label}}</span>
+        }
+      </a>
+    }
+  </h2>
 </mat-toolbar>
