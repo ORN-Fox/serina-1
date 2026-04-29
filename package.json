@@ -30,6 +30,8 @@
     "build:api": "rimraf api/dist/ && babel ./api/ --out-dir api/dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "test:local": "ng test --browsers=Chrome",
     "test:api": "cd api && mocha -w  --full-trace"
   },
   "dependencies": {
@@ -73,15 +75,23 @@
     "chai": "^4.2.0",
     "electron": "^33.2.1",
     "electron-packager": "^17.1.1",
-    "jasmine-core": "~4.0.0",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "~1.7.0",
     "mocha": "^5.2.0",
     "multer": "^1.4.4",
     "rimraf": "^2.6.1",
+    "jasmine-core": "~6.2.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.1.1",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.2.0",
     "typescript": "~5.8.3"
+  },
+  "overrides": {
+    "karma-jasmine": {
+      "jasmine-core": "^6.0.0"
+    },
+    "karma-jasmine-html-reporter": {
+      "jasmine-core": "^6.0.0"
+    }
   }
 }
