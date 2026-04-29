@@ -46,30 +46,30 @@ describe('core tests', () => {
   // Translations tests
 
   it('add translation', () => {
-    expect(core.addOrUpdateTranslation({}, 0, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
-    expect(core.addOrUpdateTranslation({ key: 'value' }, 0, { key: 'key2', value: [ 'value2', 'valeur2' ] })).to.deep.equal({ key: 'value', key2: 'value2' })
-    expect(core.addOrUpdateTranslation({}, 1, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'valeur' })
+    expect(core.addOrUpdateTranslation({}, 0, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
+    expect(core.addOrUpdateTranslation({ key: 'value' }, 0, { key: 'key2', values: [ 'value2', 'valeur2' ] })).to.deep.equal({ key: 'value', key2: 'value2' })
+    expect(core.addOrUpdateTranslation({}, 1, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'valeur' })
   })
 
   it('update translation', () => {
-    expect(core.addOrUpdateTranslation({ key: 'value' }, 1, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'valeur' })
+    expect(core.addOrUpdateTranslation({ key: 'value' }, 1, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'valeur' })
 
-    expect(core.addOrUpdateTranslation({ key: 'value' }, -1, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
-    expect(core.addOrUpdateTranslation({ key: 'value' }, 2, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
-    expect(core.addOrUpdateTranslation({ key: 'value' }, undefined, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
-    expect(core.addOrUpdateTranslation({ key: 'value' }, null, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
+    expect(core.addOrUpdateTranslation({ key: 'value' }, -1, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
+    expect(core.addOrUpdateTranslation({ key: 'value' }, 2, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
+    expect(core.addOrUpdateTranslation({ key: 'value' }, undefined, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
+    expect(core.addOrUpdateTranslation({ key: 'value' }, null, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ key: 'value' })
   })
 
   it('rename translation', () => {
-    expect(core.renameTranslation({ key: 'value' }, 0, { key: 'updatedKey', originalKey: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ updatedKey: 'value' })
-    expect(core.renameTranslation({ key: 'value', key2: 'value2' }, 0, { key: 'updatedKey', originalKey: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({ updatedKey: 'value', key2: 'value2' })
+    expect(core.renameTranslation({ key: 'value' }, 0, { key: 'updatedKey', originalKey: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ updatedKey: 'value' })
+    expect(core.renameTranslation({ key: 'value', key2: 'value2' }, 0, { key: 'updatedKey', originalKey: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({ updatedKey: 'value', key2: 'value2' })
   })
 
   it('delete translation', () => {
-    expect(core.deleteTranslation({ key: 'value' }, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({})
-    expect(core.deleteTranslation({ key: 'value', key2: 'value2' }, { key: 'key2', value: [ 'value2', 'valeur2' ] })).to.deep.equal({ key: 'value' })
+    expect(core.deleteTranslation({ key: 'value' }, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({})
+    expect(core.deleteTranslation({ key: 'value', key2: 'value2' }, { key: 'key2', values: [ 'value2', 'valeur2' ] })).to.deep.equal({ key: 'value' })
 
-    expect(core.deleteTranslation({}, { key: 'key', value: [ 'value', 'valeur' ] })).to.deep.equal({})
+    expect(core.deleteTranslation({}, { key: 'key', values: [ 'value', 'valeur' ] })).to.deep.equal({})
     expect(core.deleteTranslation({}, undefined)).to.deep.equal({})
     expect(core.deleteTranslation({}, null)).to.deep.equal({})
     expect(core.deleteTranslation({}, '')).to.deep.equal({})

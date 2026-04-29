@@ -20,7 +20,7 @@ describe('utilities tests', () => {
   })
 
   it('check entities is a object', () => {
-    expect(utilities.isObject({ key: 'hello', value: 'hello' })).to.equal(true)
+    expect(utilities.isObject({ key: 'hello', values: 'hello' })).to.equal(true)
     expect(utilities.isObject(['en'])).to.equal(true)
     expect(utilities.isObject(null)).to.equal(true)
 
@@ -32,7 +32,7 @@ describe('utilities tests', () => {
     expect(utilities.isArray(['en', 'fr'])).to.equal(true)
     expect(utilities.isArray([{ a: 1 }, { b: 2 }])).to.equal(true)
 
-    expect(utilities.isArray({ key: 'hello', value: 'hello' })).to.equal(false)
+    expect(utilities.isArray({ key: 'hello', values: 'hello' })).to.equal(false)
     expect(utilities.isArray(1)).to.equal(false)
     expect(utilities.isArray('en')).to.equal(false)
     expect(utilities.isArray('')).to.equal(false)
@@ -41,7 +41,7 @@ describe('utilities tests', () => {
   })
 
   it('check is plain object', () => {
-    expect(utilities.isPlainObject({ key: 'hello', value: 'hello' })).to.equal(true)
+    expect(utilities.isPlainObject({ key: 'hello', values: 'hello' })).to.equal(true)
     expect(utilities.isPlainObject({})).to.equal(true)
 
     expect(utilities.isPlainObject(['en', 'fr'])).to.equal(false)
@@ -70,14 +70,14 @@ describe('utilities tests', () => {
   })
 
   it('check translation validity', () => {
-    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, 0)).to.equal(true)
-    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, 1)).to.equal(true)
+    expect(utilities.isValidTranslationIndex({ key: 'key', values: [ 'value', 'valeur2' ] }, 0)).to.equal(true)
+    expect(utilities.isValidTranslationIndex({ key: 'key', values: [ 'value', 'valeur2' ] }, 1)).to.equal(true)
 
-    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, -1)).to.equal(false)
-    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, 2)).to.equal(false)
-    expect(utilities.isValidTranslationIndex({ key: 'key', value: [ 'value', 'valeur2' ] }, 10)).to.equal(false)
-    expect(utilities.isValidTranslationIndex({ key: 'key', value: [] }, 1)).to.equal(false)
-    expect(utilities.isValidTranslationIndex({ key: 'key', value: [] }, -1)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', values: [ 'value', 'valeur2' ] }, -1)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', values: [ 'value', 'valeur2' ] }, 2)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', values: [ 'value', 'valeur2' ] }, 10)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', values: [] }, 1)).to.equal(false)
+    expect(utilities.isValidTranslationIndex({ key: 'key', values: [] }, -1)).to.equal(false)
     expect(utilities.isValidTranslationIndex(null, 1)).to.equal(false)
     expect(utilities.isValidTranslationIndex(undefined, 1)).to.equal(false)
   })
