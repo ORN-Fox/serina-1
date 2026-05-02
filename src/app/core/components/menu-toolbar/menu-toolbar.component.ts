@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { filter } from 'rxjs';
+import { BehaviorSubject, filter } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatDrawer } from '@angular/material/sidenav';
 
@@ -22,13 +22,18 @@ export class MenuToolbarComponent {
 
   @Input() sideMenu: MatDrawer;
 
-  breadcrumbs: BreadcrumbLevel[];
+  private breadcrumbsSubject = new BehaviorSubject<BreadcrumbLevel[]>([]);
+  public breadcrumbs$ = this.breadcrumbsSubject.asObservable();
 
   // Search related
   searchIsOpen: boolean;
   searchText: string;
   matchingElements: any[];
   currentMatchingElement: number;
+
+  get breadcrumbsValue(): User {
+    return this.userSubject.value;
+  }
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,7 +43,9 @@ export class MenuToolbarComponent {
     this.searchIsOpen = false;
     this.clearSearch();
 
-    this.breadcrumbs = this.breadcrumbService.initBreadcrumb();
+    this.breadcrumbService.breadcrumbs$.subscribe(breadcrumbs => {
+      this.breadcrumbs = breadcrumbs;
+    });
 
     this.router.events
     .pipe(filter(event => event instanceof NavigationEnd))

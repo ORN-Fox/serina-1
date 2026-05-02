@@ -13,7 +13,9 @@ export class BreadcrumbService {
   private breadcrumbs: BreadcrumbLevel[];
 
   constructor()
-  {}
+  {
+    this.initBreadcrumb();
+  }
 
   initBreadcrumb(): BreadcrumbLevel[] {
     this.breadcrumbs = [];
