@@ -26,9 +26,7 @@
       </div>
     </mat-card-content>
   </mat-card>
-}
-
-@if (translationsGroups?.length === 0) {
+} @empty {
   <mat-card class="mb-2">
     <mat-card-content>
       <p>{{'commons.noGroup' | translate}}</p>

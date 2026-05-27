@@ -26,9 +26,7 @@
       ></app-translation>
     </mat-card-content>
   </mat-card>
-}
-
-@if (translations?.length === 0) {
+} @empty {
   <mat-card class="mb-2">
     <mat-card-content>
       <p>{{'commons.noTranslation' | translate}}</p>
