@@ -12,7 +12,7 @@
   </mat-card-title>
 </mat-card>
 
-@for (translation of translations; track translation) {
+@for (translation of translations; track translation.key) {
   <mat-card class="translation-container mb-2">
     <mat-card-content>
       <app-translation

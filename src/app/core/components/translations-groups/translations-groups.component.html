@@ -12,7 +12,7 @@
   </mat-card-title>
 </mat-card>
 
-@for (translationsGroup of translationsGroups; track translationsGroup) {
+@for (translationsGroup of translationsGroups; track translationsGroup.key) {
   <mat-card class="translations-group mb-2" (click)="openTranslationsGroup($event, translationsGroup)">
     <mat-card-content>
       <p class="md-headline">{{translationsGroup.key}}</p>
