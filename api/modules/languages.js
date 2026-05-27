@@ -38,32 +38,38 @@ moduleLanguages.isValidLanguageCode = (languageCode) => {
 }
 
 moduleLanguages.countTranslations = (obj) => {
-  let item, nbTranslations = 0
-  if (utilities.isDefined(obj) && obj !== '') {
-    if (obj instanceof Object) {
-      for (item in obj) {
-        if (obj.hasOwnProperty(item)) {
-          nbTranslations += moduleLanguages.countTranslations(obj[item])
-        } else {
-          break
-        }
+  if (!obj || !utilities.isObject(obj) || !utilities.isDefined(obj)) {
+    return 0
+  }
+  let count = 0
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const value = obj[key]
+      if (typeof value === 'object' && value !== null) {
+        count += moduleLanguages.countTranslations(value)
+      } else {
+        count++
       }
-    } else {
-      nbTranslations++
     }
   }
-  return nbTranslations
+  return count
 }
 
-moduleLanguages.get(constants.PATH_API + '/languages', (_req, res) => {
-  let languages = []
-  let files = fs.readdirSync(constants.PATH_JSON_FOLDER)
-
-  files.forEach((fileName) => {
-    let content = jsonfile.readFileSync(constants.PATH_JSON_FOLDER + '/' + fileName)
-    languages.push({ code: fileName.replace('.json', ''), nbTranslations: moduleLanguages.countTranslations(content) })
-  })
-  res.send(languages)
+moduleLanguages.get(constants.PATH_API + '/languages', async (_req, res) => {
+  try {
+    const files = await fs.promises.readdir(constants.PATH_JSON_FOLDER)
+    const languages = await Promise.all(files.map(async (fileName) => {
+      const filePath = path.join(constants.PATH_JSON_FOLDER, fileName)
+      const content = await jsonfile.readFile(filePath)
+      return {
+        code: fileName.replace('.json', ''),
+        nbTranslations: moduleLanguages.countTranslations(content)
+      }
+    }))
+    res.send(languages)
+  } catch (err) {
+    res.status(500).send({ error: err.message })
+  }
 })
 
 moduleLanguages.get(constants.PATH_API + '/language/:code/:action', (req, res) => {
