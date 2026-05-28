@@ -3,8 +3,6 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  {{breadcrumbs | json}}
-
   <h2 flex md-truncate class="breadcrumb">
     @for (breadcrumb of breadcrumbs; track breadcrumb; let first = $first) {
       <a [href]="breadcrumb.href">
