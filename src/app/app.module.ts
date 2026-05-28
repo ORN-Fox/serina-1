@@ -3,7 +3,7 @@ import { BrowserModule,  } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,8 +18,8 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/mater
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Root services
 import { LanguagesService } from './core/services/languages/languages.service';
@@ -46,18 +46,19 @@ import { TranslationsGroupsComponent } from './core/components/translations-grou
 import { CrudTranslationGroupDialogComponent } from './core/components/crud-translation-group-dialog/crud-translation-group-dialog.component';
 import { LanguageFileUploadComponent } from "./core/components/language-file-upload/language-file-upload.component";
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+import { SettingAppLanguage } from './core/models/settings/settings.model';
 
-@NgModule({ declarations: [
+@NgModule({ 
+    declarations: [
         AppComponent,
+
         // Commons Components
         ConfirmDialogComponent,
         BtnBackToTopComponent,
         BtnDownloadLanguageComponent,
         MenuToolbarComponent,
         MessageNoLanguageComponent,
+
         // Pages
         LanguagesComponent,
         PreviewComponent,
@@ -70,7 +71,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         CrudTranslationGroupDialogComponent,
         LanguageFileUploadComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [
+        AppComponent
+    ], 
+    imports: [
+        BrowserModule,
         BrowserAnimationsModule,
         FileUploadModule,
         FormsModule,
@@ -89,13 +94,12 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatTooltipModule,
         ScrollingModule,
         TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
+            loader: provideTranslateHttpLoader({prefix:"./assets/i18n/", suffix:".json"}),
+            fallbackLang: SettingAppLanguage.EnUS,
         }),
-        AppRoutingModule], providers: [
+        AppRoutingModule
+    ], 
+    providers: [
         {
             provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
             useValue: {
@@ -104,5 +108,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         },
         LanguagesService,
         provideHttpClient(withInterceptorsFromDi())
-    ] })
+    ]
+})
 export class AppModule { }
