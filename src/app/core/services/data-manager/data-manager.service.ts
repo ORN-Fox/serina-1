@@ -3,6 +3,8 @@ import { isObject } from 'lodash';
 
 import { ItemType } from '../../enums/itemType.enum';
 
+import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +36,10 @@ export class DataManagerService {
   }
 
   public static getItem(list: any, levels: string[]): any {
-    let levelIndex = 0;
+    if (levels.length == 1 && levels[0] == BreadcrumbService.ROOT_BREADCRUMB_LEVEL) {
+      return list;
+    }
+    let levelIndex = 1;
     return DataManagerService.getItemRecursive(list, levels, levelIndex);
   }
 

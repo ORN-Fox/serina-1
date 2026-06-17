@@ -4,14 +4,17 @@
   </button>
 
   <h2 flex md-truncate class="breadcrumb">
-    @for (breadcrumb of breadcrumbs; track breadcrumb; let first = $first) {
-      <a [href]="breadcrumb.href">
-        @if (first) {
-          <span>{{breadcrumb.label | translate}}</span>
-          }@if (!first) {
-          <span> {{breadcrumb.label}}</span>
-        }
-      </a>
+    @for (breadcrumbLevel of breadcrumbs; track breadcrumbLevel; let first = $first) {
+      @if (first) {
+        <a [href]="breadcrumbLevel.href">
+          <span>{{breadcrumbLevel.label | translate}}</span>
+        </a>
+      }
+      @if (!first) {
+        <a (click)="goToLevel(breadcrumbLevel)">
+          <span> {{breadcrumbLevel.label}}</span>
+        </a>
+      }
     }
   </h2>
 </mat-toolbar>

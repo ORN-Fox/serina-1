@@ -33,9 +33,7 @@ export class TranslationsComponent implements OnInit {
     private languagesService: LanguagesService,
     private snackBarService: MatSnackBar,
     private translateService: TranslateService,
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.originalTranslations = cloneDeep(this.translations);

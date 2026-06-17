@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { BehaviorSubject, filter } from 'rxjs';
+import { filter } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatDrawer } from '@angular/material/sidenav';
 
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+import { LanguagesService } from '../../services/languages/languages.service';
 
 import { BreadcrumbLevel } from '../../models/breadcrumb-level/breadcrumb-level.model';
 
@@ -13,17 +14,16 @@ enum SearchNavigateSign {
 }
 
 @Component({
-    selector: 'app-menu-toolbar',
-    templateUrl: './menu-toolbar.component.html',
-    styleUrls: ['./menu-toolbar.component.scss'],
-    standalone: false
+  selector: 'app-menu-toolbar',
+  templateUrl: './menu-toolbar.component.html',
+  styleUrls: ['./menu-toolbar.component.scss'],
+  standalone: false
 })
 export class MenuToolbarComponent {
 
   @Input() sideMenu: MatDrawer;
 
-  private breadcrumbsSubject = new BehaviorSubject<BreadcrumbLevel[]>([]);
-  public breadcrumbs$ = this.breadcrumbsSubject.asObservable();
+  breadcrumbs: BreadcrumbLevel[];
 
   // Search related
   searchIsOpen: boolean;
@@ -31,13 +31,10 @@ export class MenuToolbarComponent {
   matchingElements: any[];
   currentMatchingElement: number;
 
-  get breadcrumbsValue(): User {
-    return this.userSubject.value;
-  }
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private breadcrumbService: BreadcrumbService,
+    private languagesService: LanguagesService,
     private router: Router
   ) {
     this.searchIsOpen = false;
@@ -48,14 +45,20 @@ export class MenuToolbarComponent {
     });
 
     this.router.events
-    .pipe(filter(event => event instanceof NavigationEnd))
-    .subscribe((route: any) => {
-      this.breadcrumbs = this.breadcrumbService.createBreadcrumbs(this.activatedRoute.root, route.url)
-    });
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((route: any) => {
+        this.breadcrumbs = this.breadcrumbService.createBreadcrumbs(this.activatedRoute.root, route.url);
+      });
   }
 
   toggleSideMenu() {
     this.sideMenu.toggle();
+  }
+
+  goToLevel(level: BreadcrumbLevel) {
+    this.languagesService.removeLevelAfterTargetLevel(level);
+    this.breadcrumbService.removeBreadcrumbLevelAfterTargetBreadcrumbLevel(level);
+    // navigation is start with breadcrumb broadcast event in translations-level page
   }
 
   // Search related

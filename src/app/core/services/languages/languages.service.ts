@@ -1,6 +1,9 @@
 import { Injectable, Optional, SkipSelf } from '@angular/core';
-import { log } from 'console';
 import { cloneDeep } from 'lodash';
+
+import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
+
+import { BreadcrumbLevel } from '../../models/breadcrumb-level/breadcrumb-level.model';
 
 @Injectable()
 export class LanguagesService {
@@ -13,10 +16,9 @@ export class LanguagesService {
       throw new Error('LanguagesService is already loaded');
     }
     this.clear();
-    console.info('LanguageService created');
   }
 
-  // Language related
+  // #region Language
 
   getLanguages(): string[] {
     return cloneDeep(this.languages);
@@ -34,7 +36,7 @@ export class LanguagesService {
     }
   }
 
-  // Level related
+  // #region Level
 
   getLevels(): string[] {
     return cloneDeep(this.levels);
@@ -45,6 +47,18 @@ export class LanguagesService {
       return this.levels.join('.');
     }
     return null;
+  }
+
+  getLevelsToHref(): string {
+    let href = BreadcrumbService.ROOT_BREADCRUMB_LEVEL;
+
+    if (this.levels.length > 1) {
+      const subLevels = cloneDeep(this.levels);
+      subLevels.shift();
+      href += `/${subLevels.join('/')}`;
+    }
+
+    return href;
   }
 
   addLevels(levels: string[]) {
@@ -58,7 +72,6 @@ export class LanguagesService {
   }
 
   addLevel(level: string) {
-    console.log('ici');
     this.levels.push(level);
   }
 
@@ -66,7 +79,42 @@ export class LanguagesService {
     this.levels.pop();
   }
 
-  // Commons
+  removeLevelAfterTargetLevel(breadcrumbLevel: BreadcrumbLevel) {
+    if (!breadcrumbLevel) {
+      return;
+    }
+
+    // If a breadcrumb-like object with a href was passed, derive levels from the href
+    if (breadcrumbLevel.href && typeof breadcrumbLevel.href === 'string') {
+      const href = breadcrumbLevel.href.startsWith('/') ? breadcrumbLevel.href : `/${breadcrumbLevel.href}`;
+      // Split and remove empty segments: e.g. '/language/group/sub' -> ['language','group','sub']
+      const parts = href.split('/').filter(part => part.length > 0);
+
+      if (parts.length === 0) {
+        this.levels = [];
+        return;
+      }
+
+      // First element is the root (expected 'language'), keep it as '/language'
+      const pageLevel = parts[0];
+      const newLevels: string[] = [];
+      newLevels.push(`/${pageLevel}`);
+
+      // Append any sub-levels after the root
+      if (parts.length > 1) {
+        newLevels.push(...parts.slice(1));
+      }
+
+      this.levels = newLevels;
+      return;
+    }
+
+    // If a simple string level was passed, trim the levels array to that index
+    const levelIndex = this.levels.indexOf(breadcrumbLevel as any);
+    if (levelIndex !== -1) {
+      this.levels = this.levels.slice(0, levelIndex + 1);
+    }
+  }
 
   clear() {
     this.languages = [];
