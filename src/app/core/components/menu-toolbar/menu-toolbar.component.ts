@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 import { filter } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatDrawer } from '@angular/material/sidenav';
+import Mousetrap from 'mousetrap';
+// Import is need for append bingGlobal interface on Mousetrap class
+import MousetrapBindGlobal from 'mousetrap/plugins/global-bind/mousetrap-global-bind';
 
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { LanguagesService } from '../../services/languages/languages.service';
@@ -123,30 +126,31 @@ export class MenuToolbarComponent {
     this.currentMatchingElement = 0;
   }
 
-  // TODO re-add mousetrap or migrate on another keybing dep
-  // Mousetrap.bindGlobal('ctrl+f', (e) => {
-  //   if (e.preventDefault) {
-  //     e.preventDefault();
-  //   }
-  //   if (this.breadcrumb[0].href !== '/hub' && this.breadcrumb[0].href !== '/preview' && this.breadcrumb[0].href !== '/settings') {
-  //     if (this.searchOpen) {
-  //       this.closeSearch();
-  //     } else {
-  //       this.initiateSearch();
-  //     }
-  //   }
-  // });
+  initShortcuts() {
+    Mousetrap.bindGlobal('ctrl+f', (e: Event) => {
+      if (e.preventDefault) {
+        e.preventDefault();
+      }
+      if (this.breadcrumbs[0].href === BreadcrumbService.ROOT_BREADCRUMB_LEVEL) {
+        if (this.searchIsOpen) {
+          this.closeSearch();
+        } else {
+          this.initiateSearch();
+        }
+      }
+    });
 
-  // Mousetrap.bindGlobal('ctrl+up', () => {
-  //   if (this.matchingElements) {
-  //     this.navigateBetweenMatchingElements(SearchNavigateSign.Previous);
-  //   }
-  // });
+    Mousetrap.bindGlobal('ctrl+up', () => {
+      if (this.matchingElements) {
+        this.navigateBetweenMatchingElements(SearchNavigateSign.Previous);
+      }
+    });
 
-  // Mousetrap.bindGlobal('ctrl+down', () => {
-  //   if (this.matchingElements) {
-  //     this.navigateBetweenMatchingElements(SearchNavigateSign.Next);
-  //   }
-  // });
+    Mousetrap.bindGlobal('ctrl+down', () => {
+      if (this.matchingElements) {
+        this.navigateBetweenMatchingElements(SearchNavigateSign.Next);
+      }
+    });
+  }
 
 }
