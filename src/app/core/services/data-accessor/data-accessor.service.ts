@@ -14,7 +14,7 @@ export class DataAccessorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // Langages
+  // #region Langages
 
   public getLanguages(): Observable<Language[]>{
     return this.httpClient.get<Language[]>(`${environment.endPointApi}/languages`);
@@ -38,7 +38,7 @@ export class DataAccessorService {
     return this.httpClient.post<void>(`${environment.endPointApi}/language/import`, fd);
   }
 
-  // Groups
+  // #region Groups
 
   public createGroup(groupName: string, languages: string[], levels: string | null): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/group/add`, {
@@ -65,7 +65,7 @@ export class DataAccessorService {
     });
   }
 
-  // Translations
+  // #region Translations
 
   public createTranslation(languages: string[], levels: string | null, translation: Translation): Observable<void>{
     return this.httpClient.post<void>(`${environment.endPointApi}/translation/add`, {
@@ -91,7 +91,7 @@ export class DataAccessorService {
     });
   }
 
-  // Settings
+  // #region Settings
 
   public updateAdvancedSettings(customTranslationsPath: string, enableSortAscJson: boolean): Observable<string> {
     return this.httpClient.post(`${environment.endPointApi}/settings/update`, {
