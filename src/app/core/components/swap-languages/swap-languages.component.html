@@ -1,0 +1,33 @@
+<div class="swap-container mat-padding mat-elevation-z2">
+    <div class="swap-header">
+        <mat-form-field appearance="fill" class="language-selector">
+            <mat-label>{{ "pages.translationLevel.swap.primaryLanguage" | translate}}</mat-label>
+            <input matInput type="text" [value]="languageCode" disabled="" readonly>
+            <mat-icon matSuffix>flag</mat-icon>
+        </mat-form-field>
+        
+        <div class="swap-button-container">
+            <button mat-icon-button color="primary" [disabled]="disabledSwap" (click)="swapLanguages()" matTooltip="{{ 'pages.translationLevel.swap.switchLanguages' | translate}}" matTooltipPosition="below">
+                <mat-icon>compare_arrows</mat-icon>
+            </button>
+        </div>
+
+        <mat-form-field appearance="fill" class="language-selector">
+            <mat-label>{{ "pages.translationLevel.swap.secondLanguage" | translate}}</mat-label>
+            <mat-select [value]="secondLanguageCode" [disabled]="disabledSwap" (selectionChange)="onSecondLanguageCodeChange($event)">
+                @for (language of languagesForSwap; track language) {
+                    <mat-option [value]="language.code">{{ language.code }}</mat-option>
+                }
+                <mat-option value="">{{ "pages.translationLevel.swap.noLanguage" | translate }}</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>flag</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div class="validation-button-container">
+        <button mat-raised-button color="primary" [disabled]="disabledSwap" (click)="confirmSecondLanguage()">
+            <mat-icon>done</mat-icon>
+            {{ "commons.actions.validate" | translate}}
+        </button>
+    </div>
+</div>

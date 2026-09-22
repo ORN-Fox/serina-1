@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule} from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -33,6 +34,7 @@ import { BtnBackToTopComponent } from "./core/components/btn-back-to-top/btn-bac
 import { BtnDownloadLanguageComponent } from './core/components/btn-download-language/btn-download-language.component';
 import { MenuToolbarComponent } from './core/components/menu-toolbar/menu-toolbar.component';
 import { MessageNoLanguageComponent } from './core/components/message-no-language/message-no-language.component';
+import { SwapLanguagesComponent } from './core/components/swap-languages/swap-languages.component';
 
 // Pages
 import { LanguagesComponent } from './pages/languages/languages.component';
@@ -58,6 +60,7 @@ import { SettingAppLanguage } from './core/models/settings/settings.model';
         BtnDownloadLanguageComponent,
         MenuToolbarComponent,
         MessageNoLanguageComponent,
+        SwapLanguagesComponent,
 
         // Pages
         LanguagesComponent,
@@ -87,6 +90,7 @@ import { SettingAppLanguage } from './core/models/settings/settings.model';
         MatIconModule,
         MatInputModule,
         MatListModule,
+        MatSelectModule,
         MatSidenavModule,
         MatSlideToggleModule,
         MatSnackBarModule,
