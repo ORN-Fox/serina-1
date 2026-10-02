@@ -17,12 +17,10 @@ If you want to bring a feature, consider writing and contributing to a feature, 
 How to submit a pull request:
 
 1. Fork the repository.
-2. Setup the necessary dependencies by running `yarn`.
-3. Then, `grunt serve` to launch the  app on dev mode and `yarn start` to launch the API.
-4. `index.html` is where you can experiment with various options.
-5. Ensure there are no linting errors in the terminal
-6. Ensure that all the tests pass by running `grunt test`
-7. **Commit only the changes to `app` and `test` or `api.js` for the API (if applicable)**, then `git push`
+2. Install the dependencies with `npm install`.
+3. Test the API on its own with `npm run start:api`, then verify it at `http://127.0.0.1:7777/api/`.
+5. Run `npm start` to launch the Angular development server.
+7. Run `npm run test:ci` and `npm run build` before submitting your changes.
 8. https://github.com/ORN-Fox/serina-1/compare
 
 

@@ -1,7 +1,0 @@
-<md-subheader class="md-no-sticky"><md-icon>color_lens</md-icon> {{'pages.settings.basic.theming' | i18next}}</md-subheader>
-<md-list-item class="theming">
-    <p>{{'pages.settings.basic.choiceTheme' | i18next}}</p>
-    <div layout="row">
-        <md-button ng-repeat="color in ::$ctrl.colors" flex-gt-md="15" class="{{$root.settings.theme == color.value ? 'md-' + color.value + '-theme md-raised md-primary ' + color.value : ''}}" ng-click="$ctrl.changeColor(color.value)">{{color.label | i18next}}</md-button>
-    </div>
-</md-list-item>
