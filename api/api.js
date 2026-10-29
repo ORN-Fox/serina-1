@@ -50,9 +50,16 @@ api.get(constants.PATH_API + '/', (req, res) => {
   })
 })
 
-const server = api.listen(7777, 'localhost', () => {
+const port = Number(process.env.SERINA_API_PORT || 7777)
+const host = process.env.SERINA_API_HOST || '127.0.0.1'
+
+const server = api.listen(port, host, () => {
   console.log('API listen on ' + server.address().address + ':' + server.address().port + ' !')
-  core.createFolderIsNotExist('../json/')
+  core.createFolderIsNotExist(constants.PATH_JSON_FOLDER)
+
+  if (process.parentPort) {
+    process.parentPort.postMessage({ type: 'api-ready' })
+  }
 })
 
 module.exports = api

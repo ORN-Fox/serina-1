@@ -45,3 +45,6 @@ Thumbs.db
 
 # Api
 /api/dist/
+
+# Electron app release
+/release

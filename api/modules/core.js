@@ -116,12 +116,14 @@ module.exports = {
   // Commons
 
   createFolderIsNotExist: (pathFolder) => {
-    if (!fs.existsSync(path.join(__dirname, pathFolder))) {
-      fs.mkdir(path.join(__dirname, pathFolder), (err) => {
+    const targetFolder = path.isAbsolute(pathFolder) ? pathFolder : path.join(__dirname, pathFolder)
+
+    if (!fs.existsSync(targetFolder)) {
+      fs.mkdir(targetFolder, { recursive: true }, (err) => {
         if (!err || (err && err.code === 'EEXIST')) {
-          console.log('Successful creation for the', pathFolder, 'folder on path', __dirname)
+          console.log('Successful creation for the', targetFolder, 'folder')
         } else {
-          console.error('Error on create folder', pathFolder, 'on path', __dirname, err)
+          console.error('Error on create folder', targetFolder, err)
         }
       })
     }

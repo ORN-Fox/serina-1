@@ -19,7 +19,9 @@ How to submit a pull request:
 1. Fork the repository.
 2. Install the dependencies with `npm install`.
 3. Test the API on its own with `npm run start:api`, then verify it at `http://127.0.0.1:7777/api/`.
+4. Stop the standalone API with `Ctrl+C` before the integrated test; Electron starts its own API process on the same port.
 5. Run `npm start` to launch the Angular development server.
+6. In another terminal, run `npm run electron:dev` and test the frontend together with the API in Electron.
 7. Run `npm run test:ci` and `npm run build` before submitting your changes.
 8. https://github.com/ORN-Fox/serina-1/compare
 
