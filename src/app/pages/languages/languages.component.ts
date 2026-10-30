@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgForm } from '@angular/forms';
@@ -24,6 +24,7 @@ interface IaddLanguageForm {
     selector: 'app-languages',
     templateUrl: './languages.component.html',
     styleUrls: ['./languages.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LanguagesComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -18,6 +18,7 @@ import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '../confirm-dial
     selector: 'app-translations',
     templateUrl: './translations.component.html',
     styleUrls: ['./translations.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TranslationsComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { saveAs } from 'file-saver';
 
 import { environment } from 'src/environments/environment';
@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
     selector: 'app-btn-download-language',
     templateUrl: './btn-download-language.component.html',
     styleUrls: ['./btn-download-language.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BtnDownloadLanguageComponent {

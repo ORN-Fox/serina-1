@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { Translation } from '../../models/translation/translation.model';
 
@@ -6,6 +6,7 @@ import { Translation } from '../../models/translation/translation.model';
     selector: 'app-translation',
     templateUrl: './translation.component.html',
     styleUrls: ['./translation.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TranslationComponent {

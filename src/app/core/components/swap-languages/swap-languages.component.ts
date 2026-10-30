@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { DataAccessorService } from '../../services/data-accessor/data-accessor.
   selector: 'app-swap-languages',
   templateUrl: './swap-languages.component.html',
   styleUrls: ['./swap-languages.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SwapLanguagesComponent {

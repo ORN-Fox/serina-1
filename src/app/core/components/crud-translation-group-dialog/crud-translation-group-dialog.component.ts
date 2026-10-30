@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { isNull } from 'lodash';
 
@@ -10,6 +10,7 @@ export interface CrudTranslationGroupDialogData {
     selector: 'app-crud-translation-group-dialog',
     templateUrl: './crud-translation-group-dialog.component.html',
     styleUrls: ['./crud-translation-group-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CrudTranslationGroupDialogComponent implements OnInit {

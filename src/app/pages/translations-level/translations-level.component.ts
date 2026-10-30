@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -22,6 +22,7 @@ import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-
     selector: 'app-translations-level',
     templateUrl: './translations-level.component.html',
     styleUrls: ['./translations-level.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TransaltionsLevelComponent implements OnDestroy {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { filter } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatDrawer } from '@angular/material/sidenav';
@@ -20,6 +20,7 @@ enum SearchNavigateSign {
   selector: 'app-menu-toolbar',
   templateUrl: './menu-toolbar.component.html',
   styleUrls: ['./menu-toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class MenuToolbarComponent {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import JSONFormatter from "json-formatter-js";
@@ -11,6 +11,7 @@ import { Language } from 'src/app/core/models/language/language.model';
     selector: 'app-preview',
     templateUrl: './preview.component.html',
     styleUrls: ['./preview.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PreviewComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,6 +8,7 @@ import { DataAccessorService } from '../../services/data-accessor/data-accessor.
     selector: 'app-language-file-upload',
     templateUrl: './language-file-upload.component.html',
     styleUrl: './language-file-upload.component.scss',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LanguageFileUploadComponent {

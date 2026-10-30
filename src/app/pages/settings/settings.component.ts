@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { SettingsService } from 'src/app/core/services/settings/settings.service';
@@ -15,6 +15,7 @@ import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-
     selector: 'app-settings',
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SettingsComponent {
