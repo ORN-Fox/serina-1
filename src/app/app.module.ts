@@ -29,12 +29,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // Commons Components
-import { ConfirmDialogComponent } from './core/components/confirm-dialog/confirm-dialog.component';
 import { BtnBackToTopComponent } from "./core/components/btn-back-to-top/btn-back-to-top.component";
 import { BtnDownloadLanguageComponent } from './core/components/btn-download-language/btn-download-language.component';
+import { ConfirmDialogComponent } from './core/components/confirm-dialog/confirm-dialog.component';
+import { CrudTranslationGroupDialogComponent } from './core/components/crud-translation-group-dialog/crud-translation-group-dialog.component';
+import { LanguageFileUploadComponent } from "./core/components/language-file-upload/language-file-upload.component";
 import { MenuToolbarComponent } from './core/components/menu-toolbar/menu-toolbar.component';
 import { MessageNoLanguageComponent } from './core/components/message-no-language/message-no-language.component';
 import { SwapLanguagesComponent } from './core/components/swap-languages/swap-languages.component';
+import { TranslationComponent } from './core/components/translation/translation.component';
+import { TranslationsComponent } from './core/components/translations/translations.component';
+import { TranslationsGroupsComponent } from './core/components/translations-groups/translations-groups.component';
 
 // Pages
 import { LanguagesComponent } from './pages/languages/languages.component';
@@ -42,13 +47,6 @@ import { PreviewComponent } from './pages/preview/preview.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavMenuComponent } from './core/components/sidenav-menu/sidenav-menu.component';
 import { TransaltionsLevelComponent } from './pages/translations-level/translations-level.component';
-import { TranslationComponent } from './core/components/translation/translation.component';
-import { TranslationsComponent } from './core/components/translations/translations.component';
-import { TranslationsGroupsComponent } from './core/components/translations-groups/translations-groups.component';
-import { CrudTranslationGroupDialogComponent } from './core/components/crud-translation-group-dialog/crud-translation-group-dialog.component';
-import { LanguageFileUploadComponent } from "./core/components/language-file-upload/language-file-upload.component";
-
-import { SettingAppLanguage } from './core/models/settings/settings.model';
 
 @NgModule({ 
     declarations: [
