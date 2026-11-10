@@ -1,7 +1,7 @@
 Serina | GitHub page [here](https://orn-fox.github.io/serina-1/)
 ======
 
-[![Build Status](https://travis-ci.org/foxdog05000/serina.svg?branch=master)](https://travis-ci.org/foxdog05000/serina)
+[![Build Status](https://travis-ci.org/ORN-Fox/serina.svg?branch=master)](https://travis-ci.org/ORN-Fox/serina)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/ORN-Fox/serina-1/blob/master/LICENSE)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](https://gruntjs.com/)
 
