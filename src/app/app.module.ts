@@ -19,14 +19,17 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/mater
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { provideTranslateService, TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateModule } from '@ngx-translate/core';
 
 // Root services
 import { LanguagesService } from './core/services/languages/languages.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+// Models
+import { SettingAppLanguage } from './core/models/settings/settings.model';
 
 // Commons Components
 import { BtnBackToTopComponent } from "./core/components/btn-back-to-top/btn-back-to-top.component";
@@ -95,10 +98,8 @@ import { TransaltionsLevelComponent } from './pages/translations-level/translati
         MatToolbarModule,
         MatTooltipModule,
         ScrollingModule,
-        TranslateModule.forRoot({
-            loader: provideTranslateHttpLoader({prefix:"./assets/i18n/", suffix:".json"}),
-            fallbackLang: SettingAppLanguage.EnUS,
-        }),
+        TranslateDirective,
+        TranslatePipe,
         AppRoutingModule
     ], 
     providers: [
@@ -109,6 +110,13 @@ import { TransaltionsLevelComponent } from './pages/translations-level/translati
             }
         },
         LanguagesService,
+        provideTranslateService({
+            loader: provideTranslateHttpLoader({
+                prefix: './assets/i18n/',
+                suffix: '.json'
+            }),
+            fallbackLang: SettingAppLanguage.EnUS
+        }),
         provideHttpClient(withXhr(), withInterceptorsFromDi())
     ]
 })

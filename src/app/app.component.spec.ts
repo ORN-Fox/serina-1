@@ -4,7 +4,10 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { SettingAppLanguage } from './core/models/settings/settings.model';
 
 import { LanguagesService } from './core/services/languages/languages.service';
 
@@ -21,12 +24,19 @@ describe('AppComponent', () => {
     ],
     imports: [MatDialogModule,
         MatSnackBarModule,
-        RouterTestingModule,
-        TranslateModule.forRoot()],
+        RouterTestingModule
+    ],
     providers: [
         LanguagesService,
         provideHttpClient(withXhr(), withInterceptorsFromDi()),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        provideTranslateService({
+            loader: provideTranslateHttpLoader({
+                prefix:"./assets/i18n/", 
+                suffix:".json"
+            }),
+            fallbackLang: SettingAppLanguage.EnUS,
+        }),
     ]
 }).compileComponents();
 
