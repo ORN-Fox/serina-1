@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { SettingsService } from './core/services/settings/settings.service';
 
@@ -14,7 +14,7 @@ import { Settings } from './core/models/settings/settings.model';
 })
 export class AppComponent {
 
-  @ViewChild('drawer', { static: true }) public sideMenu: MatDrawer;
+  @ViewChild('drawer', { static: true }) public sideMenu: MatSidenav;
   
   settings: Settings;
 
