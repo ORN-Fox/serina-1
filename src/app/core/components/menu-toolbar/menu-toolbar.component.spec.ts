@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -13,7 +12,6 @@ describe('MenuToolbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [MenuToolbarComponent],
       imports: [
-        BrowserDynamicTestingModule,
         RouterTestingModule,
         TranslateModule.forRoot()
       ]

@@ -98,7 +98,6 @@
     "@angular/forms": "^22.2.4",
     "@angular/material": "22.2.5",
     "@angular/platform-browser": "^22.2.4",
-    "@angular/platform-browser-dynamic": "^22.2.4",
     "@angular/router": "^22.2.4",
     "@babel/cli": "^7.28.6",
     "@iplab/ngx-file-upload": "^22.1.0",

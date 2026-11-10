@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
@@ -15,7 +14,7 @@ describe('LanguageFileUploadComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
     declarations: [LanguageFileUploadComponent],
-    imports: [BrowserDynamicTestingModule],
+    imports: [],
     providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
