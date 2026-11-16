@@ -1,16 +1,16 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { cloneDeep } from 'lodash';
 
-import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
-import { DataManagerService } from '../../services/data-manager/data-manager.service';
-import { LanguagesService } from '../../services/languages/languages.service';
+import { DataAccessorService } from '@core/services/data-accessor/data-accessor.service';
+import { DataManagerService } from '@core/services/data-manager/data-manager.service';
+import { LanguagesService } from '@core/services/languages/languages.service';
 
-import { ItemType } from '../../enums/itemType.enum';
+import { ItemType } from '@core/enums/itemType.enum';
 
-import { Translation } from '../../models/translation/translation.model';
+import { Translation } from '@core/models/translation/translation.model';
 
 import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
@@ -23,18 +23,18 @@ import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '../confirm-dial
 })
 export class TranslationsComponent implements OnInit {
 
+  public readonly dialog = inject(MatDialog);
+  readonly dataAccessor = inject(DataAccessorService);
+  readonly languagesService = inject(LanguagesService);
+  readonly translateService = inject(TranslateService);
+  readonly snackBarService = inject(MatSnackBar);
+
   @Input() languages: string[];
   @Input() translations: Translation[];
 
   originalTranslations: Translation[];
 
-  constructor(
-    public dialog: MatDialog,
-    private dataAccessor: DataAccessorService,
-    private languagesService: LanguagesService,
-    private snackBarService: MatSnackBar,
-    private translateService: TranslateService,
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     this.originalTranslations = cloneDeep(this.translations);

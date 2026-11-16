@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
-import { BreadcrumbLevel } from '../../models/breadcrumb-level/breadcrumb-level.model';
+import { BreadcrumbLevel } from '@core/models/breadcrumb-level/breadcrumb-level.model';
 
 @Injectable({
   providedIn: 'root'

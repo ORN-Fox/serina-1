@@ -1,20 +1,20 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { DataAccessorService } from 'src/app/core/services/data-accessor/data-accessor.service';
-import { LanguagesService } from 'src/app/core/services/languages/languages.service';
-import { SettingsService } from 'src/app/core/services/settings/settings.service';
+import { DataAccessorService } from '@core/services/data-accessor/data-accessor.service';
+import { LanguagesService } from '@core/services/languages/languages.service';
+import { SettingsService } from '@core/services/settings/settings.service';
 
-import { Language } from 'src/app/core/models/language/language.model';
-import { Settings } from 'src/app/core/models/settings/settings.model';
+import { Language } from '@core/models/language/language.model';
+import { Settings } from '@core/models/settings/settings.model';
 
-import { ConfirmDialogActionEnum, ConfirmDialogComponent } from 'src/app/core/components/confirm-dialog/confirm-dialog.component';
-import { DataManagerService } from 'src/app/core/services/data-manager/data-manager.service';
-import { ItemType } from 'src/app/core/enums/itemType.enum';
+import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '@core/components/confirm-dialog/confirm-dialog.component';
+import { DataManagerService } from '@core/services/data-manager/data-manager.service';
+import { ItemType } from '@core/enums/itemType.enum';
 
 interface IaddLanguageForm {
   code: string;
@@ -29,6 +29,14 @@ interface IaddLanguageForm {
 })
 export class LanguagesComponent implements OnInit {
 
+  public readonly dialog = Inject(MatDialog);
+  readonly dataAccessorService = Inject(DataAccessorService);
+  readonly languagesService = Inject(LanguagesService);
+  readonly router = Inject(Router);
+  readonly translateService = Inject(TranslateService);
+  readonly settingsService = Inject(SettingsService);
+  readonly snackBarService = Inject(MatSnackBar);
+
   @ViewChild('addLanguageForm') addLanguageForm!: NgForm;
 
   languages: Language[];
@@ -36,15 +44,7 @@ export class LanguagesComponent implements OnInit {
 
   settings: Settings;
 
-  constructor(
-    public dialog: MatDialog,
-    private dataAccessorService: DataAccessorService,
-    private languagesService: LanguagesService,
-    private router: Router,
-    private translateService: TranslateService,
-    private settingsService: SettingsService,
-    private snackBarService: MatSnackBar
-  ) {
+  constructor() {
     this.settings = this.settingsService.getSettings();
   }
 
@@ -54,7 +54,7 @@ export class LanguagesComponent implements OnInit {
 
   getLanguages() {
     this.dataAccessorService.getLanguages().subscribe({
-      next: (languagesJson) => {
+      next: (languagesJson: any[]) => {
         let languages: Language[] = [];
         languagesJson.forEach((languageJson) => {
           languages.push(new Language(languageJson.code, languageJson.nbTranslations));
@@ -62,7 +62,7 @@ export class LanguagesComponent implements OnInit {
         this.languages = languages;
         this.languageCodes = this.languages.map((language) => language.code);
       },
-      error: (response) => {
+      error: (response: Response) => {
         this.languages = [];
 
         this.snackBarService.open(this.translateService.instant('commons.toast.loadLanguages.fail'), undefined, { panelClass: 'app-notification-error' });
@@ -91,7 +91,7 @@ export class LanguagesComponent implements OnInit {
           this.addLanguageForm.resetForm();
           this.getLanguages();
         },
-        error: (response) => {
+        error: (response: Response) => {
           this.snackBarService.open(this.translateService.instant('commons.toast.addLanguage.fail', { language: addLanguageCode }), undefined, { panelClass: 'app-notification-error' });
           console.error(`Unable to add language "${addLanguageCode}"`, response)
         }
@@ -111,7 +111,7 @@ export class LanguagesComponent implements OnInit {
             this.snackBarService.open(this.translateService.instant('commons.toast.deleteLanguage.success', { language: languageCode }), undefined, { panelClass: 'app-notification-success' });
             this.getLanguages();
           },
-          error:  (response) => {
+          error: (response: Response) => {
             this.snackBarService.open(this.translateService.instant('commons.toast.deleteLanguage.fail', { language: languageCode }), undefined, { panelClass: 'app-notification-error' });
             console.error(`Unable to delete language "${languageCode}"`, response);
           }

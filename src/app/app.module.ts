@@ -45,11 +45,7 @@ import { TranslationsComponent } from './core/components/translations/translatio
 import { TranslationsGroupsComponent } from './core/components/translations-groups/translations-groups.component';
 
 // Pages
-import { LanguagesComponent } from './pages/languages/languages.component';
-import { PreviewComponent } from './pages/preview/preview.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavMenuComponent } from './core/components/sidenav-menu/sidenav-menu.component';
-import { TransaltionsLevelComponent } from './pages/translations-level/translations-level.component';
 
 @NgModule({ 
     declarations: [
@@ -64,11 +60,7 @@ import { TransaltionsLevelComponent } from './pages/translations-level/translati
         SwapLanguagesComponent,
 
         // Pages
-        LanguagesComponent,
-        PreviewComponent,
-        SettingsComponent,
         SidenavMenuComponent,
-        TransaltionsLevelComponent,
         TranslationComponent,
         TranslationsComponent,
         TranslationsGroupsComponent,

@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { saveAs } from 'file-saver';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '@environment/environment';
 
 @Component({
     selector: 'app-btn-download-language',

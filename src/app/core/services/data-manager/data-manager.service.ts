@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { isObject } from 'lodash';
 
-import { ItemType } from '../../enums/itemType.enum';
+import { ItemType } from '@core/enums/itemType.enum';
 
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 

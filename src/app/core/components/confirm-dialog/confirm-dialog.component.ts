@@ -14,10 +14,8 @@ export enum ConfirmDialogActionEnum {
 })
 export class ConfirmDialogComponent {
 
-  confirmDialogActionEnum;
+  confirmDialogActionEnum = ConfirmDialogActionEnum;
 
-  constructor() {
-    this.confirmDialogActionEnum = ConfirmDialogActionEnum;
-  }
+  constructor() { }
 
 }

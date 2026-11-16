@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
-import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
+import { DataAccessorService } from '@core/services/data-accessor/data-accessor.service';
 
 @Component({
   selector: 'app-swap-languages',
@@ -13,6 +13,11 @@ import { DataAccessorService } from '../../services/data-accessor/data-accessor.
   standalone: false
 })
 export class SwapLanguagesComponent {
+
+  readonly dataAccessorService = inject(DataAccessorService);
+  readonly snackBarService = inject(MatSnackBar);
+  readonly translateService = inject(TranslateService);
+
   @Input() languageCode: string = '';
   @Input() secondLanguageCode: string = '';
   @Input() disabledSwap: boolean = false;
@@ -23,11 +28,7 @@ export class SwapLanguagesComponent {
   selectedSecondLanguageCode: string = '';
   languagesForSwap: { code: string }[] = [];
   
-  constructor(
-    private dataAccessorService: DataAccessorService,
-    private translateService: TranslateService,
-    private snackBarService: MatSnackBar
-  ) {
+  constructor() {
     this.getLanguages();
   }
 

@@ -1,22 +1,22 @@
-import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { cloneDeep, isObject } from 'lodash';
 
-import { BreadcrumbService } from 'src/app/core/services/breadcrumb/breadcrumb.service';
-import { DataAccessorService } from 'src/app/core/services/data-accessor/data-accessor.service';
-import { DataManagerService } from 'src/app/core/services/data-manager/data-manager.service';
-import { LanguagesService } from 'src/app/core/services/languages/languages.service';
-import { SettingsService } from 'src/app/core/services/settings/settings.service';
+import { BreadcrumbService } from '@core/services/breadcrumb/breadcrumb.service';
+import { DataAccessorService } from '@core/services/data-accessor/data-accessor.service';
+import { DataManagerService } from '@core/services/data-manager/data-manager.service';
+import { LanguagesService } from '@core/services/languages/languages.service';
+import { SettingsService } from '@core/services/settings/settings.service';
 
-import { Language } from 'src/app/core/models/language/language.model';
-import { Settings } from 'src/app/core/models/settings/settings.model';
-import { Translation } from 'src/app/core/models/translation/translation.model';
-import { TranslationsGroup } from 'src/app/core/models/translations-group/translations-group.model';
+import { Language } from '@core/models/language/language.model';
+import { Settings } from '@core/models/settings/settings.model';
+import { Translation } from '@core/models/translation/translation.model';
+import { TranslationsGroup } from '@core/models/translations-group/translations-group.model';
 
-import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-toolbar.component';
+import { MenuToolbarComponent } from '@core/components/menu-toolbar/menu-toolbar.component';
 
 @Component({
     selector: 'app-translations-level',
@@ -26,6 +26,14 @@ import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-
     standalone: false
 })
 export class TransaltionsLevelComponent implements OnDestroy {
+
+  readonly router = Inject(Router);
+  readonly breadcrumbService = Inject(BreadcrumbService);
+  readonly dataAccessor = Inject(DataAccessorService);
+  readonly languagesService = Inject(LanguagesService);
+  readonly settingsService = Inject(SettingsService);
+  readonly snackBarService = Inject(MatSnackBar);
+  readonly translateService = Inject(TranslateService);
 
   private breadcrumbSub: Subscription | null = null;
 
@@ -43,15 +51,7 @@ export class TransaltionsLevelComponent implements OnDestroy {
 
   settings: Settings;
 
-  constructor(
-    private router: Router,
-    private breadcrumbService: BreadcrumbService,
-    private dataAccessor: DataAccessorService,
-    private languagesService: LanguagesService,
-    private settingsService: SettingsService,
-    private snackBarService: MatSnackBar,
-    private translateService: TranslateService
-  ) {
+  constructor() {
     this.settings = this.settingsService.getSettings();
     console.log('settings', this.settings)
 
@@ -91,7 +91,7 @@ export class TransaltionsLevelComponent implements OnDestroy {
 
   loadLanguage() {
     this.dataAccessor.openLanguage(this.languages[0]).subscribe({
-      next: (response) => {
+      next: (response: JSON) => {
         this.contentSource = response;
         this.getListGroupsAndTranslations(response, this.languagesService.getLevels());
 
@@ -100,7 +100,7 @@ export class TransaltionsLevelComponent implements OnDestroy {
         //   this.recoverSecondaryLanguage(this.secondLanguage)
         // }
       },
-      error: (error) => {
+      error: (error: Response) => {
         this.snackBarService.open(this.translateService.instant('commons.toast.loadLanguage.fail'), undefined, { panelClass: 'app-notification-error' });
         console.error(`Error on open language ${this.languages[0]}`, error);
       }

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '@environment/environment';
 
-import { Language } from '../../models/language/language.model';
-import { Translation } from '../../models/translation/translation.model';
+import { Language } from '@core/models/language/language.model';
+import { Translation } from '@core/models/translation/translation.model';
 
 @Injectable({
   providedIn: 'root'

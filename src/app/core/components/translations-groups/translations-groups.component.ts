@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
-import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
-import { DataManagerService } from '../../services/data-manager/data-manager.service';
-import { LanguagesService } from '../../services/languages/languages.service';
+import { DataAccessorService } from '@core/services/data-accessor/data-accessor.service';
+import { DataManagerService } from '@core/services/data-manager/data-manager.service';
+import { LanguagesService } from '@core/services/languages/languages.service';
 
-import { ItemType } from '../../enums/itemType.enum';
+import { ItemType } from '@core/enums/itemType.enum';
 
-import { Translation } from '../../models/translation/translation.model';
-import { TranslationsGroup } from '../../models/translations-group/translations-group.model';
+import { Translation } from '@core/models/translation/translation.model';
+import { TranslationsGroup } from '@core/models/translations-group/translations-group.model';
 
 import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { CrudTranslationGroupDialogComponent } from '../crud-translation-group-dialog/crud-translation-group-dialog.component';
@@ -25,19 +25,19 @@ import { MenuToolbarComponent } from '../menu-toolbar/menu-toolbar.component';
 })
 export class TranslationsGroupsComponent {
 
+  public readonly dialog = inject(MatDialog);
+  readonly dataAccessor = inject(DataAccessorService);
+  readonly languagesService = inject(LanguagesService);
+  readonly snackBarService = inject(MatSnackBar);
+  readonly translateService = inject(TranslateService);
+
   @Input() languages: string[];
   @Input() translations: Translation[];
   @Input() translationsGroups: TranslationsGroup[];
 
   @Output() TranslationsGroupsComponentDidOpenGroupEvent: EventEmitter<{ groupName: string }> = new EventEmitter();
 
-  constructor(
-    public dialog: MatDialog,
-    private dataAccessor: DataAccessorService,
-    private languagesService: LanguagesService,
-    private snackBarService: MatSnackBar,
-    private translateService: TranslateService,
-  ) {
+  constructor() {
 
   }
 

@@ -6,7 +6,7 @@ import { DataAccessorService } from '../data-accessor/data-accessor.service';
 import { LanguagesService } from '../languages/languages.service';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
-import { Settings } from '../../models/settings/settings.model';
+import { Settings } from '@core/models/settings/settings.model';
 
 @Injectable({
   providedIn: 'root'

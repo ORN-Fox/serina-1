@@ -1,4 +1,4 @@
-import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { SettingsService } from './core/services/settings/settings.service';
@@ -14,11 +14,13 @@ import { Settings } from './core/models/settings/settings.model';
 })
 export class AppComponent {
 
+  readonly settingsService = Inject(SettingsService);
+
   @ViewChild('drawer', { static: true }) public sideMenu: MatSidenav;
   
   settings: Settings;
 
-  constructor(private settingsService: SettingsService) {
+  constructor() {
     this.settingsService.initSettings();
     this.settings = this.settingsService.getSettings();
     this.settingsService.setThemeApp();

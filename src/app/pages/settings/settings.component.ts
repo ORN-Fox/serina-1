@@ -1,15 +1,15 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { SettingsService } from 'src/app/core/services/settings/settings.service';
+import { SettingsService } from '@core/services/settings/settings.service';
 
-import { Settings, SettingLanguageDisplayFormat, SettingAppTheme } from 'src/app/core/models/settings/settings.model';
+import { Settings, SettingLanguageDisplayFormat, SettingAppTheme } from '@core/models/settings/settings.model';
 
-import { Language } from 'src/app/core/models/language/language.model';
-import { LanguageDisplayFormat } from 'src/app/core/models/language-display-format/language-display-format.model';
-import { Shortcut } from 'src/app/core/models/shortcut/shortcut.model';
+import { Language } from '@core/models/language/language.model';
+import { LanguageDisplayFormat } from '@core/models/language-display-format/language-display-format.model';
+import { Shortcut } from '@core/models/shortcut/shortcut.model';
 
-import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-toolbar.component';
+import { MenuToolbarComponent } from '@core/components/menu-toolbar/menu-toolbar.component';
 
 @Component({
     selector: 'app-settings',
@@ -20,6 +20,9 @@ import { MenuToolbarComponent } from 'src/app/core/components/menu-toolbar/menu-
 })
 export class SettingsComponent {
 
+  readonly settingsService = Inject(SettingsService);
+  readonly translateService = Inject(TranslateService);
+
   languages: Language[];
   settings: Settings;
   shortcuts: Shortcut[];
@@ -27,10 +30,7 @@ export class SettingsComponent {
 
   languageDisplayFormats: LanguageDisplayFormat[];
 
-  constructor(
-    private settingsService: SettingsService,
-    private translateService: TranslateService
-  ) {
+  constructor() {
     // MenuToolbarComponent.prototype.addBreadcrumbLevel('sideMenu.settings', '/settings');
     this.settings = this.settingsService.getSettings();
 

@@ -3,7 +3,7 @@ import { cloneDeep } from 'lodash';
 
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 
-import { BreadcrumbLevel } from '../../models/breadcrumb-level/breadcrumb-level.model';
+import { BreadcrumbLevel } from '@core/models/breadcrumb-level/breadcrumb-level.model';
 
 @Injectable()
 export class LanguagesService {

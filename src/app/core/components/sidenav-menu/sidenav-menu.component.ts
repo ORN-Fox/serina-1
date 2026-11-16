@@ -12,9 +12,7 @@ export class SidenavMenuComponent {
 
   @Input() sideMenu: MatDrawer;
 
-  constructor() {
-
-  }
+  constructor() { }
 
   closeSideMenu() {
     this.sideMenu.close();

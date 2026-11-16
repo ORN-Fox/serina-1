@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, inject } from '@angular/core';
 import { filter } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatDrawer } from '@angular/material/sidenav';
@@ -6,10 +6,10 @@ import Mousetrap from 'mousetrap';
 // Import is need for append bingGlobal interface on Mousetrap class
 import MousetrapBindGlobal from 'mousetrap/plugins/global-bind/mousetrap-global-bind';
 
-import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
-import { LanguagesService } from '../../services/languages/languages.service';
+import { BreadcrumbService } from '@core/services/breadcrumb/breadcrumb.service';
+import { LanguagesService } from '@core/services/languages/languages.service';
 
-import { BreadcrumbLevel } from '../../models/breadcrumb-level/breadcrumb-level.model';
+import { BreadcrumbLevel } from '@core/models/breadcrumb-level/breadcrumb-level.model';
 
 enum SearchNavigateSign {
   Previous = '-',
@@ -25,6 +25,11 @@ enum SearchNavigateSign {
 })
 export class MenuToolbarComponent {
 
+  readonly activatedRoute = inject(ActivatedRoute);
+  readonly breadcrumbService = inject(BreadcrumbService);
+  readonly languagesService = inject(LanguagesService);
+  readonly router = inject(Router);
+
   @Input() sideMenu: MatDrawer;
 
   breadcrumbs: BreadcrumbLevel[];
@@ -35,12 +40,7 @@ export class MenuToolbarComponent {
   matchingElements: any[];
   currentMatchingElement: number;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private breadcrumbService: BreadcrumbService,
-    private languagesService: LanguagesService,
-    private router: Router
-  ) {
+  constructor() {
     this.searchIsOpen = false;
     this.clearSearch();
 

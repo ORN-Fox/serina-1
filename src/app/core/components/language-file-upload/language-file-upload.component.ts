@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
-import { DataAccessorService } from '../../services/data-accessor/data-accessor.service';
+import { DataAccessorService } from '@core/services/data-accessor/data-accessor.service';
 
 @Component({
     selector: 'app-language-file-upload',
@@ -13,19 +13,17 @@ import { DataAccessorService } from '../../services/data-accessor/data-accessor.
 })
 export class LanguageFileUploadComponent {
 
+  readonly dataAccessorService = Inject(DataAccessorService);
+  readonly translateService = Inject(TranslateService);
+  readonly snackBarService = Inject(MatSnackBar);
+
   @Input() existingLanguageCodes: string[];
 
   @Output() LanguageFileUploadComponentDidUploadEvent: EventEmitter<void> = new EventEmitter();
 
-  uploadedFiles: Array<File>;
+  uploadedFiles: Array<File> = [];
 
-  constructor(
-    private dataAccessorService: DataAccessorService,
-    private translateService: TranslateService,
-    private snackBarService: MatSnackBar
-  ) {
-    this.uploadedFiles =  [];
-  }
+  constructor() { }
 
   upload(files: File[]) {
     if (files?.length) {
@@ -49,7 +47,7 @@ export class LanguageFileUploadComponent {
               return;
             }
           },
-          error: (response) => {
+          error: (response: any) => {
             this.snackBarService.open(this.translateService.instant('commons.toast.addLanguage.fail', { language: addLanguageCode }), undefined, { panelClass: 'app-notification-error' });
             console.error(`Unable to add language "${addLanguageCode}"`, response)
           }

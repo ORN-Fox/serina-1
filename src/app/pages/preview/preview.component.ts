@@ -1,11 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, Translation } from '@ngx-translate/core';
 import JSONFormatter from "json-formatter-js";
 
-import { DataAccessorService } from 'src/app/core/services/data-accessor/data-accessor.service';
+import { DataAccessorService } from '@core/services/data-accessor/data-accessor.service';
 
-import { Language } from 'src/app/core/models/language/language.model';
+import { Language } from '@core/models/language/language.model';
 
 @Component({
     selector: 'app-preview',
@@ -16,16 +16,16 @@ import { Language } from 'src/app/core/models/language/language.model';
 })
 export class PreviewComponent implements OnInit {
 
+  readonly dataAccessorService = Inject(DataAccessorService);
+  readonly translateService = Inject(TranslateService);
+  readonly snackBarService = Inject(MatSnackBar);
+
   languages: Language[];
   languageCodes: string[];
   selectedLanguageCode: string;
   selectedLanguageTranslations: JSON;
 
-  constructor(
-    private dataAccessorService: DataAccessorService,
-    private translateService: TranslateService,
-    private snackBarService: MatSnackBar
-  ) {}
+  constructor() { }
 
   ngOnInit() {
     this.getLanguages();
@@ -33,7 +33,7 @@ export class PreviewComponent implements OnInit {
 
   getLanguages() {
     this.dataAccessorService.getLanguages().subscribe({
-      next: (languagesJson) => {
+      next: (languagesJson: any[]) => {
         let languages: Language[] = [];
         languagesJson.forEach((languageJson) => {
           languages.push(new Language(languageJson.code, languageJson.nbTranslations));
@@ -41,7 +41,7 @@ export class PreviewComponent implements OnInit {
         this.languages = languages;
         this.languageCodes = this.languages.map((language) => language.code);
       },
-      error: (response) => {
+      error: (response: Response) => {
         this.languages = [];
 
         this.snackBarService.open(this.translateService.instant('commons.toast.loadLanguages.fail'), undefined, { panelClass: 'app-notification-error' });
@@ -54,7 +54,7 @@ export class PreviewComponent implements OnInit {
     this.selectedLanguageCode = code;
 
     this.dataAccessorService.openLanguage(this.selectedLanguageCode).subscribe({
-      next: (translations) => {
+      next: (translations: JSON) => {
         this.selectedLanguageTranslations = translations;
 
         const formatter = new JSONFormatter(this.selectedLanguageTranslations, 2);
@@ -65,7 +65,7 @@ export class PreviewComponent implements OnInit {
           previewElement.appendChild(formatter.render());
         }
       },
-      error: (error) => {
+      error: (error: Response) => {
         this.snackBarService.open(this.translateService.instant('commons.toast.loadLanguage.fail'), undefined, { panelClass: 'app-notification-error' });
         console.error(`Error on open language ${this.selectedLanguageCode}`, error);
       }

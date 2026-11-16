@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
-import { Translation } from '../../models/translation/translation.model';
+import { Translation } from '@core/models/translation/translation.model';
 
 @Component({
     selector: 'app-translation',
