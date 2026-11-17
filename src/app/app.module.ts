@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule,  } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
@@ -119,7 +119,8 @@ import { PreviewComponent } from './pages/preview/preview.component';
             }),
             fallbackLang: SettingAppLanguage.EnUS
         }),
-        provideHttpClient(withXhr(), withInterceptorsFromDi())
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideZoneChangeDetection()
     ]
 })
 export class AppModule { }
