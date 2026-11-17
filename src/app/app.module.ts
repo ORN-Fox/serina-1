@@ -46,6 +46,10 @@ import { TranslationsGroupsComponent } from './core/components/translations-grou
 
 // Pages
 import { SidenavMenuComponent } from './core/components/sidenav-menu/sidenav-menu.component';
+import { TransaltionsLevelComponent } from './pages/translations-level/translations-level.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { LanguagesComponent } from './pages/languages/languages.component';
+import { PreviewComponent } from './pages/preview/preview.component';
 
 @NgModule({ 
     declarations: [
@@ -59,13 +63,19 @@ import { SidenavMenuComponent } from './core/components/sidenav-menu/sidenav-men
         MessageNoLanguageComponent,
         SwapLanguagesComponent,
 
-        // Pages
+        // Pages components
         SidenavMenuComponent,
         TranslationComponent,
         TranslationsComponent,
         TranslationsGroupsComponent,
         CrudTranslationGroupDialogComponent,
-        LanguageFileUploadComponent
+        LanguageFileUploadComponent,
+
+        // Pages
+        LanguagesComponent,
+        PreviewComponent,
+        TransaltionsLevelComponent,
+        SettingsComponent
     ],
     bootstrap: [
         AppComponent
