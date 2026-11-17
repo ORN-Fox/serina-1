@@ -144,7 +144,7 @@ export class TransaltionsLevelComponent implements OnDestroy {
   goToBack() {
     MenuToolbarComponent.prototype.closeSearch();
 
-    if (this.languagesService.getLevels().length == 0) {
+    if (this.languagesService.isRootLevel()) {
       this.languagesService.clear();
       if (!this.settings.keepLanguagesEdit) {
         this.settings.openedLanguages = [];

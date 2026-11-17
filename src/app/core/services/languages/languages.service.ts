@@ -38,6 +38,10 @@ export class LanguagesService {
 
   // #region Level
 
+  isRootLevel(): boolean {
+    return this.levels.length == 1 && this.levels[0] == BreadcrumbService.ROOT_BREADCRUMB_LEVEL;
+  }
+
   getLevels(): string[] {
     return cloneDeep(this.levels);
   }
