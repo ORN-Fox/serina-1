@@ -21,7 +21,6 @@ export class AppComponent {
   settings: Settings;
 
   constructor() {
-    this.settingsService.initSettings();
     this.settings = this.settingsService.getSettings();
     this.settingsService.setThemeApp();
   }
