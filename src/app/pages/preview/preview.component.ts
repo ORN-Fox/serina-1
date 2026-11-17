@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService, Translation } from '@ngx-translate/core';
 import JSONFormatter from "json-formatter-js";
@@ -16,9 +16,9 @@ import { Language } from '@core/models/language/language.model';
 })
 export class PreviewComponent implements OnInit {
 
-  readonly dataAccessorService = Inject(DataAccessorService);
-  readonly translateService = Inject(TranslateService);
-  readonly snackBarService = Inject(MatSnackBar);
+  readonly dataAccessorService = inject(DataAccessorService);
+  readonly translateService = inject(TranslateService);
+  readonly snackBarService = inject(MatSnackBar);
 
   languages: Language[];
   languageCodes: string[];

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -27,13 +27,13 @@ import { MenuToolbarComponent } from '@core/components/menu-toolbar/menu-toolbar
 })
 export class TransaltionsLevelComponent implements OnDestroy {
 
-  readonly router = Inject(Router);
-  readonly breadcrumbService = Inject(BreadcrumbService);
-  readonly dataAccessor = Inject(DataAccessorService);
-  readonly languagesService = Inject(LanguagesService);
-  readonly settingsService = Inject(SettingsService);
-  readonly snackBarService = Inject(MatSnackBar);
-  readonly translateService = Inject(TranslateService);
+  readonly router = inject(Router);
+  readonly breadcrumbService = inject(BreadcrumbService);
+  readonly dataAccessor = inject(DataAccessorService);
+  readonly languagesService = inject(LanguagesService);
+  readonly settingsService = inject(SettingsService);
+  readonly snackBarService = inject(MatSnackBar);
+  readonly translateService = inject(TranslateService);
 
   private breadcrumbSub: Subscription | null = null;
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -13,9 +13,9 @@ import { DataAccessorService } from '@core/services/data-accessor/data-accessor.
 })
 export class LanguageFileUploadComponent {
 
-  readonly dataAccessorService = Inject(DataAccessorService);
-  readonly translateService = Inject(TranslateService);
-  readonly snackBarService = Inject(MatSnackBar);
+  readonly dataAccessorService = inject(DataAccessorService);
+  readonly translateService = inject(TranslateService);
+  readonly snackBarService = inject(MatSnackBar);
 
   @Input() existingLanguageCodes: string[];
 

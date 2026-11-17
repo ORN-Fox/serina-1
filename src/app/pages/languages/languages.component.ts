@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgForm } from '@angular/forms';
@@ -6,15 +6,16 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DataAccessorService } from '@core/services/data-accessor/data-accessor.service';
+import { DataManagerService } from '@core/services/data-manager/data-manager.service';
 import { LanguagesService } from '@core/services/languages/languages.service';
 import { SettingsService } from '@core/services/settings/settings.service';
 
 import { Language } from '@core/models/language/language.model';
 import { Settings } from '@core/models/settings/settings.model';
 
-import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '@core/components/confirm-dialog/confirm-dialog.component';
-import { DataManagerService } from '@core/services/data-manager/data-manager.service';
 import { ItemType } from '@core/enums/itemType.enum';
+
+import { ConfirmDialogActionEnum, ConfirmDialogComponent } from '@core/components/confirm-dialog/confirm-dialog.component';
 
 interface IaddLanguageForm {
   code: string;
@@ -29,13 +30,13 @@ interface IaddLanguageForm {
 })
 export class LanguagesComponent implements OnInit {
 
-  public readonly dialog = Inject(MatDialog);
-  readonly dataAccessorService = Inject(DataAccessorService);
-  readonly languagesService = Inject(LanguagesService);
-  readonly router = Inject(Router);
-  readonly translateService = Inject(TranslateService);
-  readonly settingsService = Inject(SettingsService);
-  readonly snackBarService = Inject(MatSnackBar);
+  public readonly dialog = inject(MatDialog);
+  readonly dataAccessorService = inject(DataAccessorService);
+  readonly languagesService = inject(LanguagesService);
+  readonly router = inject(Router);
+  readonly translateService = inject(TranslateService);
+  readonly settingsService = inject(SettingsService);
+  readonly snackBarService = inject(MatSnackBar);
 
   @ViewChild('addLanguageForm') addLanguageForm!: NgForm;
 

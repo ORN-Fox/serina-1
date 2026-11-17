@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { SettingsService } from '@core/services/settings/settings.service';
@@ -20,8 +20,8 @@ import { MenuToolbarComponent } from '@core/components/menu-toolbar/menu-toolbar
 })
 export class SettingsComponent {
 
-  readonly settingsService = Inject(SettingsService);
-  readonly translateService = Inject(TranslateService);
+  readonly settingsService = inject(SettingsService);
+  readonly translateService = inject(TranslateService);
 
   languages: Language[];
   settings: Settings;

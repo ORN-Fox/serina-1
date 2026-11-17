@@ -1,4 +1,4 @@
-import { Component, ViewChild, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { SettingsService } from './core/services/settings/settings.service';
@@ -14,7 +14,7 @@ import { Settings } from './core/models/settings/settings.model';
 })
 export class AppComponent {
 
-  readonly settingsService = Inject(SettingsService);
+  settingsService = inject(SettingsService);
 
   @ViewChild('drawer', { static: true }) public sideMenu: MatSidenav;
   
